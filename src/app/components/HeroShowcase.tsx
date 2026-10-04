@@ -9,30 +9,19 @@ export default function HeroShowcase() {
   return (
     <div className="relative mx-auto w-full max-w-[26rem] pb-6 lg:max-w-[30rem]">
       {/* A nudge to try it */}
-      <p
-        aria-hidden="true"
-        className="absolute -top-1 left-0 z-20 flex rotate-[-6deg] items-center gap-1 text-xl text-[#8a8780] sm:left-2"
-        style={{ fontFamily: "var(--font-kalam), cursive", fontWeight: 700 }}
-      >
-        try me!
-        <svg viewBox="0 0 40 24" className="h-5 w-9" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M2 6c10-4 22-2 32 10" />
-          <path d="M27 17l7-1-1-7" />
-        </svg>
-      </p>
 
       <Mascot
         kind="uncle"
         mood="cheer"
         color="#2f7bff"
-        className="absolute bottom-20 -left-2 z-0 h-24 w-24 -rotate-6 sm:h-28 sm:w-28 lg:bottom-24 lg:h-36 lg:w-36"
+        className="absolute bottom-20 -left-4 lg:-left-16 z-0 lg:z-12 h-28 w-28 -rotate-6 sm:h-28 sm:w-28 lg:bottom-24 lg:h-52 lg:w-52"
         delay={0.3}
       />
       <Mascot
         kind="didi"
         mood="happy"
         color="#ff4f9a"
-        className="absolute bottom-24 -right-2 z-0 h-24 w-24 rotate-6 sm:h-28 sm:w-28 lg:bottom-28 lg:h-36 lg:w-36"
+        className="absolute bottom-24 -right-6 lg:-right-10 z-0 h-32 w-32 rotate-6 sm:h-34 sm:w-34 lg:bottom-28 lg:h-48 lg:w-48"
         delay={1.4}
       />
 
@@ -43,13 +32,13 @@ export default function HeroShowcase() {
       <Mascot
         kind="samosa"
         mood="cheer"
-        className="pointer-events-none absolute bottom-0 left-0 z-20 h-16 w-16 sm:h-20 sm:w-20 lg:h-28 lg:w-28"
+        className="pointer-events-none absolute -bottom-4 lg:-bottom-6 left-4 z-20 h-26 w-26 sm:h-20 sm:w-20 lg:h-42 lg:w-42"
         delay={0.9}
       />
       <Mascot
         kind="chai"
         mood="wink"
-        className="pointer-events-none absolute bottom-0 right-1 z-20 h-14 w-14 sm:h-16 sm:w-16 lg:h-24 lg:w-24"
+        className="pointer-events-none absolute -bottom-2 lg:-bottom-5 right-4 z-10 h-24 w-24 sm:h-16 sm:w-16 lg:h-46 lg:w-46"
         delay={2}
       />
     </div>
