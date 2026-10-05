@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
+import { useGameTimer } from "@/lib/useGameTimer";
+
 import { sfx } from "@/lib/sfx";
 import { categoryMeta, type WordCard } from "@/lib/words/deck";
 import { CUSTOM_CATEGORY_ID } from "@/lib/words/pictionary";
@@ -381,26 +383,11 @@ export function Ready() {
 
 // ------------------------------------------------------------------ drawing
 
-function useRemaining() {
-  const timer = usePictionary((s) => s.timer);
-  const [now, setNow] = useState(() => Date.now());
-
-  useEffect(() => {
-    if (timer.endsAt === null) return;
-    const id = window.setInterval(() => setNow(Date.now()), 100);
-    return () => window.clearInterval(id);
-  }, [timer.endsAt]);
-
-  const ms =
-    timer.endsAt === null ? timer.remainingMs : Math.max(0, timer.endsAt - now);
-  return { ms, running: timer.endsAt !== null };
-}
-
 export function Drawing() {
   const s = usePictionary();
   const team = currentTeam(s);
   const play = useSound();
-  const { ms, running } = useRemaining();
+  const { ms, running } = useGameTimer(s.timer);
   const [peek, setPeek] = useState(false);
   const lastTick = useRef<number | null>(null);
 
@@ -446,11 +433,13 @@ export function Drawing() {
       >
         <div
           role="timer"
-          className={`font-display text-[clamp(5rem,30vw,9rem)] font-extrabold leading-none tabular-nums tracking-tighter transition-colors ${
+          className={`inline-flex items-baseline justify-center font-display text-[clamp(5rem,30vw,9rem)] font-extrabold leading-none tabular-nums tracking-[0.06em] transition-colors ${
             urgent ? "text-[#e2412d]" : ""
           }`}
         >
-          {mm}:{ss}
+          <span>{mm}</span>
+          <span className="mx-2">:</span>
+          <span>{ss}</span>
         </div>
         <div className="mt-4 h-3.5 overflow-hidden rounded-full bg-black/5">
           <div

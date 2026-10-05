@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
+import { useGameTimer } from "@/lib/useGameTimer";
 
 import { categoryMeta } from "@/lib/charades/words";
 import { sfx } from "@/lib/sfx";
@@ -90,25 +92,11 @@ export function Handoff() {
 
 // ------------------------------------------------------------------ acting
 
-function useRemaining() {
-  const timer = useCharades((s) => s.timer);
-  const [now, setNow] = useState(() => Date.now());
-
-  useEffect(() => {
-    if (timer.endsAt === null) return;
-    const id = window.setInterval(() => setNow(Date.now()), 100);
-    return () => window.clearInterval(id);
-  }, [timer.endsAt]);
-
-  const ms = timer.endsAt === null ? timer.remainingMs : Math.max(0, timer.endsAt - now);
-  return { ms, running: timer.endsAt !== null };
-}
-
 export function Acting() {
   const s = useCharades();
   const team = currentTeam(s);
   const play = useSound();
-  const { ms, running } = useRemaining();
+  const { ms, running } = useGameTimer(s.timer);
   const lastTick = useRef<number | null>(null);
 
   const total = s.settings.roundSeconds * 1000;
@@ -145,9 +133,11 @@ export function Acting() {
       <div className={`flex items-center gap-3 ${urgent && running ? "animate-wobble" : ""}`}>
         <div
           role="timer"
-          className={`font-display text-4xl font-extrabold tabular-nums leading-none tracking-tight ${urgent ? "text-[#e2412d]" : ""}`}
+          className={`inline-flex items-baseline font-display text-4xl font-extrabold tabular-nums leading-none tracking-[0.06em] ${urgent ? "text-[#e2412d]" : ""}`}
         >
-          {mm}:{ss}
+          <span>{mm}</span>
+          <span className="mx-1">:</span>
+          <span>{ss}</span>
         </div>
         <div className="h-3 flex-1 overflow-hidden rounded-full bg-black/5">
           <div

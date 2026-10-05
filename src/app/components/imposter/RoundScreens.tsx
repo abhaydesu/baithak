@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
+import { useGameTimer } from "@/lib/useGameTimer";
+
 import { imposterCategory } from "@/lib/imposter/words";
 import { sfx } from "@/lib/sfx";
 import {
@@ -188,25 +190,10 @@ export function Reveal() {
 
 // ------------------------------------------------------------------ discuss
 
-function useRemaining() {
-  const timer = useImposter((s) => s.timer);
-  const [now, setNow] = useState(() => Date.now());
-
-  useEffect(() => {
-    if (timer.endsAt === null) return;
-    const id = window.setInterval(() => setNow(Date.now()), 200);
-    return () => window.clearInterval(id);
-  }, [timer.endsAt]);
-
-  const ms =
-    timer.endsAt === null ? timer.remainingMs : Math.max(0, timer.endsAt - now);
-  return { ms, running: timer.endsAt !== null };
-}
-
 function ClueClock() {
   const s = useImposter();
   const play = useSound();
-  const { ms, running } = useRemaining();
+  const { ms, running } = useGameTimer(s.timer);
   const lastTick = useRef<number | null>(null);
   const total = s.settings.discussSeconds * 1000;
   const seconds = Math.ceil(ms / 1000);
@@ -232,9 +219,11 @@ function ClueClock() {
     <div className="inset-well px-4 pb-4 pt-3 text-center">
       <div
         role="timer"
-        className={`font-display text-6xl font-extrabold tabular-nums tracking-tighter ${seconds <= 10 && running ? "text-[#e2412d]" : ""}`}
+        className={`inline-flex items-baseline justify-center font-display text-6xl font-extrabold tabular-nums tracking-[0.06em] ${seconds <= 10 && running ? "text-[#e2412d]" : ""}`}
       >
-        {mm}:{ss}
+        <span>{mm}</span>
+        <span className="mx-1.5">:</span>
+        <span>{ss}</span>
       </div>
       <div className="mt-3 h-3 overflow-hidden rounded-full bg-black/5">
         <div

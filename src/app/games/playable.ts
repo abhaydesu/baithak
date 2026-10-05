@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import CharadesGame from "@/app/components/charades/CharadesGame";
 import DumbCharadesGame from "@/app/components/dumb-charades/DumbCharadesGame";
 import ImposterGame from "@/app/components/imposter/ImposterGame";
+import MafiaGame from "@/app/components/mafia/MafiaGame";
 import PictionaryGame from "@/app/components/pictionary/PictionaryGame";
 import Top9Game from "@/app/components/top9/Top9Game";
 import { STORAGE_KEYS } from "@/lib/storageKeys";
@@ -51,6 +52,12 @@ export const playableGames: Record<string, PlayableGame> = {
     storageKey: STORAGE_KEYS.imposter,
     detailsHref: "/games/offline/imposter",
     pitch: "Add everyone in seating order and deal the cards.",
+  },
+  "mafia-werewolf": {
+    Game: MafiaGame,
+    storageKey: STORAGE_KEYS.mafia,
+    detailsHref: "/games/offline/mafia-werewolf",
+    pitch: "Add everyone in seating order, deal the roles and start the night.",
   },
 };
 

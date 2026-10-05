@@ -5,4 +5,5 @@ export const STORAGE_KEYS = {
   imposter: "vybrid-imposter",
   charades: "vybrid-charades",
   dumbCharades: "vybrid-dumb-charades",
+  mafia: "vybrid-mafia",
 } as const;

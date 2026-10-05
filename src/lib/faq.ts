@@ -88,6 +88,11 @@ export const faqs: Faq[] = [
     link: { href: dumbCharades.href, label: "How to play Dumb Charades" },
   },
   {
+    question: "How do you play Mafia without cards or a moderator?",
+    answer: `Pass one phone around the circle to deal secret roles — Mafia, Doctor, Detective and Villagers (${mafia.players} players). At night you can either pass the phone around so everyone plays (Villagers get a decoy screen so nobody can tell who's who) or have one narrator call the night phases, then debate and vote during the day.`,
+    link: { href: mafia.href, label: "How to play Mafia" },
+  },
+  {
     question: `Is ${SITE.name} an app? Do I need to download anything?`,
     answer: `No download and no sign-up. ${SITE.name} runs in your phone's browser: open the site, pick a game and start. Games save on the phone as you play, so a locked screen or a refresh won't lose your scores.`,
   },
