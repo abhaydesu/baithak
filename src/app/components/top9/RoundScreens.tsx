@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+import { fitPromptClass } from "@/lib/fitText";
 import {
   categoryById,
   questionCategories,
@@ -139,7 +140,7 @@ export function Intro() {
       )}
 
       <div
-        className={`inset-well relative grid flex-1 place-items-center px-5 pb-8 pt-10 text-center transition-opacity ${
+        className={`inset-well relative grid h-72 shrink-0 place-items-center overflow-hidden px-5 pb-8 pt-10 text-center transition-opacity ${
           s.loading ? "opacity-40" : ""
         }`}
         aria-busy={s.loading}
@@ -155,7 +156,7 @@ export function Intro() {
           key={question.id}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="font-display text-[clamp(1.6rem,6.5vw,2.5rem)] font-extrabold leading-tight tracking-tight"
+          className={`font-display ${fitPromptClass(question.prompt)} font-extrabold leading-tight tracking-tight`}
         >
           {question.prompt}
         </motion.p>

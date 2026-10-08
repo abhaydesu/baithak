@@ -9,17 +9,17 @@ import { useGameTimer } from "@/lib/useGameTimer";
 import { categoryMeta } from "@/lib/charades/words";
 import { sfx } from "@/lib/sfx";
 import {
-  currentActor,
+  currentGuesser,
   currentTeam,
   passesLeft,
   scoreOf,
   totalTurns,
-  useCharades,
-} from "@/store/charadesStore";
+  useHotSeat,
+} from "@/store/hotSeatStore";
 import Character from "../Character";
 
 function useSound() {
-  const muted = useCharades((s) => s.muted);
+  const muted = useHotSeat((s) => s.muted);
   return (name: keyof typeof sfx) => {
     if (!muted) sfx[name]();
   };
@@ -34,9 +34,9 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 // ------------------------------------------------------------------ handoff
 
 export function Handoff() {
-  const s = useCharades();
+  const s = useHotSeat();
   const team = currentTeam(s);
-  const actor = currentActor(s);
+  const guesser = currentGuesser(s);
   const play = useSound();
   const passes = s.settings.passes;
 
@@ -54,22 +54,23 @@ export function Handoff() {
             </button>
           </p>
         )}
-        <Character kind="actor" tone={team.tone} className="mt-4 h-36 w-32 animate-bob" />
+        <Character kind="hotseat" tone={team.tone} className="mt-4 h-36 w-32 animate-bob" />
         <h2 className="mt-4 font-display text-[clamp(2rem,9vw,3rem)] font-extrabold leading-none tracking-tight">
           {team.name}
         </h2>
         <p className="mt-3 max-w-xs text-lg text-ink/75">
-          {actor ? (
+          {guesser ? (
             <>
-              <strong className="text-ink">{actor}</strong>, you&apos;re acting!
+              <strong className="text-ink">{guesser}</strong>, you&apos;re in the hot seat!
             </>
           ) : (
-            "Pick someone from your team to act."
+            "Pick someone from your team for the hot seat."
           )}
         </p>
         <p className="mt-2 max-w-xs text-sm text-ink/55">
-          Take the phone and keep the screen to yourself. Your team sits facing
-          you. No talking, no pointing at things.
+          Sit with your back to the team, or close your eyes. Teammates, one of
+          you holds the phone so the guesser can&apos;t see it, then describe each
+          word. Don&apos;t say it, spell it or rhyme it.
         </p>
         <p className="mt-3 text-xs font-semibold text-ink/50">
           {s.settings.roundSeconds}s ·{" "}
@@ -94,8 +95,9 @@ export function Handoff() {
 // ------------------------------------------------------------------ acting
 
 export function Acting() {
-  const s = useCharades();
+  const s = useHotSeat();
   const team = currentTeam(s);
+  const guesser = currentGuesser(s);
   const play = useSound();
   const { ms, running } = useGameTimer(s.timer);
   const lastTick = useRef<number | null>(null);
@@ -126,7 +128,9 @@ export function Acting() {
   return (
     <div className="flex min-h-[28rem] flex-col gap-4">
       <div className="flex items-center justify-between gap-3">
-        <Eyebrow>{team.name} acting</Eyebrow>
+        <Eyebrow>
+          {guesser ? `${guesser} is guessing` : `${team.name} describing`}
+        </Eyebrow>
         <span className="chip tone-white px-3 py-1 text-sm">✓ {gotCount}</span>
       </div>
 
@@ -176,6 +180,11 @@ export function Acting() {
         )}
       </div>
 
+      <p className="text-center text-xs font-semibold text-ink/55">
+        Keep the screen hidden from {guesser ?? "the guesser"}. Describe it
+        without saying the word.
+      </p>
+
       <div className="flex flex-col gap-3">
         <button
           type="button"
@@ -186,7 +195,7 @@ export function Acting() {
           }}
           className="btn tone-green min-h-16 w-full text-xl"
         >
-          Got it!
+          They got it!
         </button>
         <div className="grid grid-cols-2 gap-3">
           <button
@@ -228,9 +237,9 @@ export function Acting() {
 const VERDICT_LABEL = { got: "✓", passed: "Passed", timeout: "Time's up" } as const;
 
 export function Result() {
-  const s = useCharades();
+  const s = useHotSeat();
   const team = currentTeam(s);
-  const actor = currentActor(s);
+  const guesser = currentGuesser(s);
   const play = useSound();
   const score = scoreOf(s.turnWords);
   const isLastTurn = s.turn + 1 >= totalTurns(s);
@@ -244,12 +253,12 @@ export function Result() {
   return (
     <div className="flex min-h-[26rem] flex-col gap-5 text-center">
       <div className="flex flex-col items-center">
-        <Character kind="actor" tone={team.tone} className="h-28 w-24" />
+        <Character kind="hotseat" tone={team.tone} className="h-28 w-24" />
         <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">
           {score === 0 ? "Not this time" : score === 1 ? "1 word!" : `${score} words!`}
         </h2>
         <p className="mt-1 text-ink/65">
-          {actor ? `${actor} · ` : ""}
+          {guesser ? `${guesser} · ` : ""}
           {team.name}
         </p>
         <p className={`tone-${team.tone} chip mt-3 px-4 py-1.5 text-base`}>

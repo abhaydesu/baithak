@@ -2,6 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 
+import { useScrollToTopOnChange } from "@/lib/useScrollToTop";
 import { useTrackGame } from "@/lib/analytics/useTrackGame";
 import { useWakeLock } from "@/lib/useWakeLock";
 import { currentTeam, useCharades } from "@/store/charadesStore";
@@ -33,6 +34,7 @@ export default function CharadesGame() {
   const inGame = phase !== "setup" && phase !== "gameover";
   useWakeLock(hydrated && inGame);
   useTrackGame("charades", phase, hydrated);
+  useScrollToTopOnChange(phase, hydrated);
 
   if (!hydrated) {
     return (

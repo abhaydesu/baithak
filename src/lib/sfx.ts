@@ -66,6 +66,13 @@ export const sfx = {
     tone(147, 0.7, { type: "square", volume: 0.1, delay: 0.12 });
     vibrate([220, 90, 220]);
   },
+  /** Bomb explosion: a low rumble and a crack. */
+  boom() {
+    tone(70, 0.9, { type: "sawtooth", volume: 0.25 });
+    tone(110, 0.5, { type: "square", volume: 0.15, delay: 0.02 });
+    tone(45, 1.1, { type: "sine", volume: 0.3, delay: 0.05 });
+    vibrate([300, 80, 300, 80, 500]);
+  },
   /** Answer revealed on the board. */
   ding() {
     tone(880, 0.12, { type: "triangle", volume: 0.14 });

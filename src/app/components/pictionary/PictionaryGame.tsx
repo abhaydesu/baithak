@@ -2,6 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 
+import { useScrollToTopOnChange } from "@/lib/useScrollToTop";
 import { useTrackGame } from "@/lib/analytics/useTrackGame";
 import { useWakeLock } from "@/lib/useWakeLock";
 import {
@@ -43,6 +44,7 @@ export default function PictionaryGame() {
   const inGame = phase !== "setup" && phase !== "gameover";
   useWakeLock(hydrated && inGame);
   useTrackGame("pictionary", phase, hydrated);
+  useScrollToTopOnChange(phase, hydrated);
 
   if (!hydrated) {
     return (

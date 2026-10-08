@@ -99,6 +99,7 @@ export default async function OfflineGamePage({
       kit={kit}
       builtIn={["Timer"]}
       steps={game.steps}
+      note={game.note}
       play={play}
       tools={tools}
       />

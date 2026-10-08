@@ -1,7 +1,10 @@
 import type { ComponentType } from "react";
 
+import BombGame from "@/app/components/bomb/BombGame";
+import CategoriesGame from "@/app/components/categories/CategoriesGame";
 import CharadesGame from "@/app/components/charades/CharadesGame";
 import DumbCharadesGame from "@/app/components/dumb-charades/DumbCharadesGame";
+import HotSeatGame from "@/app/components/hot-seat/HotSeatGame";
 import ImposterGame from "@/app/components/imposter/ImposterGame";
 import MafiaGame from "@/app/components/mafia/MafiaGame";
 import PictionaryGame from "@/app/components/pictionary/PictionaryGame";
@@ -58,6 +61,24 @@ export const playableGames: Record<string, PlayableGame> = {
     storageKey: STORAGE_KEYS.mafia,
     detailsHref: "/games/offline/mafia-werewolf",
     pitch: "Add everyone in seating order, deal the roles and start the night.",
+  },
+  "pass-the-bomb": {
+    Game: BombGame,
+    storageKey: STORAGE_KEYS.bomb,
+    detailsHref: "/games/pass-the-bomb",
+    pitch: "Add everyone in seating order, pick a fuse and light it.",
+  },
+  "hot-seat": {
+    Game: HotSeatGame,
+    storageKey: STORAGE_KEYS.hotSeat,
+    detailsHref: "/games/offline/hot-seat",
+    pitch: "Set up teams, then hand the phone to whoever's describing.",
+  },
+  "categories-quickfire": {
+    Game: CategoriesGame,
+    storageKey: STORAGE_KEYS.categories,
+    detailsHref: "/games/offline/categories-quickfire",
+    pitch: "Add everyone in seating order and pick your categories.",
   },
 };
 

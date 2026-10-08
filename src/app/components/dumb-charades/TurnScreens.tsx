@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { categoryMeta, type CharadesCard } from "@/lib/charades/words";
+import { fitWordClass } from "@/lib/fitText";
 import { sfx } from "@/lib/sfx";
 import {
   currentActor,
@@ -310,12 +311,12 @@ export function Ready() {
         </p>
       </div>
 
-      <div className="inset-well grid flex-1 place-items-center px-4 py-8 text-center">
+      <div className="inset-well grid h-60 shrink-0 place-items-center overflow-hidden px-4 py-8 text-center">
         <motion.p
           initial={{ scale: 0.8, rotate: -4, opacity: 0 }}
           animate={{ scale: 1, rotate: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 16 }}
-          className="break-words font-display text-[clamp(2.2rem,11vw,4rem)] font-extrabold leading-none tracking-tight [overflow-wrap:anywhere]"
+          className={`break-words font-display ${fitWordClass(s.word.word)} font-extrabold leading-none tracking-tight [overflow-wrap:anywhere]`}
         >
           {s.word.word}
         </motion.p>

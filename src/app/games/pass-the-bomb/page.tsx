@@ -1,43 +1,52 @@
 import type { Metadata } from "next";
 
-import GameHero from "@/app/components/GameHero";
+import GameDetails from "@/app/components/GameDetails";
 import JsonLd from "@/app/components/JsonLd";
-import RandomWordGenerator from "@/app/components/RandomWordGenerator";
-import Timer from "@/app/components/Timer";
+import { bombGuide } from "@/lib/bomb/guide";
 import { onScreenGames } from "@/lib/games";
-import { gameJsonLd, pageMetadata } from "@/lib/seo";
+import { gameJsonLd, gameMetaDescription, pageMetadata } from "@/lib/seo";
+import { playProps } from "../playable";
 
 const game = onScreenGames.find((g) => g.slug === "pass-the-bomb")!;
 export const metadata: Metadata = pageMetadata({
-  title: "Pass the Bomb: word game with a ticking timer",
-  description: `${game.tagline} A word prompt and a fuse timer on one phone. ${game.players} players.`,
+  title: "How to play Pass the Bomb, a word game with a ticking fuse",
+  description: gameMetaDescription({
+    ...game,
+    description: game.tagline,
+    playable: true,
+  }),
   path: game.href,
 });
 
 export default function PassTheBombPage() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-14 px-4 pt-6 sm:px-6 md:pt-10 lg:px-8">
+    <>
       <JsonLd
         data={gameJsonLd({
           title: game.title,
-          description: game.tagline,
+          description: `${game.tagline} ${bombGuide.details}`,
           path: game.href,
           players: game.players,
           duration: game.duration,
-          kit: [],
-          steps: [],
+          kit: bombGuide.kit,
+          steps: bombGuide.steps,
         })}
       />
-      <GameHero game={game} />
-      <div className="grid gap-10 md:grid-cols-2 md:items-start">
-        <RandomWordGenerator tone="yellow" title="Say something about…" />
-        <Timer
-          initialSeconds={45}
-          presets={[30, 45, 60, 90]}
-          tone="red"
-          title="The fuse"
-        />
-      </div>
-    </main>
+      <GameDetails
+        title={game.title}
+        description={game.tagline}
+        details={bombGuide.details}
+        tone={game.tone}
+        character={game.character}
+        players={game.players}
+        duration={game.duration}
+        onScreen
+        kit={bombGuide.kit}
+        builtIn={bombGuide.builtIn}
+        steps={bombGuide.steps}
+        note={bombGuide.note}
+        play={playProps("pass-the-bomb")}
+      />
+    </>
   );
 }

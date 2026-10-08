@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { useGameTimer } from "@/lib/useGameTimer";
 
+import { fitWordClass } from "@/lib/fitText";
 import { sfx } from "@/lib/sfx";
 import { categoryMeta, type WordCard } from "@/lib/words/deck";
 import { CUSTOM_CATEGORY_ID } from "@/lib/words/pictionary";
@@ -345,12 +346,12 @@ export function Ready() {
         </p>
       </div>
 
-      <div className="inset-well grid flex-1 place-items-center px-4 py-10 text-center">
+      <div className="inset-well grid h-60 shrink-0 place-items-center overflow-hidden px-4 py-8 text-center">
         <motion.p
           initial={{ scale: 0.8, rotate: -4, opacity: 0 }}
           animate={{ scale: 1, rotate: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 16 }}
-          className="break-words font-display text-[clamp(2.4rem,12vw,4.5rem)] font-extrabold leading-none tracking-tight [overflow-wrap:anywhere]"
+          className={`break-words font-display ${fitWordClass(s.word.word)} font-extrabold leading-none tracking-tight [overflow-wrap:anywhere]`}
         >
           {s.word.word}
         </motion.p>

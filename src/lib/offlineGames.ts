@@ -11,6 +11,8 @@ export interface OfflineGame {
   duration: string;
   props: string[];
   steps: string[];
+  /** Small print under the rules: tips, variants. */
+  note?: string;
   extraComponents: string[];
 }
 
@@ -133,57 +135,75 @@ export const offlineGames: OfflineGame[] = [
   {
     slug: "two-truths-one-lie",
     title: "Two Truths & a Lie",
-    description: "Share three statements and let the group spot the lie.",
-    details: "Perfect icebreaker; keep statements short for faster rounds.",
+    description: "Share three statements about yourself and let the group spot the lie.",
+    details:
+      "No phone, no props, no prep. A classic icebreaker that works for friends, family, new colleagues or a room full of strangers. You learn real things about each other, and find out who's a good liar.",
     tone: "pink",
     character: "teller",
     players: "3+",
     duration: "10–20 min",
     props: ["None"],
     steps: [
-      "Turn order: pick a player to start; proceed clockwise.",
-      "Statement set: on their turn, the player says three short statements about themselves — two true and one false.",
-      "Discussion & Vote: the group may ask brief clarifying questions (optional) and then votes on which statement they think is the lie.",
-      "Scoring: players who correctly identify the lie score a point; alternatively award points to the speaker for successfully fooling the group.",
-      "Variants: make themed rounds (work, travel, childhood) to spark ideas.",
+      "Setup: sit in a circle and pick who goes first. Turns go clockwise. Everyone gets one turn per round, so it's best with 3 to 12 people. In a bigger group, split into smaller circles.",
+      "Think: when it's your turn, take a minute to come up with three statements about yourself. Two must be true and one must be a lie. Keep them short and say them out loud, in any order.",
+      "Make it tricky: the best truths sound unbelievable (“I once got stuck in a lift with a famous cricketer”), and the best lies sound completely ordinary. Boring truths and wild lies make it too easy.",
+      "Question time: the group gets about a minute to ask questions. You can answer truthfully or bluff, but you can't say which one is the lie. Ask for details like where, when and who was there.",
+      "Vote: when time is up, count down from three and everyone points at the statement they think is the lie. Do it together so nobody copies someone else.",
+      "Reveal: the speaker says which was the lie, and tells the story behind the truths. The stories are the best part of the game.",
+      "Score: everyone who spotted the lie gets a point. The speaker gets a point for each person they fooled. Play until everyone has had a turn, or two. Most points wins.",
     ],
+    note:
+      "Tips: keep statements about things nobody can easily check, and avoid anything private or awkward that you'd rather not discuss. No Googling mid-turn! Variants: pick a theme for the round (travel, school days, food, embarrassing moments), or play “one truth and two lies” for a harder game. Playing with people who already know each other well? Ban the obvious stuff, like jobs and hometowns.",
     extraComponents: [],
   },
   {
     slug: "hot-seat",
     title: "Hot Seat",
-    description: "Teammates describe a prompt while one player guesses.",
-    details: "Keep a rolling score and rotate the guesser each round.",
+    description:
+      "One player sits with their back to the phone while their team describes words to them. Guess as many as you can before the clock runs out.",
+    details:
+      "Loud, quick and very funny. The phone deals the words, runs the clock and keeps score. The words are movies, songs, famous faces, desi moments, cricket and more, plus any inside jokes you add.",
     tone: "red",
     character: "hotseat",
     players: "4+",
     duration: "15–30 min",
-    props: ["List of prompts", "Timer"],
+    props: ["None"],
     steps: [
-      "Setup: create a stack of prompts. One player sits in the 'hot seat' facing away from the screen or with eyes closed.",
-      "Round: teammates have a fixed time (e.g., 60s) to describe or hint the prompt without saying the target word or directly spelling it out.",
-      "Guessing: the hot-seat player shouts guesses while teammates continue giving hints. If guessed correctly within time, the team scores a point.",
-      "Rotate: move the hot-seat to the next player and repeat until everyone has had a turn.",
+      "Setup: split into two or more teams of 2+ and choose the time per turn, the number of turns, the difficulty and the categories. Optionally type in each team's players so the hot seat rotates fairly.",
+      "The hot seat: one player from the team sits facing away from everyone, or closes their eyes. This is the guesser, and they must not see the screen.",
+      "Describe: one teammate holds the phone so only the describers can see it. Start the clock and describe the word on screen. You can say anything except the word itself. No spelling it, no rhyming, no “sounds like” and no gestures.",
+      "Guess: the guesser shouts out answers. When they get it, tap “They got it!”. A new word appears straight away, so keep going until time is up.",
+      "Stuck? Tap Pass to skip a word, but the number of passes is limited. A skipped word doesn't score and won't come back this turn.",
+      "Check: when the clock runs out, the results show every word. Tap any word the phone got wrong to fix it, then the score goes to the team.",
+      "Rotate: the next team takes a turn, and when it comes back round a new player takes the hot seat. After everyone's turns, the team with the most words wins.",
     ],
-    extraComponents: ["Prompt shuffler", "Score tracker"],
+    note:
+      "Tips: describe the easy part first, like “the actor who plays Iron Man”. If the guesser says the same wrong thing twice, give them a different clue. The team at the phone should take turns describing, so everyone gets a go. If someone breaks a rule, the group can vote to throw that word out.",
+    extraComponents: [],
   },
   {
     slug: "categories-quickfire",
     title: "Categories (Quickfire)",
     description:
-      "Write as many category items as possible before time runs out.",
-    details: "Fast-paced and competitive; great for 3+ players.",
+      "Shout out as many answers to a category as you can before the clock runs out. No pens, no paper, just your voice.",
+    details:
+      "A fast, loud game for any group. The phone picks the category and runs the clock, and the player next to you taps once for every good answer.",
     tone: "green",
     character: "writer",
     players: "3+",
     duration: "10–20 min",
-    props: ["Notebook", "Pens", "Timer"],
+    props: ["None"],
     steps: [
-      "Setup: choose a category and give each player a sheet or notebook.",
-      "Round: start a 60-second timer. Players simultaneously write as many valid items in the category as possible (no repeats).",
-      "Scoring: after time, players read their lists. Duplicate answers between players are canceled out; unique answers score 1 point each.",
-      "Variations: set different timers, award bonus points for particularly creative answers, or play in teams.",
+      "Setup: add everyone in seating order, then choose the time per turn, how many turns each player gets, and which category packs to use. Optionally switch on starting letters.",
+      "Your turn: the phone shows whose turn it is. That player is the speaker, and the player on their left holds the phone and counts.",
+      "Reveal: the counter taps “Reveal the category”, for example “Indian street foods”, and the clock starts straight away. If the category is hopeless, tap Swap once before the first answer.",
+      "Shout: the speaker says as many answers as they can, as fast as they can. The counter taps “Good answer” each time. Undo takes one off if you tapped too early.",
+      "Judging: no repeats, and the answer has to fit the category. Anyone can call out a bad answer, and the counter taps Undo. With a starting letter on, every answer must also begin with that letter.",
+      "Tally: when the buzzer goes, the screen shows the total. If you miscounted, fix it before moving on. Each answer is one point for the speaker.",
+      "Rotate: the phone moves to the next player, and the counter becomes the speaker's neighbour. After everyone has had their turns, the player with the most points wins.",
     ],
-    extraComponents: ["Category spinner", "Round timer"],
+    note:
+      "Tips: the counter should stay quiet and tap fast, so the speaker doesn't have to wait. If it's a close call on an answer, let the group decide quickly and keep going. Playing with kids? Use fewer seconds and the Everyday and World packs. Playing with a big crowd? Start with one turn each, so the game ends in time.",
+    extraComponents: [],
   },
 ];

@@ -155,8 +155,8 @@ _Last updated: 2026-09-30. Nothing is committed yet: all of the work below is st
 - [ ] Commit the work.
 
 ## Later
-- [ ] **Pass the Bomb:** still loose tools (a word deck + a "fuse" timer). Needs a full play mode following the play-mode structure.
-- [ ] **Remaining in-person games** need play modes: Mafia / Werewolf (role dealer, night-phase narrator), Two Truths & a Lie, Hot Seat (score tracker, can reuse the Charades rapid-fire flow), Categories (category spinner).
+- [x] **Pass the Bomb:** full play mode (lives, hidden random fuse, prompt packs, details page + /play).
+- [x] **In-person games:** all have play modes except Two Truths & a Lie, which needs no phone (rules page only).
 - [ ] **Tidy-up:** `src/store/gameStore.ts`, `src/lib/mongoose.ts` and `src/models/Top9Question.ts` are unused leftovers from the first setup. The Top 9 API no longer uses MongoDB.
 
 ## Notes

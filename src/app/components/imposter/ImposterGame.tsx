@@ -2,6 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 
+import { useScrollToTopOnChange } from "@/lib/useScrollToTop";
 import { useTrackGame } from "@/lib/analytics/useTrackGame";
 import { useWakeLock } from "@/lib/useWakeLock";
 import { useImposter } from "@/store/imposterStore";
@@ -37,6 +38,7 @@ export default function ImposterGame() {
   const inGame = phase !== "setup" && phase !== "gameover";
   useWakeLock(hydrated && inGame);
   useTrackGame("imposter", phase, hydrated);
+  useScrollToTopOnChange(phase, hydrated);
 
   if (!hydrated) {
     return (

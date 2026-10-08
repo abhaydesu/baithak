@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useGameTimer } from "@/lib/useGameTimer";
 
 import { imposterCategory } from "@/lib/imposter/words";
+import { fitWordClass } from "@/lib/fitText";
 import { sfx } from "@/lib/sfx";
 import {
   dealer,
@@ -98,9 +99,7 @@ export function Pass() {
 
 /** Dialogues and phrases can run long, so big words get smaller type. */
 function wordSize(word: string) {
-  if (word.length > 28) return "text-[clamp(1.6rem,7.5vw,2.6rem)]";
-  if (word.length > 16) return "text-[clamp(1.9rem,9vw,3.2rem)]";
-  return "text-[clamp(2.2rem,12vw,4.2rem)]";
+  return fitWordClass(word);
 }
 
 function CardFace({ card, categoryId }: { card: Card; categoryId: string }) {
@@ -170,7 +169,7 @@ export function Reveal() {
         initial={{ rotateY: 90, opacity: 0 }}
         animate={{ rotateY: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 22 }}
-        className="inset-well flex flex-1 flex-col items-center justify-center px-4 py-8 text-center"
+        className="inset-well flex h-[22rem] shrink-0 flex-col items-center justify-center overflow-hidden px-4 py-6 text-center"
       >
         {card && <CardFace card={card} categoryId={s.round.word.categoryId} />}
       </motion.div>
@@ -511,7 +510,7 @@ export function Guess() {
         </p>
       </div>
 
-      <div className="inset-well grid flex-1 place-items-center px-4 py-8">
+      <div className="inset-well grid h-56 shrink-0 place-items-center overflow-hidden px-4 py-8">
         {shown ? (
           <p
             className={`font-display ${wordSize(s.round.word.word)} font-extrabold leading-[1.02] tracking-tight [overflow-wrap:anywhere]`}

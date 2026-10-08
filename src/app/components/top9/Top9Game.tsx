@@ -2,6 +2,7 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 
+import { useScrollToTopOnChange } from "@/lib/useScrollToTop";
 import { useTrackGame } from "@/lib/analytics/useTrackGame";
 import { useWakeLock } from "@/lib/useWakeLock";
 import { otherTeam, useTop9 } from "@/store/top9Store";
@@ -41,6 +42,7 @@ export default function Top9Game() {
   const inGame = phase !== "setup" && phase !== "gameover";
   useWakeLock(hydrated && inGame);
   useTrackGame("top-9", phase, hydrated);
+  useScrollToTopOnChange(phase, hydrated);
 
   if (!hydrated) {
     return (

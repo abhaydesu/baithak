@@ -5,42 +5,31 @@ import { useEffect, useSyncExternalStore } from "react";
 import { useScrollToTopOnChange } from "@/lib/useScrollToTop";
 import { useTrackGame } from "@/lib/analytics/useTrackGame";
 import { useWakeLock } from "@/lib/useWakeLock";
-import { useMafia } from "@/store/mafiaStore";
+import { useBomb } from "@/store/bombStore";
 import Studs from "../Studs";
 import GameOver from "./GameOver";
-import {
-  Dawn,
-  Discuss,
-  NarratorNight,
-  NightAct,
-  NightPass,
-  Pass,
-  Reveal,
-  RoundOver,
-  Verdict,
-  Vote,
-} from "./RoundScreens";
+import { Boom, Live, Ready } from "./Screens";
 import Scoreboard from "./Scoreboard";
 import Setup from "./Setup";
 
 const subscribeHydration = (cb: () => void) =>
-  useMafia.persist.onFinishHydration(cb);
+  useBomb.persist.onFinishHydration(cb);
 
-export default function MafiaGame() {
+export default function BombGame() {
   const hydrated = useSyncExternalStore(
     subscribeHydration,
-    () => useMafia.persist.hasHydrated(),
+    () => useBomb.persist.hasHydrated(),
     () => false,
   );
 
   useEffect(() => {
-    void useMafia.persist.rehydrate();
+    void useBomb.persist.rehydrate();
   }, []);
 
-  const phase = useMafia((s) => s.phase);
+  const phase = useBomb((s) => s.phase);
   const inGame = phase !== "setup" && phase !== "gameover";
   useWakeLock(hydrated && inGame);
-  useTrackGame("mafia-werewolf", phase, hydrated);
+  useTrackGame("pass-the-bomb", phase, hydrated);
   useScrollToTopOnChange(phase, hydrated);
 
   if (!hydrated) {
@@ -48,15 +37,14 @@ export default function MafiaGame() {
       <div className="brick tone-white mt-3 grid min-h-[28rem] place-items-center p-6">
         <Studs count={3} />
         <p className="font-display text-lg font-bold text-ink/40">
-          Dealing the roles…
+          Finding the bomb…
         </p>
       </div>
     );
   }
 
-  // Every player sees the same brick colour during the round, so nobody can
-  // tell roles apart from across the room.
-  const tone = phase === "setup" || phase === "gameover" ? "white" : "purple";
+  const tone =
+    phase === "live" ? "red" : phase === "ready" ? "yellow" : "white";
 
   return (
     <div className="flex flex-col gap-5">
@@ -67,16 +55,9 @@ export default function MafiaGame() {
       >
         <Studs count={3} />
         {phase === "setup" && <Setup />}
-        {phase === "pass" && <Pass />}
-        {phase === "reveal" && <Reveal />}
-        {phase === "night-pass" && <NightPass />}
-        {phase === "night-act" && <NightAct />}
-        {phase === "narrator-night" && <NarratorNight />}
-        {phase === "dawn" && <Dawn />}
-        {phase === "discuss" && <Discuss />}
-        {phase === "vote" && <Vote />}
-        {phase === "verdict" && <Verdict />}
-        {phase === "roundover" && <RoundOver />}
+        {phase === "ready" && <Ready />}
+        {phase === "live" && <Live />}
+        {phase === "boom" && <Boom />}
         {phase === "gameover" && <GameOver />}
       </div>
     </div>

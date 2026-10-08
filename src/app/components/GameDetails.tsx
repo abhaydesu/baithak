@@ -206,6 +206,11 @@ export default function GameDetails(props: GameDetailsProps) {
             <div className="lg:hidden">{startCard}</div>
           </div>
         </div>
+      ) : !tools ? (
+        <div className="grid gap-8 md:gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-start">
+          {kitSection}
+          {rulesSection}
+        </div>
       ) : (
         <div className="grid gap-8 md:gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <div className="flex flex-col gap-8 md:gap-10">

@@ -6,4 +6,7 @@ export const STORAGE_KEYS = {
   charades: "vybrid-charades",
   dumbCharades: "vybrid-dumb-charades",
   mafia: "vybrid-mafia",
+  hotSeat: "vybrid-hot-seat",
+  categories: "vybrid-categories",
+  bomb: "vybrid-bomb",
 } as const;
