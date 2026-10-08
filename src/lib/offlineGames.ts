@@ -206,4 +206,77 @@ export const offlineGames: OfflineGame[] = [
       "Tips: the counter should stay quiet and tap fast, so the speaker doesn't have to wait. If it's a close call on an answer, let the group decide quickly and keep going. Playing with kids? Use fewer seconds and the Everyday and World packs. Playing with a big crowd? Start with one turn each, so the game ends in time.",
     extraComponents: [],
   },
+  {
+    slug: "five-second-challenge",
+    title: "Five Second Challenge",
+    description:
+      "Name three things in a category in five seconds. Sounds easy until the clock is ticking and everyone is staring at you.",
+    details:
+      "Quick, loud and ridiculous. Players rack up points for beating the clock, and the bad answers are half the fun.",
+    tone: "orange",
+    character: "jamun",
+    players: "4+",
+    duration: "15–25 min",
+    props: ["None"],
+    steps: [
+      "Setup: split into two teams and sit facing each other. Optionally type in each team's players so the answerer rotates fairly. Choose the seconds (5 is classic), the score to win and which category packs to use.",
+      "Your turn: the phone shows which team is up. One of their players answers, and someone from the other team holds the phone and judges.",
+      "The challenge: the judge taps “Show the category”, for example “Indian street foods”, and the clock starts at once. The player must name three different things before the clock runs out.",
+      "Judging: when the buzzer goes, the judge decides. Repeats, “umm”, and answers that don't fit the category don't count. Swap is available once if the category is hopeless.",
+      "Score: three good answers is “Nailed it” and +1 for the team. If they miss, the other team can steal the point with one go at three different answers, and the judge taps “stolen”.",
+      "Win: teams alternate, with a new player each time. The first team to reach the target score wins, once both teams have had the same number of turns.",
+    ],
+    note:
+      "Tips: keep categories broad, like “things that are yellow”, and a little silly. Make the rules stricter for people who are too good at it, such as no answers starting with the same letter.",
+    extraComponents: [],
+  },
+  {
+    slug: "rank-your-friends",
+    title: "Rank Your Friends",
+    description:
+      "Rank everyone in the room from best to worst on a topic, then argue about who is wrong.",
+    details:
+      "A spicy debate game for groups who know each other well. No right answers, just opinions and arguments.",
+    tone: "pink",
+    character: "vadapav",
+    players: "3–10",
+    duration: "20–40 min",
+    props: ["None"],
+    steps: [
+      "Setup: add everyone, choose how many turns each player gets as the ranker, and pick your topic packs. Turn on After dark for cheekier topics.",
+      "The topic: the phone shows the ranker's name and a topic, like “Who is the worst driver?”. The ranker can swap it once if it's a dud.",
+      "Rank: the ranker puts every other player in order, first to last, out loud. They can't skip anyone or refuse a topic.",
+      "Defend: the ranker explains their top and bottom picks. Anyone who was ranked can answer back.",
+      "Vote: tap “Done. Time to vote”. On the count of three, everyone gives a thumbs up or thumbs down together. The majority decides.",
+      "Score: if the ranking is fair, the ranker gets a point. If it's rejected, tap Rejected and pick the player who argued it down best, who gets the point instead.",
+      "Win: the phone moves to the next ranker. When everyone has had their turns, the player with the most points wins.",
+    ],
+    note:
+      "Tips: this game is best with friends who can take a joke. Set a rule at the start that nothing said in the game is held against anyone later. Skip any topic that someone is truly uncomfortable with.",
+    extraComponents: [],
+  },
+  {
+    slug: "weakest-link",
+    title: "The Weakest Link",
+    description:
+      "A quiz where the group votes someone out after every round, until one player is left.",
+    details:
+      "Dramatic, with a lot of finger pointing. The phone holds the questions, the clock and the chain, so the quizmaster only has to read and tap.",
+    tone: "blue",
+    character: "paan",
+    players: "5–10",
+    duration: "20–30 min",
+    props: ["One non-playing quizmaster"],
+    steps: [
+      "Setup: choose a quizmaster who isn't playing. They hold the phone and read questions out loud. Everyone else sits in a circle. Add the players in seating order and pick the question packs.",
+      "A round: the quizmaster starts the clock and asks the first player a question. After each answer the phone moves on to the next player. The first round is the longest, and each round after it is 10 seconds shorter.",
+      "Right or wrong: the phone shows the answer to the quizmaster, who taps Right or Wrong. Right adds to the chain, and wrong breaks it and loses everything in the chain.",
+      "The chain: each right answer in a row is worth more: 1, 2, 3, 5, 8, then 10 each after that. The player whose turn it is can say “bank” to save the chain's points. Banking ends the chain, so the next one starts from 1.",
+      "The vote: when time is up, the phone shows each player's right and wrong answers. On the count of three, everyone points at who they think is the weakest link. The player with the most votes is out.",
+      "The final: when two players are left, they take turns answering five questions each. The most right answers wins. If it's a tie, they keep going until one gets ahead.",
+    ],
+    note:
+      "Tips: the host should be a bit dramatic. Use questions of all kinds, from films to cricket to maths. If you don't have a question list, search for a pub quiz set online and print or read from it.",
+    extraComponents: [],
+  },
 ];

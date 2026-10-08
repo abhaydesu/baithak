@@ -8,5 +8,8 @@ export const STORAGE_KEYS = {
   mafia: "vybrid-mafia",
   hotSeat: "vybrid-hot-seat",
   categories: "vybrid-categories",
+  fiveSecond: "vybrid-five-second",
+  rank: "vybrid-rank",
+  weakest: "vybrid-weakest",
   bomb: "vybrid-bomb",
 } as const;

@@ -1,7 +1,7 @@
 /**
  * Baithak's mascots: squishy game-night snacks and the people who turn up.
  * A samosa, a laddoo, a cutting chai, a golgappa, a kulfi, a jalebi, a
- * dice, a moustached uncle and a didi with a bindi. They share one face style (dot
+ * dice, a moustached uncle and a didi with a bindi, plus a gulab jamun, a vada pav, a paan, a bhutta and a pakora. They share one face style (dot
  * eyes, blush, a small mouth), sit on a soft shadow and squash gently while
  * idle. Snacks keep their real colours; the rest take the tone they're given.
  */
@@ -16,7 +16,12 @@ export type MascotKind =
   | "uncle"
   | "didi"
   | "jalebi"
-  | "mango";
+  | "mango"
+  | "jamun"
+  | "vadapav"
+  | "paan"
+  | "bhutta"
+  | "pakora";
 
 export type MascotMood = "happy" | "cheer" | "wink" | "shifty" | "shocked" | "sweaty";
 
@@ -310,6 +315,75 @@ function parts(kind: MascotKind, color: string, fuse?: boolean) {
             <circle cx="28" cy="31" r="4.4" fill="white" />
             <circle cx="72" cy="31" r="4.4" fill="white" />
             <Gloss x={30} y={22} rx={8} ry={3.6} rotate={-12} />
+          </>
+        ),
+      };
+    case "jamun":
+      return {
+        face: { cx: 50, cy: 54 },
+        art: (
+          <>
+            <ellipse cx="50" cy="88" rx="34" ry="8" fill="#ffb02e" opacity={0.75} />
+            <circle cx="50" cy="56" r="36" fill="#7a3419" />
+            <path d="M24 70Q50 90 76 70" fill="none" stroke="#ffb02e" strokeWidth={4} strokeLinecap="round" opacity={0.7} />
+            <Gloss x={33} y={34} rx={8} ry={4.5} />
+          </>
+        ),
+      };
+    case "vadapav":
+      return {
+        face: { cx: 50, cy: 34 },
+        art: (
+          <>
+            <path d="M14 70H86Q86 90 50 90Q14 90 14 70Z" fill="#e8b468" />
+            <path d="M18 56H82Q88 56 88 63Q88 70 80 70H20Q12 70 12 63Q12 56 18 56Z" fill="#f08a24" />
+            <path d="M20 58H80" stroke="#3f9a45" strokeWidth={4} strokeLinecap="round" />
+            <path d="M10 56C10 30 28 14 50 14S90 30 90 56Z" fill="#e8b468" />
+            <circle cx="30" cy="26" r="1.5" fill="#c08537" />
+            <circle cx="70" cy="24" r="1.5" fill="#c08537" />
+            <circle cx="78" cy="42" r="1.5" fill="#c08537" />
+            <circle cx="22" cy="44" r="1.5" fill="#c08537" />
+            <Gloss x={32} y={26} rx={7} ry={3.6} rotate={-30} />
+          </>
+        ),
+      };
+    case "paan":
+      return {
+        face: { cx: 50, cy: 46 },
+        art: (
+          <>
+            <path d="M50 92C18 70 6 50 12 32C18 14 42 14 50 32C58 14 82 14 88 32C94 50 82 70 50 92Z" fill="#3f9a45" />
+            <path d="M50 88V66M50 78L40 68M50 78L60 68" fill="none" stroke="#2a7a33" strokeWidth={2.4} strokeLinecap="round" opacity={0.7} />
+            <Gloss x={28} y={30} rx={7} ry={4} rotate={-35} />
+          </>
+        ),
+      };
+    case "bhutta":
+      return {
+        face: { cx: 50, cy: 40 },
+        art: (
+          <>
+            <rect x="28" y="6" width="44" height="84" rx="22" fill="#ffc21a" />
+            {[[38, 66], [50, 66], [62, 66], [38, 78], [50, 78], [62, 78], [44, 86], [56, 86]].map(([x, y]) => (
+              <circle key={`${x}-${y}`} cx={x} cy={y} r={3.4} fill="#f0a800" />
+            ))}
+            <path d="M50 96C26 92 16 70 22 48C32 62 44 70 50 96Z" fill="#5cbf5c" stroke="#2a7a33" strokeWidth={2} strokeLinejoin="round" />
+            <path d="M50 96C74 92 84 70 78 48C68 62 56 70 50 96Z" fill="#49ad4d" stroke="#2a7a33" strokeWidth={2} strokeLinejoin="round" />
+            <Gloss x={38} y={20} rx={4} ry={8} rotate={-6} />
+          </>
+        ),
+      };
+    case "pakora":
+      return {
+        face: { cx: 52, cy: 54 },
+        art: (
+          <>
+            <path d="M18 62C8 44 20 26 38 28C40 12 62 10 68 26C86 22 96 42 88 58C94 76 76 92 56 87C44 96 22 88 18 62Z" fill="#d98b2b" />
+            {[[30, 44], [48, 34], [70, 40], [78, 64], [64, 80], [36, 76], [26, 60]].map(([x, y]) => (
+              <circle key={`${x}-${y}`} cx={x} cy={y} r={2.2} fill="#a8621a" opacity={0.7} />
+            ))}
+            <path d="M74 30q6-2 8 3" stroke="#3f9a45" strokeWidth={4} strokeLinecap="round" fill="none" />
+            <Gloss x={36} y={38} rx={7} ry={3.8} rotate={-30} />
           </>
         ),
       };

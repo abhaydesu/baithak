@@ -4,10 +4,13 @@ import BombGame from "@/app/components/bomb/BombGame";
 import CategoriesGame from "@/app/components/categories/CategoriesGame";
 import CharadesGame from "@/app/components/charades/CharadesGame";
 import DumbCharadesGame from "@/app/components/dumb-charades/DumbCharadesGame";
+import FiveSecondGame from "@/app/components/five-second/FiveSecondGame";
 import HotSeatGame from "@/app/components/hot-seat/HotSeatGame";
 import ImposterGame from "@/app/components/imposter/ImposterGame";
 import MafiaGame from "@/app/components/mafia/MafiaGame";
 import PictionaryGame from "@/app/components/pictionary/PictionaryGame";
+import RankGame from "@/app/components/rank/RankGame";
+import WeakestGame from "@/app/components/weakest/WeakestGame";
 import Top9Game from "@/app/components/top9/Top9Game";
 import { STORAGE_KEYS } from "@/lib/storageKeys";
 
@@ -79,6 +82,24 @@ export const playableGames: Record<string, PlayableGame> = {
     storageKey: STORAGE_KEYS.categories,
     detailsHref: "/games/offline/categories-quickfire",
     pitch: "Add everyone in seating order and pick your categories.",
+  },
+  "five-second-challenge": {
+    Game: FiveSecondGame,
+    storageKey: STORAGE_KEYS.fiveSecond,
+    detailsHref: "/games/offline/five-second-challenge",
+    pitch: "Name your teams, pick your categories and start the clock.",
+  },
+  "rank-your-friends": {
+    Game: RankGame,
+    storageKey: STORAGE_KEYS.rank,
+    detailsHref: "/games/offline/rank-your-friends",
+    pitch: "Add everyone, pick your topics and start ranking.",
+  },
+  "weakest-link": {
+    Game: WeakestGame,
+    storageKey: STORAGE_KEYS.weakest,
+    detailsHref: "/games/offline/weakest-link",
+    pitch: "Add the players, pick a quizmaster and start the clock.",
   },
 };
 

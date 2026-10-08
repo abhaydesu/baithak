@@ -15,10 +15,10 @@ const BACK_ROW: Friend[] = [
   { kind: "jalebi", mood: "cheer", rot: 16 },
   { kind: "didi", mood: "wink", color: "#ff4f9a", rot: -10 },
   { kind: "mango", mood: "happy", rot: 7 },
-  { kind: "dice", mood: "shifty", color: "#2fc48d", rot: 18 },
-  { kind: "kulfi", mood: "wink", color: "#7c5cff", rot: -12 },
+  { kind: "paan", mood: "happy", rot: 18 },
+  { kind: "bhutta", mood: "cheer", rot: -12 },
   { kind: "uncle", mood: "shocked", color: "#ff7a2f", rot: 5 },
-  { kind: "jalebi", mood: "happy", rot: -16 },
+  { kind: "jamun", mood: "happy", rot: -16 },
 ];
 const FRONT_ROW: Friend[] = [
   { kind: "samosa", mood: "cheer", rot: -8 },
@@ -27,10 +27,10 @@ const FRONT_ROW: Friend[] = [
   { kind: "laddoo", mood: "happy", rot: 6 },
   { kind: "mango", mood: "cheer", rot: -5 },
   { kind: "didi", mood: "happy", color: "#2f7bff", rot: 14 },
-  { kind: "samosa", mood: "sweaty", rot: -11 },
-  { kind: "laddoo", mood: "shocked", rot: 9 },
+  { kind: "vadapav", mood: "wink", rot: -11 },
+  { kind: "pakora", mood: "shifty", rot: 9 },
   { kind: "chai", mood: "happy", rot: -7 },
-  { kind: "golgappa", mood: "cheer", rot: 17 },
+  { kind: "jamun", mood: "sweaty", rot: 17 },
   { kind: "uncle", mood: "wink", color: "#ff4f9a", rot: -13 },
 ];
 

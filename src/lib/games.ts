@@ -20,6 +20,11 @@ export type CharacterKind =
   | "hotseat"
   | "writer"
   | "bomber"
+  | "jamun"
+  | "vadapav"
+  | "paan"
+  | "bhutta"
+  | "pakora"
   | "host";
 
 export type GameKind = "on-screen" | "offline";

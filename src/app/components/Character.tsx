@@ -31,6 +31,16 @@ const LOOK: Record<CharacterKind, { kind: MascotKind; mood: MascotMood; fuse?: b
   hotseat: { kind: "golgappa", mood: "sweaty" },
   // Categories: a kulfi, keeping cool under the timer
   writer: { kind: "kulfi", mood: "happy" },
+  // Five Second Challenge: a gulab jamun in a sweat
+  jamun: { kind: "jamun", mood: "sweaty" },
+  // Rank Your Friends: a vada pav with opinions
+  vadapav: { kind: "vadapav", mood: "wink" },
+  // The Weakest Link: a paan, heart on its leaf
+  paan: { kind: "paan", mood: "shocked" },
+  // Deal or No Deal: a bhutta giving nothing away
+  bhutta: { kind: "bhutta", mood: "cheer" },
+  // The Chase: a pakora, quietly scheming
+  pakora: { kind: "pakora", mood: "shifty" },
 };
 
 export default function Character({ kind, tone, className }: CharacterProps) {
