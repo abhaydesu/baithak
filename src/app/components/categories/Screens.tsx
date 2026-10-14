@@ -232,8 +232,7 @@ export function Result() {
   return (
     <div className="flex min-h-[26rem] flex-col items-center justify-between gap-6 text-center">
       <div className="flex w-full flex-col items-center">
-        <Character kind="writer" tone="green" className="h-28 w-24" />
-        <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">
+        <h2 className="font-display text-3xl font-extrabold tracking-tight">
           {s.count === 0
             ? "Not this time"
             : s.count === 1

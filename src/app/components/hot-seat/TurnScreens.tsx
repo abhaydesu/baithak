@@ -253,8 +253,7 @@ export function Result() {
   return (
     <div className="flex min-h-[26rem] flex-col gap-5 text-center">
       <div className="flex flex-col items-center">
-        <Character kind="hotseat" tone={team.tone} className="h-28 w-24" />
-        <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">
+        <h2 className="font-display text-3xl font-extrabold tracking-tight">
           {score === 0 ? "Not this time" : score === 1 ? "1 word!" : `${score} words!`}
         </h2>
         <p className="mt-1 text-ink/65">

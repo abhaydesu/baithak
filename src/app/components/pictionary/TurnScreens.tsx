@@ -285,11 +285,6 @@ export function Pass() {
     <div className="flex min-h-[26rem] flex-col items-center justify-between gap-6 text-center">
       <div className="flex flex-col items-center">
         <Eyebrow>Word locked in 🔒</Eyebrow>
-        <Character
-          kind="artist"
-          tone={team.tone}
-          className="mt-4 h-36 w-32 animate-bob"
-        />
         <h2 className="mt-4 font-display text-[clamp(1.8rem,8vw,2.6rem)] font-extrabold leading-tight tracking-tight">
           Hand the phone to {drawer ?? team.name}
         </h2>
@@ -493,19 +488,13 @@ export function Result() {
   const guessed = s.outcome === "guessed";
   const askSteal = !guessed && others.length > 0;
   const answered = !askSteal || s.stolenBy !== undefined;
-  const stealer = others.find((t) => t.id === s.stolenBy);
   const isLastTurn = s.turn + 1 >= s.teams.length * s.settings.turnsPerTeam;
   const secondsLeft = Math.ceil(s.timer.remainingMs / 1000);
 
   return (
     <div className="flex min-h-[26rem] flex-col gap-5 text-center">
       <div className="flex flex-col items-center">
-        <Character
-          kind={guessed ? "actor" : "hotseat"}
-          tone={guessed ? team.tone : (stealer?.tone ?? "white")}
-          className="h-28 w-24"
-        />
-        <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">
+        <h2 className="font-display text-3xl font-extrabold tracking-tight">
           {guessed
             ? "Nailed it!"
             : s.outcome === "timeout"

@@ -58,8 +58,8 @@ export default async function OfflineGamePage({
   const tools =
     !play && (hasTimer || hasWords || comingSoon.length > 0) ? (
       <>
-        {hasWords && <RandomWordGenerator tone="yellow" title="Prompt deck" />}
-        {hasTimer && <Timer initialSeconds={60} tone={game.tone} />}
+        {hasWords && <RandomWordGenerator title="Prompt deck" />}
+        {hasTimer && <Timer initialSeconds={60} />}
         {comingSoon.length > 0 && (
           <div className="flex flex-wrap items-center gap-2 text-sm text-ink/60">
             Coming soon:
@@ -92,8 +92,7 @@ export default async function OfflineGamePage({
       title={game.title}
       description={game.description}
       details={game.details}
-      tone={game.tone}
-      character={game.character}
+      slug={game.slug}
       players={game.players}
       duration={game.duration}
       kit={kit}

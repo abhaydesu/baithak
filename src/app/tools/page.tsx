@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { pageMetadata } from "@/lib/seo";
-import Mascot from "../components/Mascot";
+import Marker from "../components/Marker";
 import RandomWordGenerator from "../components/RandomWordGenerator";
 import Timer from "../components/Timer";
 
@@ -15,25 +15,21 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ToolsPage() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 pt-8 sm:px-6 md:gap-12 md:pt-14 lg:px-8">
+    <main className="mx-auto flex w-full max-w-6xl flex-col gap-14 px-5 pt-10 sm:px-6 md:gap-16 md:pt-20 lg:px-8">
       <header className="flex items-end justify-between gap-6">
         <div>
-          <h1 className="font-display text-[clamp(2.6rem,7vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.03em] text-ink">
-            Bring your <span className="marker">own game.</span>
+          <h1 className="font-display text-[clamp(2.8rem,7vw,5rem)] font-bold leading-[0.95] tracking-[-0.035em] text-ink">
+            Bring your <Marker>own game.</Marker>
           </h1>
-          <p className="mt-4 max-w-lg text-lg leading-relaxed text-ink-soft">
+          <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-soft lg:text-xl">
             Playing something that isn&apos;t on the list? Grab a timer or a
             word deck and make up the rules as you go.
           </p>
         </div>
-        <div aria-hidden="true" className="hidden shrink-0 items-end gap-2 sm:flex">
-          <Mascot kind="kulfi" color="#1fbf6a" mood="happy" className="h-16 w-16" />
-          <Mascot kind="dice" color="#2f7bff" mood="cheer" className="h-20 w-20" delay={0.8} />
-        </div>
       </header>
-      <div className="grid gap-10 md:grid-cols-2 md:items-start">
-        <RandomWordGenerator tone="yellow" />
-        <Timer tone="green" />
+      <div className="grid gap-8 md:grid-cols-2 md:items-start lg:gap-10">
+        <RandomWordGenerator />
+        <Timer />
       </div>
     </main>
   );

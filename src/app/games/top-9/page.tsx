@@ -36,8 +36,7 @@ export default function TopNinePage() {
       title={game.title}
       description={game.tagline}
       details={top9Guide.details}
-      tone={game.tone}
-      character={game.character}
+      slug={game.slug}
       players={game.players}
       duration={game.duration}
       onScreen

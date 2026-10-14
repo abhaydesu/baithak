@@ -36,8 +36,7 @@ export default function PassTheBombPage() {
         title={game.title}
         description={game.tagline}
         details={bombGuide.details}
-        tone={game.tone}
-        character={game.character}
+        slug={game.slug}
         players={game.players}
         duration={game.duration}
         onScreen

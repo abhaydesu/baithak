@@ -1,8 +1,9 @@
 /**
- * The logo mark: a laddoo, an uncle and a samosa sitting together, which is
- * what a baithak is. One SVG source for the header, footer, favicon,
- * home-screen icon and share cards.
+ * The logo mark: the laddoo b. A lowercase b with a violet stem and a rani
+ * round part, the laddoo, with boondi specks and the cast's dot-eyed face. It
+ * sits beside the word "baithak" in the header, footer and share cards, and
+ * stands alone as the favicon and home-screen icon. One SVG source for all.
  */
-export const MARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 42"><circle cx="30" cy="17" r="13.5" fill="#2f7bff"/><ellipse cx="24.5" cy="10.5" rx="3.6" ry="2" fill="#fff" opacity=".4" transform="rotate(-30 24.5 10.5)"/><circle cx="26" cy="16" r="1.7" fill="#141414"/><circle cx="34" cy="16" r="1.7" fill="#141414"/><path d="M30 21c-2-1.6-5.5-1.6-7.5.6-.8.9-2 .6-2.2-.6.2 3 4.4 3.8 7.4 2.3 1-.5 1.6-.7 2.3-.7s1.3.2 2.3.7c3 1.5 7.2.7 7.4-2.3-.2 1.2-1.4 1.5-2.2.6-2-2.2-5.5-2.2-7.5-.6Z" fill="#141414"/><circle cx="13.5" cy="29" r="11.5" fill="#ff9a2e"/><circle cx="8" cy="24" r="1" fill="#e57a0f"/><circle cx="18" cy="35" r="1" fill="#e57a0f"/><circle cx="9.5" cy="34" r="1" fill="#e57a0f"/><circle cx="10" cy="28.5" r="1.5" fill="#141414"/><circle cx="17" cy="28.5" r="1.5" fill="#141414"/><path d="M11.5 32q2 1.8 4 0" fill="none" stroke="#141414" stroke-width="1.2" stroke-linecap="round"/><path d="M46.5 17L55 34H38Z" fill="#f2a93b" stroke="#f2a93b" stroke-width="6" stroke-linejoin="round"/><path d="M43 22l-1.4 2M40.4 27l-1.4 2M50 22l1.4 2M52.6 27l1.4 2" stroke="#c97d16" stroke-width="1.1" stroke-linecap="round"/><circle cx="43.7" cy="29" r="1.5" fill="#141414"/><circle cx="49.3" cy="29" r="1.5" fill="#141414"/><path d="M45 32.5q1.5 1.4 3 0" fill="none" stroke="#141414" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+export const MARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 48"><rect x="4" y="1.5" width="11.5" height="45" rx="5.75" fill="#7c5cff"/><circle cx="9.5" cy="12" r="1.3" fill="#5a3fd6"/><circle cx="24.5" cy="31.5" r="15" fill="#e2457e"/><circle cx="31" cy="21.5" r="1.3" fill="#b8336a"/><circle cx="35.5" cy="34" r="1.3" fill="#b8336a"/><circle cx="15.5" cy="40" r="1.3" fill="#b8336a"/><circle cx="21" cy="30" r="1.9" fill="#1c1917"/><circle cx="29" cy="30" r="1.9" fill="#1c1917"/><path d="M23 34.3q2 1.9 4 0" fill="none" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round"/></svg>`;
 
 export const MARK_DATA_URL = `data:image/svg+xml;base64,${Buffer.from(MARK_SVG).toString("base64")}`;

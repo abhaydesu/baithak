@@ -9,9 +9,9 @@ import Logo from "./Logo";
 import SurpriseButton from "./SurpriseButton";
 
 const items = [
-  { href: "/", label: "Home", tone: "yellow", Icon: HomeIcon },
-  { href: "/games", label: "Games", tone: "blue", Icon: GridIcon },
-  { href: "/tools", label: "Tools", tone: "green", Icon: ToolboxIcon },
+  { href: "/", label: "Home", Icon: HomeIcon },
+  { href: "/games", label: "Games", Icon: GridIcon },
+  { href: "/tools", label: "Tools", Icon: ToolboxIcon },
 ] as const;
 
 function isActive(pathname: string, href: string) {
@@ -42,35 +42,31 @@ export default function NavDock() {
 
   return (
     <>
-      {/* Desktop / tablet: a solid bar, so the page scrolls cleanly under it */}
+      {/* Desktop / tablet: a quiet bar, so the page scrolls cleanly under it */}
       <header
         data-scrolled={scrolled}
-        className="sticky top-0 z-40 hidden border-b border-transparent bg-paper transition-[border-color] duration-200 data-[scrolled=true]:border-line md:block"
+        className="sticky top-0 z-40 hidden border-b border-transparent bg-paper/85 backdrop-blur-md transition-[border-color] duration-200 data-[scrolled=true]:border-line md:block"
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-8">
+        <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between px-6 lg:px-8">
           <Logo />
-          <nav
-            aria-label="Main"
-            className="nav-tray flex items-center gap-2 p-2 pb-3"
-          >
-            {items.map(({ href, label, tone, Icon }) => (
+          <nav aria-label="Main" className="flex items-center gap-1">
+            {items.slice(1).map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 aria-current={current(href) ? "page" : undefined}
                 onClick={(e) => select(e, href)}
-                className={`navkey lego-${tone} h-11 px-4 text-[0.95rem]`}
+                className="rounded-full px-4 py-2 font-semibold text-ink-soft transition-colors hover:text-ink aria-[current=page]:bg-paper-deep aria-[current=page]:text-ink"
               >
-                <Icon width={18} height={18} />
                 {label}
               </Link>
             ))}
-            <SurpriseButton className="navkey navkey-accent lego-pink h-11 px-4 text-[0.95rem]" />
+            <SurpriseButton className="pill ml-3 h-10 min-h-0 text-[0.95rem]" />
           </nav>
         </div>
       </header>
 
-      {/* Mobile: slim logo header + bottom dock */}
+      {/* Mobile: slim logo header + bottom bar */}
       <header className="flex h-16 items-center px-4 md:hidden">
         <Logo />
       </header>
@@ -79,14 +75,14 @@ export default function NavDock() {
         aria-label="Main"
         className="safe-bottom fixed inset-x-0 bottom-0 z-40 px-3 md:hidden"
       >
-        <div className="nav-tray mx-auto grid max-w-md grid-cols-4 gap-2 p-2 pb-3 shadow-[0_-8px_24px_-12px_rgb(0_0_0/0.25)]">
-          {items.map(({ href, label, tone, Icon }) => (
+        <div className="mx-auto grid max-w-md grid-cols-4 gap-1 rounded-[1.4rem] border border-line bg-surface/90 p-1.5 shadow-[0_10px_30px_-12px_rgb(28_25_23/0.3)] backdrop-blur-md">
+          {items.map(({ href, label, Icon }) => (
             <Link
               key={href}
               href={href}
               aria-current={current(href) ? "page" : undefined}
               onClick={(e) => select(e, href)}
-              className={`navkey lego-${tone} h-14 flex-col gap-0.5 text-[0.72rem]`}
+              className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-[0.72rem] font-semibold text-ink-soft transition-colors aria-[current=page]:bg-ink aria-[current=page]:text-white"
             >
               <Icon />
               {label}
@@ -94,7 +90,7 @@ export default function NavDock() {
           ))}
           <SurpriseButton
             compact
-            className="navkey navkey-accent lego-pink h-14 flex-col gap-0.5 text-[0.72rem]"
+            className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-[0.72rem] font-semibold text-ink-soft"
           />
         </div>
       </nav>

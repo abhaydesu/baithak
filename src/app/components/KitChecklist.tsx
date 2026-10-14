@@ -47,7 +47,7 @@ export default function KitChecklist({ items, builtIn = [] }: KitChecklistProps)
               <span
                 className={`grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 transition-colors ${
                   done
-                    ? "border-[#1fbf6a] bg-[#1fbf6a] text-white"
+                    ? "border-ink bg-ink text-white"
                     : "border-[#cfccc5] bg-white text-transparent"
                 }`}
               >

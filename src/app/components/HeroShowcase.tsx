@@ -1,46 +1,71 @@
+import { allGames } from "@/lib/games";
 import Mascot from "./Mascot";
+import PixelHorizon from "./PixelHorizon";
 import PhoneDemo from "./PhoneDemo";
 
 /**
- * The hero picture: a playable phone with the gang crowding round it. The
- * uncle and didi peek from behind; the samosa and chai sit in front.
+ * The hero picture: a playable phone in front of an indigo panel, with the
+ * cast (didi, uncle, samosa, laddoo) peeking over the panel's top edge to
+ * watch, like friends leaning over the back of a sofa. Their lower halves
+ * sit behind the panel, so they're anchored to it rather than floating.
+ * On wide screens they peek in pairs, didi and uncle on the left, samosa
+ * and laddoo on the right; narrower screens keep one on each side.
  */
+const games = allGames.map(({ slug, title, href }) => ({ slug, title, href }));
+
 export default function HeroShowcase() {
   return (
-    <div className="relative mx-auto w-full max-w-[26rem] pb-6 lg:max-w-[30rem]">
-      {/* A nudge to try it */}
-
-      <Mascot
-        kind="uncle"
-        mood="cheer"
-        color="#2f7bff"
-        className="absolute bottom-20 -left-4 lg:-left-16 z-0 lg:z-12 h-28 w-28 -rotate-6 sm:h-28 sm:w-28 lg:bottom-24 lg:h-52 lg:w-52"
-        delay={0.3}
-      />
-      <Mascot
-        kind="didi"
-        mood="happy"
-        color="#ff4f9a"
-        className="absolute bottom-24 -right-6 lg:-right-10 z-0 h-32 w-32 rotate-6 sm:h-34 sm:w-34 lg:bottom-28 lg:h-48 lg:w-48"
-        delay={1.4}
-      />
-
-      <div className="relative z-10 mx-auto w-[15.5rem] pt-8 sm:w-[16.5rem]">
-        <PhoneDemo />
+    <div className="relative -mx-5 w-[calc(100%+2.5rem)] max-w-none px-5 pt-10 sm:mx-auto sm:w-full sm:max-w-[28rem] sm:px-0 lg:max-w-[33rem] lg:pt-14">
+      {/* The cast, behind the panel: only what's above its top edge shows */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-[22%] z-0 h-0">
+        {/* The didi behind, the uncle tucked in front of her, peeking as a pair */}
+        {/* Only wide screens have room beside the phone for the pair; below that the uncle peeks alone */}
+        <Mascot
+          kind="didi"
+          mood="wink"
+          color="#e2457e"
+          className="absolute -left-2 hidden h-[5.75rem] w-[5.75rem] -translate-y-[78%] -rotate-6 lg:block"
+          delay={0.6}
+        />
+        <Mascot
+          kind="uncle"
+          mood="cheer"
+          color="#7c5cff"
+          className="absolute -left-1 h-24 w-24 -translate-y-[74%] -rotate-6 sm:h-28 sm:w-28 lg:left-[3.4rem] lg:h-[6.25rem] lg:w-[6.25rem] lg:-translate-y-[68%] lg:rotate-3"
+          delay={0.3}
+        />
+        {/* The samosa behind, the laddoo tucked in front of it, peeking as a pair */}
+        <Mascot
+          kind="samosa"
+          mood="cheer"
+          className="absolute -right-1 h-20 w-20 -translate-y-[78%] rotate-6 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+          delay={0.9}
+        />
+        {/* Only wide screens have room beside the phone for the laddoo too */}
+        <Mascot
+          kind="laddoo"
+          mood="happy"
+          className="absolute right-[4.2rem] hidden h-[5.5rem] w-[5.5rem] -translate-y-[70%] lg:block"
+          delay={1.4}
+        />
       </div>
 
-      <Mascot
-        kind="samosa"
-        mood="cheer"
-        className="pointer-events-none absolute -bottom-4 lg:-bottom-6 left-4 z-20 h-26 w-26 sm:h-20 sm:w-20 lg:h-42 lg:w-42"
-        delay={0.9}
-      />
-      <Mascot
-        kind="chai"
-        mood="wink"
-        className="pointer-events-none absolute -bottom-2 lg:-bottom-5 right-4 z-10 h-24 w-24 sm:h-16 sm:w-16 lg:h-46 lg:w-46"
-        delay={2}
-      />
+      {/* The panel */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 top-[22%] z-[1] rounded-t-[1.75rem] bg-indigo sm:rounded-[2rem] lg:rounded-[2.5rem]" />
+
+      {/* Match the night section's pixel terrain and dithered brand colour bands. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 top-[22%] z-[2] overflow-hidden rounded-t-[1.75rem] sm:rounded-[2rem] lg:rounded-[2.5rem]">
+        <PixelHorizon compact />
+      </div>
+
+      <div className="relative z-10 mx-auto w-[min(14.5rem,72vw)] sm:w-[16rem] lg:w-[15.5rem]">
+        <PhoneDemo games={games} />
+      </div>
+      <p className="relative z-10 py-4 text-center text-xs font-semibold tracking-wide text-white sm:text-sm lg:py-5">
+        <span className="inline-flex rounded-full border border-white/15 bg-indigo/70 px-3 py-1 shadow-sm backdrop-blur-md">
+          Tap a game to try it
+        </span>
+      </p>
     </div>
   );
 }

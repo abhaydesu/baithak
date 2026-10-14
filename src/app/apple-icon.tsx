@@ -19,7 +19,7 @@ export default function AppleIcon() {
           background: "#ffffff",
         }}
       >
-        <img src={MARK_DATA_URL} width={143} height={100} alt="" />
+        <img src={MARK_DATA_URL} width={105} height={120} alt="" />
       </div>
     ),
     size,

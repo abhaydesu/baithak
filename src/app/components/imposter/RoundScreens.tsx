@@ -67,11 +67,6 @@ export function Pass() {
             <Notice />
           </div>
         )}
-        <Character
-          kind="detective"
-          tone="green"
-          className="mt-4 h-36 w-32 animate-bob"
-        />
         <p className="mt-4 text-lg text-ink/65">Pass the phone to</p>
         <h2 className="font-display text-[clamp(2.2rem,10vw,3.4rem)] font-extrabold leading-none tracking-tight [overflow-wrap:anywhere]">
           {holder.name}
@@ -559,10 +554,10 @@ export function Guess() {
 // ------------------------------------------------------------------ round over
 
 const OUTCOME_COPY = {
-  crew: { title: "Crew wins!", tone: "green", character: "detective" },
-  imposters: { title: "Imposter wins!", tone: "red", character: "fibber" },
-  steal: { title: "Stolen!", tone: "red", character: "fibber" },
-  troll: { title: "Trolled!", tone: "purple", character: "fibber" },
+  crew: { title: "Crew wins!" },
+  imposters: { title: "Imposter wins!" },
+  steal: { title: "Stolen!" },
+  troll: { title: "Trolled!" },
 } as const;
 
 export function RoundOver() {
@@ -595,12 +590,7 @@ export function RoundOver() {
   return (
     <div className="flex min-h-[26rem] flex-col gap-5 text-center">
       <div className="flex flex-col items-center">
-        <Character
-          kind={copy.character}
-          tone={copy.tone}
-          className="h-28 w-24 animate-bob"
-        />
-        <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight">
+        <h2 className="font-display text-4xl font-extrabold tracking-tight">
           {copy.title}
         </h2>
         <p className="mt-1 text-ink/65">{summary}</p>

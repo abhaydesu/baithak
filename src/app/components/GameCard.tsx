@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 import type { CatalogGame } from "@/lib/games";
-import Character from "./Character";
-import { ArrowIcon, ClockIcon, UsersIcon } from "./Icons";
+import GameArt from "./GameArt";
+import { ArrowIcon } from "./Icons";
 
 interface GameCardProps {
   game: CatalogGame;
@@ -10,49 +10,32 @@ interface GameCardProps {
 }
 
 /**
- * A game as a neutral LEGO brick: studs on top, a chunky edge that presses
- * down when tapped. The mascot is the only colour on it.
+ * A game: its colour field and object on top, then the name, a line about it
+ * and who it's for. Flat; hovering nudges the object, not the card.
  */
 export default function GameCard({ game, className = "" }: GameCardProps) {
   return (
     <Link
       href={game.href}
-      className={`lego-card group flex h-full flex-col p-6 lg:p-7 ${className}`}
+      className={`group flex h-full flex-col outline-offset-4 ${className}`}
     >
-      <span className="lego-card-studs" aria-hidden="true">
-        <span />
-        <span />
-      </span>
-
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="pt-1 font-display text-2xl font-bold leading-tight tracking-[-0.01em] text-ink lg:text-[1.65rem]">
-          {game.title}
-        </h3>
-        <Character
-          kind={game.character}
-          tone={game.tone}
-          className="-mr-1 -mt-2 h-[4.5rem] w-[4.5rem] shrink-0"
-        />
-      </div>
-      <p className="mt-2 text-[1.05rem] leading-relaxed text-ink-soft">
-        {game.tagline}
-      </p>
-
-      <div className="mt-auto flex items-end justify-between gap-3 pt-6">
-        <div className="flex flex-wrap gap-1.5">
-          <span className="lego-chip">
-            <UsersIcon width={14} height={14} /> {game.players}
-          </span>
-          <span className="lego-chip">
-            <ClockIcon width={14} height={14} /> {game.duration}
-          </span>
+      <GameArt slug={game.slug} className="aspect-[4/3] rounded-[1.75rem]" />
+      <div className="flex flex-1 flex-col px-1 pt-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <h3 className="font-display text-[1.6rem] font-bold leading-tight tracking-[-0.015em] text-ink">
+            {game.title}
+          </h3>
+          <ArrowIcon
+            width={20}
+            height={20}
+            aria-hidden="true"
+            className="shrink-0 -translate-x-1 text-ink-soft opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+          />
         </div>
-        <span
-          aria-hidden="true"
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-[1.5px] border-[#e4e2dc] bg-white text-ink transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-        >
-          <ArrowIcon width={18} height={18} />
-        </span>
+        <p className="mt-1.5 text-[1.02rem] leading-relaxed text-ink-soft">{game.tagline}</p>
+        <p className="mt-auto pt-4 text-sm font-medium text-ink-soft/80">
+          {game.players} players <span aria-hidden="true">·</span> {game.duration}
+        </p>
       </div>
     </Link>
   );

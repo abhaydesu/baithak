@@ -18,7 +18,7 @@ export default function Icon() {
           justifyContent: "center",
         }}
       >
-        <img src={MARK_DATA_URL} width={64} height={45} alt="" />
+        <img src={MARK_DATA_URL} width={56} height={64} alt="" />
       </div>
     ),
     size,

@@ -8,8 +8,7 @@ interface PlayLinkProps {
   href: string;
   storageKey: string;
   className?: string;
-  /** Render LEGO studs on top (use with the lego-btn classes). */
-  studs?: number;
+  style?: React.CSSProperties;
   /** When a game is mid-way, also offer to start a fresh one. */
   restart?: boolean;
   restartClassName?: string;
@@ -49,7 +48,7 @@ export default function PlayLink({
   href,
   storageKey,
   className,
-  studs,
+  style,
   restart = false,
   restartClassName,
 }: PlayLinkProps) {
@@ -79,14 +78,7 @@ export default function PlayLink({
 
   return (
     <>
-      <Link href={href} className={className}>
-        {studs ? (
-          <span className="lego-studs" aria-hidden="true">
-            {Array.from({ length: studs }, (_, i) => (
-              <span key={i} />
-            ))}
-          </span>
-        ) : null}
+      <Link href={href} className={className} style={style}>
         {inProgress ? "Resume game" : "Play now"}
       </Link>
       {restart && inProgress && (

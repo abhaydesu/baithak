@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import type { Tone } from "@/lib/games";
 import { WORDS_BY_DIFFICULTY, type Difficulty } from "@/lib/wordBank";
 import { ShuffleIcon } from "./Icons";
-import { LegoStuds, legoFor } from "./LegoButton";
 
 const STORAGE_KEY = "vybrid_custom_words";
 const categories = ["random", ...Object.keys(WORDS_BY_DIFFICULTY)];
@@ -14,7 +12,6 @@ const difficulties: Difficulty[] = ["easy", "medium", "hard"];
 
 interface Props {
   words?: string[];
-  tone?: Tone;
   title?: string;
 }
 
@@ -27,7 +24,6 @@ function getCategoryPool(category: string, difficulty: Difficulty) {
 
 export default function RandomWordGenerator({
   words,
-  tone = "yellow",
   title = "Word deck",
 }: Props) {
   const [current, setCurrent] = useState<string | null>(null);
@@ -86,21 +82,18 @@ export default function RandomWordGenerator({
     setCustom("");
   }
 
-  // Yellow reads poorly as a big action button, so it hands over to red.
-  const action = `lego-btn lego-${tone === "yellow" ? "red" : legoFor(tone)}`;
 
   return (
-    <div className="lego-card lego-card-static p-5">
-      <LegoStuds count={2} className="lego-card-studs" />
+    <div className="surface p-6">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-display text-xl font-bold text-ink">{title}</h3>
-        <span className="lego-chip">{pool.length} left</span>
+        <span className="text-sm font-semibold text-ink-soft">{pool.length} left</span>
       </div>
 
       <button
         type="button"
         onClick={() => current && setHidden((h) => !h)}
-        className="mt-4 grid min-h-36 w-full place-items-center rounded-2xl border-[1.5px] border-[#ecebe7] bg-white px-4 py-6 text-center"
+        className="mt-5 grid min-h-36 w-full place-items-center rounded-2xl bg-paper px-4 py-6 text-center"
         aria-label={hidden ? "Reveal word" : "Hide word"}
       >
         <AnimatePresence mode="popLayout" initial={false}>
@@ -126,8 +119,7 @@ export default function RandomWordGenerator({
 
       {current ? (
         <div className="mt-5 grid grid-cols-2 gap-3">
-          <button type="button" onClick={roll} className="lego-btn lego-white">
-            <LegoStuds count={2} />
+          <button type="button" onClick={roll} className="pill min-h-[3.25rem]">
             <ShuffleIcon width={18} height={18} />
             Skip
           </button>
@@ -135,15 +127,13 @@ export default function RandomWordGenerator({
             type="button"
             onClick={markUsed}
             disabled={isUsed}
-            className={action}
+            className="press"
           >
-            <LegoStuds count={3} />
             {isUsed ? "In play" : "Use this word"}
           </button>
         </div>
       ) : (
-        <button type="button" onClick={roll} className={`${action} mt-5 w-full`}>
-          <LegoStuds count={4} />
+        <button type="button" onClick={roll} className="press mt-5 w-full">
           <ShuffleIcon width={18} height={18} />
           Deal a word
         </button>
@@ -168,7 +158,7 @@ export default function RandomWordGenerator({
                 type="button"
                 aria-pressed={category === c}
                 onClick={() => setCategory(c)}
-                className="keycap tone-white h-9 px-3 text-sm capitalize"
+                className="pill h-9 min-h-0 px-3 text-sm capitalize"
               >
                 {c}
               </button>
@@ -185,7 +175,7 @@ export default function RandomWordGenerator({
                 type="button"
                 aria-pressed={difficulty === d}
                 onClick={() => setDifficulty(d)}
-                className="keycap tone-white h-9 text-sm capitalize"
+                className="pill h-9 min-h-0 text-sm capitalize"
               >
                 {d}
               </button>
@@ -214,14 +204,14 @@ export default function RandomWordGenerator({
               placeholder="e.g. Aunt Priya's biryani"
               className="field"
             />
-            <button type="submit" className="lego-btn lego-white lego-btn-sm mt-0 shrink-0 self-center">
+            <button type="submit" className="pill shrink-0 self-center">
               Add
             </button>
           </form>
           {customWords.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-1.5">
               {customWords.map((w) => (
-                <span key={w} className="lego-chip">
+                <span key={w} className="rounded-full bg-paper px-2.5 py-1 text-sm text-ink">
                   {w}
                 </span>
               ))}
@@ -250,7 +240,7 @@ export default function RandomWordGenerator({
             </div>
             <div className="flex flex-wrap gap-1.5">
               {used.map((w) => (
-                <span key={w} className="lego-chip opacity-70">
+                <span key={w} className="rounded-full bg-paper px-2.5 py-1 text-sm text-ink-soft line-through decoration-ink/30">
                   {w}
                 </span>
               ))}

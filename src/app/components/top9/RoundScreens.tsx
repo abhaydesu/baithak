@@ -386,11 +386,6 @@ export function RoundEnd() {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex items-center gap-4">
-        <Character
-          kind={winner ? "actor" : "hotseat"}
-          tone={winner?.tone ?? "white"}
-          className="h-24 w-20 shrink-0"
-        />
         <div>
           <Eyebrow>{stolen ? "Stolen!" : "Round over"}</Eyebrow>
           <p className="font-display text-2xl font-extrabold leading-tight tracking-tight">

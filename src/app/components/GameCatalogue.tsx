@@ -6,23 +6,20 @@ import type { CatalogGame } from "@/lib/games";
 import GameCard from "./GameCard";
 
 const filters = [
-  { id: "all", label: "All", tone: "yellow", test: () => true },
+  { id: "all", label: "All", test: () => true },
   {
     id: "on-screen",
     label: "On screen",
-    tone: "blue",
     test: (g: CatalogGame) => g.kind === "on-screen",
   },
   {
     id: "offline",
     label: "In person",
-    tone: "orange",
     test: (g: CatalogGame) => g.kind === "offline",
   },
   {
     id: "no-props",
     label: "Nothing to grab",
-    tone: "green",
     test: (g: CatalogGame) => g.needs.length === 0,
   },
 ] as const;
@@ -47,17 +44,17 @@ export default function GameCatalogue({ games }: { games: CatalogGame[] }) {
             type="button"
             aria-pressed={active === f.id}
             onClick={() => setActive(f.id)}
-            className="inline-flex h-11 shrink-0 items-center gap-2 rounded-full border border-line bg-white px-4 font-semibold text-ink-soft transition-colors hover:text-ink aria-pressed:border-ink aria-pressed:bg-ink aria-pressed:text-white"
+            className="pill shrink-0"
           >
             {f.label}
-            <span className="text-sm tabular-nums opacity-60">
+            <span className="text-sm tabular-nums opacity-55">
               {games.filter(f.test).length}
             </span>
           </button>
         ))}
       </div>
 
-      <div className="mt-2 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((game) => (
           <GameCard key={game.slug} game={game} />
         ))}

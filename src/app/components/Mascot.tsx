@@ -169,21 +169,21 @@ function parts(kind: MascotKind, color: string, fuse?: boolean) {
           <>
             <path
               d="M50 16L86 82H14Z"
-              fill="#f2a93b"
-              stroke="#f2a93b"
+              fill="#f5b82e"
+              stroke="#f5b82e"
               strokeWidth={16}
               strokeLinejoin="round"
             />
             {/* crimped edges */}
             <path
               d="M42 24l-3 5M35 36l-3 5M28 48l-3 5M21 60l-3 5M58 24l3 5M65 36l3 5M72 48l3 5M79 60l3 5"
-              stroke="#c97d16"
+              stroke="#c98f12"
               strokeWidth={2.4}
               strokeLinecap="round"
             />
-            <circle cx="33" cy="76" r="1.6" fill="#c97d16" />
-            <circle cx="68" cy="74" r="1.6" fill="#c97d16" />
-            <circle cx="60" cy="40" r="1.4" fill="#c97d16" />
+            <circle cx="33" cy="76" r="1.6" fill="#c98f12" />
+            <circle cx="68" cy="74" r="1.6" fill="#c98f12" />
+            <circle cx="60" cy="40" r="1.4" fill="#c98f12" />
             <Gloss x={40} y={34} rx={7} ry={4} rotate={-58} />
           </>
         ),
@@ -206,13 +206,13 @@ function parts(kind: MascotKind, color: string, fuse?: boolean) {
                 />
               </>
             )}
-            <circle cx="50" cy="56" r="36" fill="#ff9a2e" />
+            <circle cx="50" cy="56" r="36" fill="#f2862e" />
             {/* boondi */}
             {[
               [30, 40], [44, 30], [60, 33], [72, 46], [27, 60], [76, 64], [36, 80], [52, 85], [66, 79],
               [40, 46], [62, 50],
             ].map(([x, y]) => (
-              <circle key={`${x}-${y}`} cx={x} cy={y} r={2.3} fill="#e57a0f" opacity={0.7} />
+              <circle key={`${x}-${y}`} cx={x} cy={y} r={2.3} fill="#c9661a" opacity={0.7} />
             ))}
             <Gloss x={34} y={36} />
           </>

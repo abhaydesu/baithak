@@ -52,11 +52,6 @@ export function Pass() {
         <Eyebrow>
           Round {s.round.number} · role {index + 1} of {s.players.length}
         </Eyebrow>
-        <Character
-          kind="detective"
-          tone="purple"
-          className="mt-4 h-36 w-32 animate-bob"
-        />
         <p className="mt-4 text-lg text-ink/65">Pass the phone to</p>
         <h2 className="font-display text-[clamp(2.2rem,10vw,3.4rem)] font-extrabold leading-none tracking-tight [overflow-wrap:anywhere]">
           {holder.name}
@@ -180,11 +175,6 @@ export function NightPass() {
           Night {s.round.cycle} · player {s.round.nightIndex + 1} of{" "}
           {alive.length}
         </Eyebrow>
-        <Character
-          kind="detective"
-          tone="purple"
-          className="mt-4 h-36 w-32 animate-bob"
-        />
         <p className="mt-4 text-lg text-ink/65">Pass the phone to</p>
         <h2 className="font-display text-[clamp(2.2rem,10vw,3.4rem)] font-extrabold leading-none tracking-tight [overflow-wrap:anywhere]">
           {actor.name}
@@ -1136,8 +1126,8 @@ export function Verdict() {
 // ------------------------------------------------------------------ round over
 
 const OUTCOME_COPY = {
-  village: { title: "Village wins!", tone: "green", character: "detective" },
-  mafia: { title: "Mafia wins!", tone: "red", character: "fibber" },
+  village: { title: "Village wins!" },
+  mafia: { title: "Mafia wins!" },
 } as const;
 
 function describeEvent(
@@ -1187,12 +1177,7 @@ export function RoundOver() {
   return (
     <div className="flex min-h-[26rem] flex-col gap-5 text-center">
       <div className="flex flex-col items-center">
-        <Character
-          kind={copy.character}
-          tone={copy.tone}
-          className="h-28 w-24 animate-bob"
-        />
-        <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight">
+        <h2 className="font-display text-4xl font-extrabold tracking-tight">
           {copy.title}
         </h2>
         <p className="mt-1 text-ink/65">

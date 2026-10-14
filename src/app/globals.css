@@ -5,12 +5,21 @@
 /* ------------------------------------------------------------------ */
 
 @theme {
-  --color-paper: #ffffff;
+  /* Warm off-white page; white is kept for surfaces that sit on it */
+  --color-paper: #faf8f4;
+  --color-surface: #ffffff;
   /* Alternate section bands */
-  --color-paper-deep: #f6f5f2;
-  --color-ink: #141414;
-  --color-ink-soft: #585858;
-  --color-line: #e7e5e0;
+  --color-paper-deep: #f2eee6;
+  --color-ink: #1c1917;
+  --color-ink-soft: #66615a;
+  --color-line: #e8e3d9;
+  /* Brand palette: the pixel horizon's colours (see src/lib/gameArt.ts) */
+  --color-marigold: #f5b82e;
+  --color-saffron: #f2862e;
+  --color-rani: #e2457e;
+  --color-violet: #7c5cff;
+  --color-indigo: #4b3a9e;
+  --color-night: #15121f;
 
   /* Next.js injects --font-gued / --font-poppins on <html> at runtime.
      Tailwind emits @theme vars as :root custom properties, so var() here
@@ -84,6 +93,16 @@
   --tone-edge: #cc2b72;
 }
 
+/* One pixel of the brand's pixel art. Everything pixelated is a multiple. */
+:root {
+  --px: 10px;
+}
+@media (min-width: 768px) {
+  :root {
+    --px: 14px;
+  }
+}
+
 @layer base {
 /* ------------------------------------------------------------------ */
 /* Base                                                                */
@@ -112,7 +131,7 @@ body {
 }
 
 ::selection {
-  background: #ffe078;
+  background: color-mix(in oklab, var(--color-marigold) 60%, white);
   color: var(--color-ink);
 }
 
@@ -409,324 +428,6 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* LEGO button: the primary call to action                             */
-/* ------------------------------------------------------------------ */
-
-.lego-btn {
-  --c: #ff4b3e;
-  --c-dark: #c9261b;
-  --press: 6px;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  min-height: 3.25rem;
-  margin-top: 9px; /* room for the studs */
-  padding: 0.8rem 1.6rem 0.7rem;
-  border-radius: 0.55rem;
-  background: var(--c);
-  color: white;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1;
-  box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.28),
-    inset 0 -2px 0 rgb(0 0 0 / 0.08),
-    0 var(--press) 0 var(--c-dark),
-    0 calc(var(--press) + 10px) 18px -10px var(--c-dark);
-  transition:
-    transform 0.16s var(--ease-bounce),
-    box-shadow 0.16s var(--ease-bounce);
-  user-select: none;
-}
-.lego-lg {
-  min-height: 3.75rem;
-  padding: 1rem 2rem 0.9rem;
-  font-size: 1.25rem;
-}
-.lego-studs {
-  position: absolute;
-  top: -9px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-evenly;
-  padding-inline: 0.6rem;
-  pointer-events: none;
-}
-.lego-studs > span {
-  width: 1.55rem;
-  height: 9px;
-  border-radius: 4px 4px 1px 1px;
-  background: var(--c);
-  box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.35),
-    inset -3px 0 0 rgb(0 0 0 / 0.1);
-}
-/* Brand LEGO colours, also handy as plain values */
-:root {
-  --lego-red: #ff4b3e;
-  --lego-yellow: #ffc21a;
-  --lego-blue: #2f7bff;
-  --lego-green: #1fbf6a;
-  --lego-orange: #ff7a1a;
-  --lego-pink: #ff4f9a;
-  --lego-purple: #7c5cff;
-  --lego-black: #1d1d1d;
-}
-.lego-red { --c: #ff4b3e; --c-dark: #c9261b; }
-.lego-yellow { --c: #ffc21a; --c-dark: #c99000; color: var(--color-ink); }
-.lego-blue { --c: #2f7bff; --c-dark: #1a55c4; }
-.lego-green { --c: #1fbf6a; --c-dark: #138a4b; }
-.lego-black { --c: #1d1d1d; --c-dark: #000; }
-.lego-orange { --c: #ff7a1a; --c-dark: #c95a08; }
-.lego-pink { --c: #ff4f9a; --c-dark: #c42a6d; }
-.lego-purple { --c: #7c5cff; --c-dark: #5532d6; }
-.lego-white { --c: #ffffff; --c-dark: #d9d8d3; color: var(--color-ink); }
-.lego-white.lego-btn { border: 1.5px solid #e4e2dc; }
-.lego-btn-sm {
-  min-height: 2.6rem;
-  padding: 0.55rem 1rem 0.5rem;
-  font-size: 0.95rem;
-  --press: 4px;
-}
-.lego-btn-sm .lego-studs > span {
-  width: 1.1rem;
-}
-button.lego-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-@media (hover: hover) {
-  .lego-btn:hover {
-    --press: 8px;
-    transform: translateY(-2px);
-  }
-}
-.lego-btn:active {
-  --press: 1px;
-  transform: translateY(5px);
-  transition-duration: 0.06s;
-}
-
-/* ------------------------------------------------------------------ */
-/* Nav: white keycaps sunk into a paper tray; the current page is ink  */
-/* ------------------------------------------------------------------ */
-
-.nav-tray {
-  border-radius: 1.4rem;
-  border: 1.5px solid var(--color-line);
-  background: var(--color-paper-deep);
-  box-shadow:
-    inset 0 2px 4px rgb(0 0 0 / 0.06),
-    0 1px 0 #ffffff;
-}
-
-.navkey {
-  --press: 4px;
-  position: relative;
-  isolation: isolate;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  border-radius: 1rem;
-  border: 1.5px solid #e4e2dc;
-  background: linear-gradient(180deg, #ffffff 0%, #f7f7f5 100%);
-  color: var(--color-ink-soft);
-  font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1;
-  box-shadow:
-    inset 0 1.5px 0 #ffffff,
-    0 var(--press) 0 #dcdad5,
-    0 calc(var(--press) + 5px) 10px -6px rgb(0 0 0 / 0.2);
-  transition:
-    transform 0.18s var(--ease-bounce),
-    box-shadow 0.18s var(--ease-bounce),
-    color 0.16s ease,
-    border-color 0.16s ease;
-  cursor: pointer;
-  user-select: none;
-}
-/* The ink face sits on top and fades in, so the swap to "current" is one
-   smooth crossfade instead of a background flip racing the text colour. */
-.navkey::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: calc(1rem - 1.5px);
-  background: linear-gradient(180deg, #3a3748, var(--color-ink));
-  box-shadow: inset 0 1.5px 0 rgb(255 255 255 / 0.18);
-  opacity: 0;
-  transition: opacity 0.16s ease;
-  pointer-events: none;
-}
-.navkey svg {
-  color: var(--icon, currentColor);
-  transition: color 0.16s ease;
-}
-
-@media (hover: hover) {
-  .navkey:hover {
-    --press: 6px;
-    transform: translateY(-2px);
-    color: var(--color-ink);
-  }
-  .navkey:hover svg {
-    color: var(--c);
-  }
-}
-.navkey:active {
-  --press: 0px;
-  transform: translateY(4px);
-  transition-duration: 0.06s;
-}
-
-.navkey[aria-current="page"] {
-  --press: 2px;
-  --icon: var(--c);
-  transform: translateY(2px);
-  color: #ffffff;
-  border-color: #000;
-  box-shadow:
-    0 var(--press) 0 #000,
-    0 6px 10px -6px rgb(0 0 0 / 0.5);
-  /* settle into place without the springy overshoot */
-  transition-timing-function: ease-out;
-}
-.navkey[aria-current="page"]::before {
-  opacity: 1;
-}
-.navkey[aria-current="page"] svg,
-.navkey[aria-current="page"]:hover svg {
-  color: var(--c);
-}
-
-/* Surprise me always shows its colour, so it reads as the playful one */
-.navkey-accent {
-  --icon: var(--c);
-}
-
-/* ------------------------------------------------------------------ */
-/* LEGO card: the CTA brick, scaled up into a neutral card             */
-/* ------------------------------------------------------------------ */
-
-.lego-card {
-  --edge: #dad8d2;
-  --press: 7px;
-  position: relative;
-  margin-top: 11px; /* room for the studs */
-  border-radius: 1.4rem;
-  border: 1.5px solid #e4e2dc;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f8f6 100%);
-  box-shadow:
-    inset 0 2px 0 #ffffff,
-    inset 0 -3px 0 rgb(0 0 0 / 0.025),
-    0 var(--press) 0 var(--edge),
-    0 calc(var(--press) + 14px) 26px -18px rgb(0 0 0 / 0.3);
-  transition:
-    transform 0.2s var(--ease-bounce),
-    box-shadow 0.2s var(--ease-bounce);
-}
-.lego-card-studs {
-  position: absolute;
-  top: -11px;
-  left: 1.6rem;
-  display: flex;
-  gap: 0.7rem;
-  pointer-events: none;
-}
-.lego-card-studs > span {
-  width: 2rem;
-  height: 11px;
-  border: 1.5px solid #e4e2dc;
-  border-bottom: 0;
-  border-radius: 6px 6px 1px 1px;
-  background: linear-gradient(180deg, #ffffff, #f4f4f2);
-  box-shadow: inset 0 2px 0 #ffffff, inset -3px 0 0 rgb(0 0 0 / 0.04);
-}
-@media (hover: hover) {
-  .lego-card:hover {
-    --press: 10px;
-    transform: translateY(-3px);
-  }
-}
-.lego-card:active {
-  --press: 2px;
-  transform: translateY(5px);
-  transition-duration: 0.06s;
-}
-/* A card that holds content rather than linking somewhere: no press */
-.lego-card-static {
-  transition: none;
-}
-@media (hover: hover) {
-  .lego-card-static:hover {
-    --press: 7px;
-    transform: none;
-  }
-}
-.lego-card-static:active {
-  --press: 7px;
-  transform: none;
-}
-.lego-divider {
-  height: 1.5px;
-  background: #ecebe7;
-}
-/* Step number as a little 1×1 brick, stud and all */
-.lego-badge {
-  --c-dark: color-mix(in oklab, var(--c) 72%, black);
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  margin-top: 6px;
-  border-radius: 0.45rem;
-  background: var(--c);
-  color: white;
-  font-family: var(--font-display);
-  font-weight: 700;
-  box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.3),
-    inset 0 -3px 0 rgb(0 0 0 / 0.14),
-    0 0 0 1px var(--c-dark);
-}
-.lego-badge::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  width: 1.15rem;
-  height: 6px;
-  translate: -50% 0;
-  border-radius: 3px 3px 1px 1px;
-  background: var(--c);
-  box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.35),
-    0 0 0 1px var(--c-dark);
-}
-
-.lego-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  border-radius: 999px;
-  border: 1.5px solid #e4e2dc;
-  background: white;
-  padding: 0.2rem 0.7rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color-ink-soft);
-}
-
-/* ------------------------------------------------------------------ */
 /* LEGO builder                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -854,11 +555,15 @@ button.lego-btn:disabled {
 /* plus that turns into a minus */
 .faq-icon {
   position: relative;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .faq-icon > span {
   position: absolute;
-  width: 12px;
-  height: 2.5px;
+  width: 16px;
+  height: 2px;
   border-radius: 2px;
   background: currentColor;
   transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
@@ -881,15 +586,12 @@ button.lego-btn:disabled {
  * zone stays put while the face moves. Static cards are left out because the
  * layer would sit over the buttons inside them.
  */
-.keycap,
-.lego-card:not(.lego-card-static) {
+.keycap {
   position: relative;
 }
 .keycap::after,
-.navkey::after,
-.btn::after,
-.lego-btn::after,
-.lego-card:not(.lego-card-static)::after {
+.press::after,
+.btn::after {
   content: "";
   position: absolute;
   /* Just the edge plus the 2px lift, so it never overlaps a neighbour. */
@@ -904,20 +606,257 @@ button.lego-btn:disabled {
   animation: mascot-boing 0.6s cubic-bezier(0.3, 0.7, 0.4, 1.5);
 }
 
+/* ------------------------------------------------------------------ */
+/* Surfaces: flat and quiet, so the colour and the buttons stand out   */
+/* ------------------------------------------------------------------ */
+
+.surface {
+  border-radius: 1.75rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+
+/* Film grain over a colour field or the night band */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+}
+
+/* A game's colour field: flat brand colour */
+.game-art {
+  background: var(--field);
+}
+
+/* The game-night band: deep indigo with an arcade pixel horizon */
+.night {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-night);
+  color: #fff;
+}
+.pixel-horizon {
+  width: calc(160 * var(--px));
+  height: calc(24 * var(--px));
+  max-width: none;
+}
+.pixel-horizon-compact {
+  /* Covers the whole hero panel on wide phones while retaining a square grid. */
+  width: max(100%, calc(48 * var(--px)));
+  height: calc(18 * var(--px));
+  max-width: none;
+}
+.pixel-star {
+  position: absolute;
+  width: calc(var(--px) * 0.5);
+  height: calc(var(--px) * 0.5);
+  opacity: 0.7;
+}
+.pixel-star-hero {
+  opacity: 0.68;
+}
+.pixel-star-blink {
+  animation: pixel-blink 2.4s steps(1, end) infinite;
+}
+@keyframes pixel-blink {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixel-star-blink {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Press: the one tactile thing on the site. Real actions only.        */
+/* ------------------------------------------------------------------ */
+
+.press {
+  --c: #f5b82e;
+  --on: var(--color-ink);
+  --edge: color-mix(in oklab, var(--c) 68%, black);
+  --outline: var(--color-ink);
+  --press: 6px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3.25rem;
+  /* room for the side, fixed so pressing never shifts the layout */
+  margin-bottom: 8px;
+  padding: 0.85rem 1.7rem 0.8rem;
+  border: 2px solid var(--outline);
+  border-radius: 999px;
+  background: var(--c);
+  color: var(--on);
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  /* face highlight, then the side, then the outline around the side */
+  box-shadow:
+    inset 0 2px 0 rgb(255 255 255 / 0.35),
+    0 var(--press) 0 0 var(--edge),
+    0 var(--press) 0 2px var(--outline);
+  transition:
+    transform 0.14s var(--ease-bounce),
+    box-shadow 0.14s var(--ease-bounce);
+  user-select: none;
+  cursor: pointer;
+}
+.press-lg {
+  min-height: 3.75rem;
+  padding: 1rem 2.1rem 0.95rem;
+  font-size: 1.2rem;
+}
+.press-sm {
+  --press: 5px;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.2rem 0.55rem;
+  font-size: 0.98rem;
+}
+@media (hover: hover) {
+  .press:hover {
+    --press: 8px;
+    transform: translateY(-2px);
+  }
+}
+.press:active {
+  --press: 1px;
+  transform: translateY(5px);
+  transition-duration: 0.06s;
+}
+.press:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Phone-sized press, for the playable phone in the hero */
+.press-xs {
+  --press: 3px;
+  min-height: 2.1rem;
+  margin-bottom: 4px;
+  padding: 0.4rem 0.75rem 0.38rem;
+  border-width: 1.5px;
+  font-size: 0.72rem;
+  box-shadow:
+    inset 0 1.5px 0 rgb(255 255 255 / 0.35),
+    0 var(--press) 0 0 var(--edge),
+    0 var(--press) 0 1.5px var(--outline);
+}
+@media (hover: hover) {
+  .press-xs:hover {
+    --press: 4px;
+    transform: translateY(-1px);
+  }
+}
+.press-xs:active {
+  --press: 0px;
+  transform: translateY(3px);
+}
+/* Secondary actions and toggles: flat pills, no depth */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    color 0.15s ease;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .pill:hover {
+    border-color: color-mix(in oklab, var(--color-ink) 35%, transparent);
+  }
+}
+.pill[aria-pressed="true"] {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: #fff;
+}
+.pill:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Quiet text link with an underline that darkens on hover */
+.text-link {
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.15s ease;
+}
+.text-link:hover {
+  text-decoration-color: var(--color-ink);
+}
+
 /* Highlighter swipe that draws in behind a word on load */
+/* A thick marigold underline under a heading word (see Marker.tsx). It draws
+   in once, then square sparks in the brand colours shed off it. */
 .marker {
-  background-image: linear-gradient(
-    100deg,
-    transparent 0.2em,
-    #ffe078 0.35em,
-    #ffd23f calc(100% - 0.3em),
-    transparent calc(100% - 0.15em)
-  );
-  background-repeat: no-repeat;
-  background-position: 0 72%;
-  background-size: 100% 0.5em;
-  padding-inline: 0.06em;
-  animation: marker-in 0.7s 0.25s cubic-bezier(0.6, 0, 0.3, 1) both;
+  position: relative;
+  z-index: 0;
+  white-space: nowrap;
+  /* A halo in the page colour behind each letter, so descenders cut a gap in
+     the underline (skip-ink) instead of crossing it */
+  -webkit-text-stroke: 0.07em var(--color-paper);
+  paint-order: stroke fill;
+}
+.marker::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0.02em;
+  right: 0.02em;
+  bottom: -0.08em;
+  height: 0.13em;
+  background: var(--color-marigold);
+  border-radius: 999px;
+  transform-origin: left center;
+  animation: marker-in 0.8s 0.2s cubic-bezier(0.65, 0, 0.25, 1) both;
+}
+.marker-sparks {
+  position: absolute;
+  /* the underline's bottom edge */
+  inset: auto 0.1em -0.21em 0.1em;
+  height: 0;
+  pointer-events: none;
+}
+.marker-sparks > span {
+  position: absolute;
+  top: -0.06em;
+  opacity: 0;
+  animation: marker-spark 3.6s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marker-sparks {
+    display: none;
+  }
 }
 
 .safe-bottom {
@@ -1015,10 +954,26 @@ button.lego-btn:disabled {
 
 @keyframes marker-in {
   from {
-    background-size: 0% 0.5em;
+    transform: scaleX(0);
   }
   to {
-    background-size: 100% 0.5em;
+    transform: scaleX(1);
+  }
+}
+/* Each spark pops off the underline and drops just below it */
+@keyframes marker-spark {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  6% {
+    opacity: 1;
+    transform: translate(calc(var(--drift) * 0.4), -0.07em);
+  }
+  40%,
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift), 0.13em);
   }
 }
 

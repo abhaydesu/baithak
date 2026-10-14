@@ -261,7 +261,6 @@ export function Pass() {
     <div className="flex min-h-[26rem] flex-col items-center justify-between gap-6 text-center">
       <div className="flex flex-col items-center">
         <Eyebrow>Movie locked in 🔒</Eyebrow>
-        <Character kind="mimer" tone={team.tone} className="mt-4 h-32 w-28 animate-bob" />
         <h2 className="mt-4 font-display text-[clamp(1.8rem,8vw,2.6rem)] font-extrabold leading-tight tracking-tight">
           Hand the phone to {actor ?? team.name}
         </h2>
@@ -459,12 +458,7 @@ export function Result() {
   return (
     <div className="flex min-h-[26rem] flex-col gap-5 text-center">
       <div className="flex flex-col items-center">
-        <Character
-          kind={guessed ? "mimer" : "hotseat"}
-          tone={winner?.tone ?? "white"}
-          className="h-28 w-24"
-        />
-        <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">
+        <h2 className="font-display text-3xl font-extrabold tracking-tight">
           {guessed ? "Got it!" : "Stumped!"}
         </h2>
         <p className="mt-1 text-ink/65">
