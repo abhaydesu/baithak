@@ -31,7 +31,7 @@ function useSound() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+    <p className="text-sm font-semibold text-ink-soft">
       {children}
     </p>
   );
@@ -93,7 +93,7 @@ function RoleCardFace({
 
   return (
     <>
-      <p className="text-sm font-bold uppercase tracking-[0.2em] text-ink/55">
+      <p className="text-sm font-semibold text-ink-soft">
         {role === "mafia"
           ? "You are"
           : role === "villager"
@@ -242,7 +242,7 @@ function NightActInner() {
             animate={{ scale: 1, opacity: 1 }}
             className="inset-well flex flex-1 flex-col items-center justify-center px-4 py-8 text-center"
           >
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+            <p className="text-sm font-semibold text-ink-soft">
               Investigation result
             </p>
             <p className="mt-2 font-display text-3xl font-extrabold tracking-tight [overflow-wrap:anywhere]">
@@ -273,7 +273,7 @@ function NightActInner() {
                   >
                     <span className="max-w-full truncate">{p.name}</span>
                     {prev && (
-                      <span className="text-[0.65rem] font-semibold opacity-65">
+                      <span className="text-xs font-semibold opacity-65">
                         {prev.isMafia ? "Mafia" : "Innocent"}
                       </span>
                     )}
@@ -367,7 +367,7 @@ function NightActInner() {
                 {p.id === actor!.id && role !== "mafia" ? " (you)" : ""}
               </span>
               {isFellowMafia && (
-                <span className="text-[0.65rem] font-semibold opacity-70">
+                <span className="text-xs font-semibold opacity-70">
                   Mafia
                 </span>
               )}
@@ -436,7 +436,7 @@ function NarratorStepScreen() {
         </div>
 
         <div className="inset-well p-4 text-left">
-          <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+          <p className="text-sm font-semibold text-ink-soft">
             Say out loud
           </p>
           <p className="mt-1 font-display text-lg font-bold leading-snug">
@@ -446,7 +446,7 @@ function NarratorStepScreen() {
         </div>
 
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+          <p className="mb-2 text-sm font-semibold text-ink-soft">
             Who did the Mafia point at?
           </p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -509,7 +509,7 @@ function NarratorStepScreen() {
         </div>
 
         <div className="inset-well p-4 text-left">
-          <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+          <p className="text-sm font-semibold text-ink-soft">
             Say out loud
           </p>
           <p className="mt-1 font-display text-lg font-bold leading-snug">
@@ -520,7 +520,7 @@ function NarratorStepScreen() {
 
         {doctorAlive ? (
           <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+            <p className="mb-2 text-sm font-semibold text-ink-soft">
               Who did the Doctor point at?
             </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -602,7 +602,7 @@ function NarratorStepScreen() {
       </div>
 
       <div className="inset-well p-4 text-left">
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+        <p className="text-sm font-semibold text-ink-soft">
           Say out loud
         </p>
         <p className="mt-1 font-display text-lg font-bold leading-snug">
@@ -614,7 +614,7 @@ function NarratorStepScreen() {
       {detectiveAlive ? (
         <>
           <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+            <p className="mb-2 text-sm font-semibold text-ink-soft">
               Who did the Detective point at?
             </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -844,7 +844,7 @@ function PeekRole() {
 
   return (
     <details className="inset-well px-4 py-3 text-left">
-      <summary className="cursor-pointer text-sm font-bold">
+      <summary className="flex min-h-11 cursor-pointer items-center text-sm font-bold">
         Forgot your role?
       </summary>
       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -906,7 +906,7 @@ export function Discuss() {
       {s.settings.discussSeconds > 0 && <DayClock />}
 
       <div className="inset-well px-4 py-3">
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+        <p className="text-sm font-semibold text-ink-soft">
           In the village
         </p>
         <div className="mt-2 flex flex-wrap gap-1.5">
@@ -1189,7 +1189,7 @@ export function RoundOver() {
 
       <dl className="inset-well grid gap-3 px-4 py-4 text-left">
         <div>
-          <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+          <dt className="text-sm font-semibold text-ink-soft">
             The Mafia
           </dt>
           <dd className="font-display text-xl font-extrabold">
@@ -1201,7 +1201,7 @@ export function RoundOver() {
           <div className="grid grid-cols-2 gap-2">
             {doctor && (
               <div>
-                <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+                <dt className="text-sm font-semibold text-ink-soft">
                   Doctor
                 </dt>
                 <dd className="font-bold">{doctor.name}</dd>
@@ -1209,7 +1209,7 @@ export function RoundOver() {
             )}
             {detective && (
               <div>
-                <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+                <dt className="text-sm font-semibold text-ink-soft">
                   Detective
                 </dt>
                 <dd className="font-bold">{detective.name}</dd>
@@ -1220,7 +1220,7 @@ export function RoundOver() {
 
         {round.events.length > 0 && (
           <div>
-            <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+            <dt className="text-sm font-semibold text-ink-soft">
               How it played out
             </dt>
             <dd className="mt-1">
@@ -1235,7 +1235,7 @@ export function RoundOver() {
 
         {winners.length > 0 && (
           <div>
-            <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+            <dt className="text-sm font-semibold text-ink-soft">
               Points
             </dt>
             <dd className="text-sm font-semibold">

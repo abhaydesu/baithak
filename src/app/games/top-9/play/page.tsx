@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PlayTopNinePage() {
   return (
-    <GamePlayShell title="Top 9" detailsHref="/games/top-9">
+    <GamePlayShell slug="top-9" title="Top 9" detailsHref="/games/top-9">
       <Top9Game />
     </GamePlayShell>
   );

@@ -55,7 +55,7 @@ export default function GameOver() {
 
       {s.history.length > 0 && (
         <section className="inset-well px-4 py-3">
-          <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+          <h3 className="text-sm font-semibold text-ink-soft">
             Every round
           </h3>
           <ul className="mt-2 flex flex-col gap-2 text-sm">

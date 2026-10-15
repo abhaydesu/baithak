@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="grid gap-12 lg:grid-cols-[1.2fr_0.6fr_1.4fr] lg:gap-16">
             <div>
               <Link href="/" className="flex w-fit items-end gap-1.5" aria-label="Baithak home">
-                <LogoMark className="h-[1.95rem]" />
+                <LogoMark className="h-[2.15rem]" />
                 <span className="pb-[0.08em] font-display text-[1.7rem] font-bold leading-none tracking-[-0.02em] text-ink">
                   baithak
                 </span>

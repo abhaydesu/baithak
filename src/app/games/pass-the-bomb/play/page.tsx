@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PlayPassTheBombPage() {
   return (
-    <GamePlayShell title="Pass the Bomb" detailsHref="/games/pass-the-bomb">
+    <GamePlayShell slug="pass-the-bomb" title="Pass the Bomb" detailsHref="/games/pass-the-bomb">
       <BombGame />
     </GamePlayShell>
   );

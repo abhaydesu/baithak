@@ -35,62 +35,69 @@
  *   --tone-light / --tone / --tone-dark  → pastel brick faces + edge
  *   --tone-solid / --tone-edge           → saturated buttons + accents
  */
+/* Warm to match the paper, so a white brick sits on the page, not on grey */
 :root,
 .tone-white {
   --tone-light: #ffffff;
-  --tone: #f7f7f5;
-  --tone-dark: #dcdad5;
-  --tone-solid: #141414;
+  --tone: #fdfbf7;
+  --tone-dark: #e3dccf;
+  --tone-solid: #1c1917;
   --tone-edge: #000000;
 }
+/* Danger / the bomb: a warm red that sits with the saffron */
 .tone-red {
-  --tone-light: #ffe3de;
-  --tone: #ffb4a8;
-  --tone-dark: #e2604e;
-  --tone-solid: #ff5a45;
-  --tone-edge: #c63a28;
+  --tone-light: #ffe6de;
+  --tone: #ffbca8;
+  --tone-dark: #e0603f;
+  --tone-solid: #f0452e;
+  --tone-edge: #b52f1a;
 }
+/* Saffron */
 .tone-orange {
-  --tone-light: #ffe8d1;
-  --tone: #ffc58f;
-  --tone-dark: #e3863a;
-  --tone-solid: #ff8a1f;
-  --tone-edge: #c9620a;
+  --tone-light: #ffebd6;
+  --tone: #ffcb9c;
+  --tone-dark: #de7a24;
+  --tone-solid: #f2862e;
+  --tone-edge: #b85f12;
 }
+/* Marigold */
 .tone-yellow {
-  --tone-light: #fff4c4;
-  --tone: #ffe078;
-  --tone-dark: #d9a91c;
-  --tone-solid: #ffc61a;
-  --tone-edge: #c99400;
+  --tone-light: #fff3cf;
+  --tone: #fbd977;
+  --tone-dark: #d19a14;
+  --tone-solid: #f5b82e;
+  --tone-edge: #b8860b;
 }
+/* Success: a calm green that sits beside the brand colours */
 .tone-green {
-  --tone-light: #dcf7e2;
-  --tone: #a8e7b7;
-  --tone-dark: #3fae5f;
-  --tone-solid: #25b35f;
-  --tone-edge: #178443;
+  --tone-light: #e0f5e7;
+  --tone: #b1e4c3;
+  --tone-dark: #43a96a;
+  --tone-solid: #2fa866;
+  --tone-edge: #1b7a47;
 }
 .tone-blue {
-  --tone-light: #dbefff;
-  --tone: #a5d5ff;
-  --tone-dark: #4a97dc;
-  --tone-solid: #2f8cff;
-  --tone-edge: #1a64c7;
+  --tone-light: #e2eaff;
+  --tone: #b9cbfb;
+  --tone-dark: #6b8fe6;
+  --tone-solid: #4272e8;
+  --tone-edge: #2a4fb0;
 }
+/* Violet */
 .tone-purple {
-  --tone-light: #ece4ff;
-  --tone: #c9b8ff;
-  --tone-dark: #8a6ddf;
+  --tone-light: #ede7ff;
+  --tone: #cdc0ff;
+  --tone-dark: #8266e8;
   --tone-solid: #7c5cff;
-  --tone-edge: #5836d6;
+  --tone-edge: #5436d6;
 }
+/* Rani */
 .tone-pink {
-  --tone-light: #ffe1ee;
-  --tone: #ffb3d4;
-  --tone-dark: #dc6199;
-  --tone-solid: #ff4f9a;
-  --tone-edge: #cc2b72;
+  --tone-light: #ffe3ed;
+  --tone: #ffb4cd;
+  --tone-dark: #d65b88;
+  --tone-solid: #e2457e;
+  --tone-edge: #ad2658;
 }
 
 /* One pixel of the brand's pixel art. Everything pixelated is a multiple. */
@@ -143,38 +150,20 @@ body {
 /* ------------------------------------------------------------------ */
 
 .brick {
-  --lift: 6px;
+  --lift: 5px;
   position: relative;
   isolation: isolate;
   border-radius: 1.75rem;
   border: 2px solid var(--tone-dark);
-  background: linear-gradient(
-    180deg,
-    var(--tone-light) 0%,
-    var(--tone) 70%
-  );
+  background: linear-gradient(180deg, var(--tone-light) 0%, var(--tone) 100%);
   box-shadow:
     inset 0 2px 0 rgb(255 255 255 / 0.7),
-    inset 0 -3px 0 rgb(0 0 0 / 0.05),
     0 var(--lift) 0 var(--tone-dark),
-    0 calc(var(--lift) + 10px) 24px -10px
-      color-mix(in oklab, var(--tone-dark) 70%, transparent);
+    0 calc(var(--lift) + 8px) 20px -12px
+      color-mix(in oklab, var(--tone-dark) 60%, transparent);
   transition:
     transform 0.22s var(--ease-bounce),
     box-shadow 0.22s var(--ease-bounce);
-}
-
-/* Soft grain for the frosted/premium feel */
-.brick::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0.18;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .brick-flat {
@@ -232,52 +221,56 @@ body {
 
 .btn {
   --press: 5px;
+  --outline: var(--color-ink);
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   min-height: 3rem;
-  padding: 0.75rem 1.35rem;
-  border-radius: 1.1rem;
-  border: 2px solid var(--tone-edge);
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--tone-solid) 78%, white) 0%,
-    var(--tone-solid) 55%
-  );
+  /* room for the side, so pressing never shifts the layout */
+  margin-bottom: 6px;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid var(--outline);
+  background: var(--tone-solid);
   color: white;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: -0.01em;
-  text-shadow: 0 1px 0 rgb(0 0 0 / 0.18);
+  /* face highlight, then the side, then the outline around the side */
   box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.45),
-    0 var(--press) 0 var(--tone-edge),
-    0 calc(var(--press) + 8px) 16px -8px
-      color-mix(in oklab, var(--tone-edge) 80%, transparent);
+    inset 0 2px 0 rgb(255 255 255 / 0.35),
+    0 var(--press) 0 0 var(--tone-edge),
+    0 var(--press) 0 2px var(--outline);
   transition:
-    transform 0.18s var(--ease-bounce),
-    box-shadow 0.18s var(--ease-bounce);
+    transform 0.14s var(--ease-bounce),
+    box-shadow 0.14s var(--ease-bounce);
   user-select: none;
   cursor: pointer;
 }
 
+/* The game's own colour (set by GamePlayShell as --game / --game-on) */
+.tone-game {
+  --tone-solid: var(--game, #f5b82e);
+  --tone-edge: color-mix(in oklab, var(--game, #f5b82e) 68%, black);
+}
+.tone-game.btn {
+  color: var(--game-on, var(--color-ink));
+}
+
+/* Light faces take dark type */
 .tone-yellow.btn,
+.tone-orange.btn,
 .tone-yellow .btn:not([class*="tone-"]),
 .tone-white.btn {
   color: var(--color-ink);
-  text-shadow: 0 1px 0 rgb(255 255 255 / 0.4);
 }
 
 .tone-white.btn {
-  background: linear-gradient(180deg, #ffffff, #f3f3f1);
-  border-color: var(--tone-dark);
-  box-shadow:
-    inset 0 2px 0 #ffffff,
-    0 var(--press) 0 var(--tone-dark),
-    0 calc(var(--press) + 8px) 16px -8px rgb(0 0 0 / 0.16);
+  background: #ffffff;
+  --tone-edge: var(--tone-dark);
 }
 
 @media (hover: hover) {
@@ -289,8 +282,8 @@ body {
 
 .btn:active,
 .btn[data-pressed="true"] {
-  --press: 0px;
-  transform: translateY(5px);
+  --press: 1px;
+  transform: translateY(4px);
   transition-duration: 0.06s;
 }
 
@@ -301,15 +294,15 @@ body {
 
 .btn-sm {
   --press: 3px;
-  min-height: 2.25rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 0.8rem;
+  min-height: 2.75rem;
+  margin-bottom: 4px;
+  padding: 0.4rem 0.95rem;
   font-size: 0.85rem;
 }
 
 .btn-sm:active,
 .btn-sm[data-pressed="true"] {
-  transform: translateY(3px);
+  transform: translateY(2px);
 }
 
 /* ------------------------------------------------------------------ */
@@ -317,24 +310,24 @@ body {
 /* ------------------------------------------------------------------ */
 
 .keycap {
-  --press: 4px;
+  --press: 3px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  border-radius: 1rem;
+  border-radius: 999px;
   border: 1.5px solid var(--color-line);
-  background: linear-gradient(180deg, #ffffff 0%, #f3f3f1 100%);
-  color: var(--color-ink-soft);
+  background: var(--color-surface);
+  color: var(--color-ink);
   font-weight: 600;
+  line-height: 1.1;
   box-shadow:
     inset 0 1.5px 0 #ffffff,
-    inset 0 -2px 0 rgb(0 0 0 / 0.03),
-    0 var(--press) 0 #d9d8d3,
-    0 calc(var(--press) + 6px) 12px -6px rgb(0 0 0 / 0.18);
+    0 var(--press) 0 #e3dccf,
+    0 calc(var(--press) + 5px) 10px -6px rgb(0 0 0 / 0.16);
   transition:
-    transform 0.18s var(--ease-bounce),
-    box-shadow 0.18s var(--ease-bounce),
+    transform 0.16s var(--ease-bounce),
+    box-shadow 0.16s var(--ease-bounce),
     color 0.15s,
     background 0.15s;
   cursor: pointer;
@@ -343,39 +336,49 @@ body {
 
 @media (hover: hover) {
   .keycap:hover {
-    --press: 6px;
+    --press: 5px;
     transform: translateY(-2px);
-    color: var(--color-ink);
   }
 }
 
 .keycap:active {
   --press: 0px;
-  transform: translateY(4px);
+  transform: translateY(3px);
   transition-duration: 0.06s;
 }
 
+/* Fingers first: every toggle and chip is at least 44px square */
+.keycap {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+.keycap:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Selected: pressed in, and filled with its colour */
 .keycap[aria-current="page"],
 .keycap[aria-pressed="true"] {
-  --press: 2px;
+  --press: 1px;
   transform: translateY(2px);
   color: var(--color-ink);
   border-color: var(--tone-dark);
-  background: linear-gradient(180deg, var(--tone-light), var(--tone));
+  background: var(--tone);
   box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.7),
-    0 var(--press) 0 var(--tone-dark),
-    0 6px 10px -6px var(--tone-dark);
+    inset 0 2px 0 rgb(255 255 255 / 0.6),
+    0 var(--press) 0 var(--tone-dark);
 }
 
-.tone-white.keycap[aria-pressed="true"] {
+.tone-white.keycap[aria-pressed="true"],
+.tone-white.keycap[aria-current="page"] {
   color: white;
-  border-color: #000;
-  background: linear-gradient(180deg, #3a3748, var(--color-ink));
+  border-color: var(--color-ink);
+  background: var(--color-ink);
   box-shadow:
     inset 0 1.5px 0 rgb(255 255 255 / 0.18),
-    0 var(--press) 0 #000,
-    0 6px 10px -6px rgb(0 0 0 / 0.5);
+    0 var(--press) 0 #000;
 }
 
 /* ------------------------------------------------------------------ */
@@ -387,7 +390,7 @@ body {
   align-items: center;
   gap: 0.35rem;
   border-radius: 999px;
-  border: 1.5px solid var(--tone-dark);
+  border: 1.5px solid color-mix(in oklab, var(--tone-dark) 70%, transparent);
   background: rgb(255 255 255 / 0.65);
   padding: 0.2rem 0.65rem;
   font-size: 0.75rem;
@@ -485,6 +488,7 @@ body {
   box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.5);
 }
 .lego-swatch {
+  position: relative;
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 999px;
@@ -494,6 +498,12 @@ body {
     0 0 0 1px rgb(0 0 0 / 0.12);
   transition: transform 0.15s var(--ease-bounce);
   cursor: pointer;
+}
+/* the dot stays small; the tap area is 44px */
+.lego-swatch::after {
+  content: "";
+  position: absolute;
+  inset: -0.6rem -0.2rem;
 }
 .lego-swatch[aria-checked="true"] {
   transform: translateY(-2px);
@@ -803,6 +813,10 @@ body {
 
 /* Quiet text link with an underline that darkens on hover */
 .text-link {
+  display: inline-flex;
+  align-items: center;
+  /* a 44px tap target; the underline still hugs the text */
+  min-height: 2.75rem;
   font-weight: 600;
   color: var(--color-ink);
   text-decoration: underline;
@@ -857,6 +871,32 @@ body {
   .marker-sparks {
     display: none;
   }
+}
+
+/* A peeled-off label: ink outline and a hard shadow, like the Press button */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  background: var(--sticker, #fff);
+  color: var(--on, var(--color-ink));
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 3px 0 0 var(--color-ink);
+}
+
+/* Cards lift and the object on them tilts when picked up */
+.game-glyph {
+  transition: transform 0.3s var(--ease-bounce);
+}
+.group:hover .game-glyph {
+  transform: translateY(-4px) rotate(-4deg) scale(1.04);
 }
 
 .safe-bottom {
@@ -990,6 +1030,15 @@ body {
 
 .animate-wobble {
   animation: wobble 3.2s ease-in-out infinite;
+}
+
+.spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-bob {

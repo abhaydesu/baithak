@@ -61,7 +61,7 @@ export default function Scoreboard() {
               }`}
               aria-current={isActive ? "true" : undefined}
             >
-              <span className="w-full truncate text-[0.7rem] font-bold leading-tight sm:text-xs">
+              <span className="w-full truncate text-xs font-bold leading-tight sm:text-xs">
                 {team.name}
               </span>
               <span className="relative font-display text-3xl font-extrabold tabular-nums leading-none">

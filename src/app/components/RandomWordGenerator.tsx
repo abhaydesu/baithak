@@ -142,7 +142,7 @@ export default function RandomWordGenerator({
         <button
           type="button"
           onClick={roll}
-          className="mt-3 w-full text-sm font-bold text-ink/60 underline underline-offset-4"
+          className="mt-3 w-full text-sm font-bold text-ink/60 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
         >
           Done, next word
         </button>
@@ -184,7 +184,7 @@ export default function RandomWordGenerator({
         </fieldset>
 
         <details className="group">
-          <summary className="cursor-pointer list-none font-semibold text-ink [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center font-semibold text-ink [&::-webkit-details-marker]:hidden">
             <span className="inline-block transition-transform group-open:rotate-90">
               ▸
             </span>{" "}

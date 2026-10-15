@@ -27,7 +27,7 @@ function useSound() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+    <p className="text-sm font-semibold text-ink-soft">
       {children}
     </p>
   );
@@ -104,7 +104,7 @@ function CardFace({ card, categoryId }: { card: Card; categoryId: string }) {
   if (card.kind === "imposter") {
     return (
       <>
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-ink/55">
+        <p className="text-sm font-semibold text-ink-soft">
           You are the
         </p>
         <p className="mt-1 font-display text-[clamp(2.6rem,13vw,4.5rem)] font-extrabold leading-none tracking-tight text-[#c63a28]">
@@ -127,7 +127,7 @@ function CardFace({ card, categoryId }: { card: Card; categoryId: string }) {
 
   return (
     <>
-      <p className="text-sm font-bold uppercase tracking-[0.2em] text-ink/55">
+      <p className="text-sm font-semibold text-ink-soft">
         The secret word is
       </p>
       <p
@@ -249,7 +249,7 @@ function PeekCard() {
 
   return (
     <details className="inset-well px-4 py-3 text-left">
-      <summary className="cursor-pointer text-sm font-bold">
+      <summary className="flex min-h-11 cursor-pointer items-center text-sm font-bold">
         Forgot your word?
       </summary>
       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -598,7 +598,7 @@ export function RoundOver() {
 
       <dl className="inset-well grid gap-3 px-4 py-4 text-left">
         <div>
-          <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+          <dt className="text-sm font-semibold text-ink-soft">
             The word
           </dt>
           <dd className="font-display text-2xl font-extrabold">
@@ -610,7 +610,7 @@ export function RoundOver() {
         </div>
         {!round.troll && (
           <div>
-            <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+            <dt className="text-sm font-semibold text-ink-soft">
               {imposterNames.length > 1 ? "The imposters" : "The imposter"}
             </dt>
             <dd className="font-display text-xl font-extrabold">
@@ -630,7 +630,7 @@ export function RoundOver() {
         )}
         {winners.length > 0 && (
           <div>
-            <dt className="text-xs font-bold uppercase tracking-[0.15em] text-ink/50">
+            <dt className="text-sm font-semibold text-ink-soft">
               Points
             </dt>
             <dd className="text-sm font-semibold">

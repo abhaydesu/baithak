@@ -54,10 +54,28 @@ export default function GameCatalogue({ games }: { games: CatalogGame[] }) {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map((game) => (
-          <GameCard key={game.slug} game={game} />
-        ))}
+      {/* Six columns at lg, so a short last row can stretch to fill it */}
+      <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-6">
+        {visible.map((game, i) => {
+          const last = i === visible.length - 1;
+          const lonelyOnTwo = last && visible.length % 2 === 1;
+          const left = visible.length % 3;
+          // At lg: a lone last card fills the row; two leftover cards share it.
+          const lg =
+            last && left === 1
+              ? "lg:col-span-6"
+              : i >= visible.length - left && left === 2
+                ? "lg:col-span-3"
+                : "lg:col-span-2";
+          return (
+            <GameCard
+              key={game.slug}
+              game={game}
+              wide={last && left === 1 && lonelyOnTwo}
+              className={`${lonelyOnTwo ? "sm:col-span-2" : ""} ${lg}`}
+            />
+          );
+        })}
       </div>
     </>
   );

@@ -29,7 +29,7 @@ function useSound() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+    <p className="text-sm font-semibold text-ink-soft">
       {children}
     </p>
   );
@@ -309,7 +309,7 @@ export function Pass() {
         <button
           type="button"
           onClick={s.backToHand}
-          className="self-center text-sm font-bold text-ink/60 underline underline-offset-4"
+          className="self-center text-sm font-bold text-ink/60 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
         >
           {picker.name}: change the word
         </button>
@@ -367,7 +367,7 @@ export function Ready() {
           <button
             type="button"
             onClick={s.backToHand}
-            className="self-center text-sm font-bold text-ink/60 underline underline-offset-4"
+            className="self-center text-sm font-bold text-ink/60 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
           >
             Wait, pick a different word
           </button>
@@ -572,7 +572,7 @@ export function Result() {
         <button
           type="button"
           onClick={() => s.setOutcome(guessed ? "passed" : "guessed")}
-          className="self-center text-sm font-bold text-ink/55 underline underline-offset-4"
+          className="self-center text-sm font-bold text-ink/55 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
         >
           {guessed
             ? "Oops, they didn't get it"

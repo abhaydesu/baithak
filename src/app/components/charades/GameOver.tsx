@@ -38,7 +38,7 @@ export default function GameOver() {
           tone={tie ? "yellow" : (winners[0]?.team.tone ?? "yellow")}
           className="h-40 w-36 animate-bob"
         />
-        <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+        <p className="mt-4 text-sm font-semibold text-ink-soft">
           {tie ? "It's a tie!" : "And the winner is"}
         </p>
         <h2 className="mt-1 font-display text-[clamp(2.2rem,10vw,3.5rem)] font-extrabold leading-none tracking-tight">
@@ -60,7 +60,7 @@ export default function GameOver() {
 
       {s.history.length > 0 && (
         <details className="inset-well group p-4">
-          <summary className="cursor-pointer list-none font-bold [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center font-bold [&::-webkit-details-marker]:hidden">
             <span className="inline-block transition-transform group-open:rotate-90">▸</span>{" "}
             Every turn ({s.history.length})
           </summary>

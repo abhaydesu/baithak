@@ -21,7 +21,7 @@ export function Ready() {
     <div className="flex flex-col items-center gap-5 text-center">
       <Character kind="bomber" tone="red" className="h-28 w-24 animate-bob" />
       <div className="w-full">
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+        <p className="text-sm font-semibold text-ink-soft">
           Round {s.round} · the prompt
         </p>
         <div className="grid h-32 place-items-center overflow-hidden">
@@ -102,7 +102,7 @@ export function Live() {
         <span className="line-clamp-2">{s.prompt}</span>
       </p>
       <div className="w-full">
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+        <p className="text-sm font-semibold text-ink-soft">
           Holding the bomb
         </p>
         <h2 className="mt-1 truncate font-display text-5xl font-extrabold leading-tight tracking-tight">

@@ -26,7 +26,7 @@ function Label({
 }) {
   return (
     <div className="mb-2.5 flex items-baseline justify-between gap-2">
-      <h3 className="shrink-0 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+      <h3 className="shrink-0 text-sm font-semibold text-ink-soft">
         {children}
       </h3>
       {hint && <span className="text-right text-xs text-ink/45">{hint}</span>}
@@ -146,7 +146,7 @@ export default function Setup() {
               className={`keycap tone-${c.tone === "white" ? "yellow" : c.tone} h-10 px-3 text-sm`}
             >
               {c.label}
-              <span className="rounded-md bg-black/5 px-1.5 text-[0.7rem] tabular-nums">
+              <span className="rounded-md bg-black/5 px-1.5 text-xs tabular-nums">
                 {c.count.toLocaleString("en-IN")}
               </span>
             </button>
@@ -241,7 +241,7 @@ export default function Setup() {
           sfx.unlock();
           void s.startGame();
         }}
-        className="btn tone-yellow min-h-14 w-full text-lg"
+        className="btn tone-game min-h-14 w-full text-lg"
       >
         {s.loading
           ? "Dealing the questions…"

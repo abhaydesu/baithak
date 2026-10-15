@@ -1,6 +1,7 @@
 import { connectToDatabase } from "@/lib/mongoose";
 import { EVENT_TYPES, type TrackPayload } from "@/lib/analytics/events";
 import { AnalyticsEvent } from "@/lib/analytics/model";
+import { clientIp, rateLimit } from "@/lib/rateLimit";
 
 const BOT = /bot|crawl|spider|slurp|preview|headless|lighthouse|facebookexternalhit/i;
 
@@ -27,6 +28,11 @@ function externalHost(referrer: string | undefined, host: string | null) {
 export async function POST(request: Request) {
   const ua = request.headers.get("user-agent") ?? "";
   if (BOT.test(ua)) return new Response(null, { status: 204 });
+
+  // 120 events per minute per address is far above real use.
+  if (!rateLimit(`track:${clientIp(request.headers)}`, 120, 60_000)) {
+    return new Response(null, { status: 429 });
+  }
 
   let body: Partial<TrackPayload>;
   try {

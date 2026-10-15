@@ -58,7 +58,7 @@ export default function Scoreboard() {
               className={`brick brick-flat tone-${team.tone} flex flex-col items-center px-1.5 pb-2 pt-2 text-center ${isActive ? "" : "opacity-60 saturate-50"}`}
               aria-current={isActive ? "true" : undefined}
             >
-              <span className="w-full truncate text-[0.7rem] font-bold leading-tight sm:text-xs">
+              <span className="w-full truncate text-xs font-bold leading-tight sm:text-xs">
                 {team.name}
               </span>
               <span className="relative font-display text-3xl font-extrabold tabular-nums leading-none">

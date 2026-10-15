@@ -117,7 +117,7 @@ export default function GameDetails(props: GameDetailsProps) {
     <main className="mx-auto flex w-full max-w-6xl flex-col px-5 pt-6 sm:px-6 md:pt-10 lg:px-8">
       <Link
         href="/games"
-        className="inline-flex w-fit items-center gap-1.5 font-semibold text-ink-soft transition-colors hover:text-ink"
+        className="inline-flex min-h-11 w-fit items-center gap-1.5 font-semibold text-ink-soft transition-colors hover:text-ink"
       >
         <BackIcon width={18} height={18} /> All games
       </Link>
@@ -125,7 +125,7 @@ export default function GameDetails(props: GameDetailsProps) {
       <header className="mt-6 grid items-center gap-8 lg:mt-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
         <GameArt
           slug={props.slug}
-          className="aspect-[2/1] rounded-[1.75rem] sm:aspect-[16/10] lg:order-2 lg:aspect-[4/3] lg:rounded-[2rem]"
+          className="h-[22svh] min-h-28 rounded-[1.75rem] sm:aspect-[16/10] sm:h-auto lg:order-2 lg:aspect-[4/3] lg:rounded-[2rem]"
         />
         {/* On phones the long details drop below the buttons, so Play is on screen */}
         <div className="flex flex-col lg:order-1 lg:block">

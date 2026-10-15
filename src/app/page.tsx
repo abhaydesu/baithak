@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Faq from "./components/Faq";
-import GameCard from "./components/GameCard";
+import { CardPeek, CardSpread } from "./components/Cards";
 import HeroShowcase from "./components/HeroShowcase";
 import JsonLd from "./components/JsonLd";
 import LegoBuilder from "./components/LegoBuilder";
@@ -38,6 +38,9 @@ const steps = [
 /** The three games that run start to finish on one phone. */
 const FEATURED = ["imposter", "pictionary", "top-9"];
 
+/** The hand peeking up from the closing band. */
+const PEEK = ["charades", "pass-the-bomb", "mafia-werewolf", "hot-seat", "two-truths-one-lie"];
+
 const siteJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -64,6 +67,7 @@ const siteJsonLd = {
 
 export default function Home() {
   const featured = FEATURED.map((slug) => allGames.find((g) => g.slug === slug)!);
+  const peek = PEEK.map((slug) => allGames.find((g) => g.slug === slug)!);
 
   return (
     <main>
@@ -148,10 +152,8 @@ export default function Home() {
             All {allGames.length} games
           </Link>
         </div>
-        <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-3 lg:mt-20">
-          {featured.map((game) => (
-            <GameCard key={game.slug} game={game} />
-          ))}
+        <div className="mt-10 lg:mt-16">
+          <CardSpread games={featured} />
         </div>
       </section>
 
@@ -181,16 +183,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Closing call to action */}
-      <section className="mx-auto max-w-6xl px-5 pb-12 pt-8 text-center sm:px-6 lg:px-8 lg:pb-20">
-        <h2 className="mx-auto max-w-3xl font-display text-[2.4rem] font-bold leading-[1] tracking-[-0.03em] text-ink sm:text-5xl lg:text-[4rem]">
-          Everyone&apos;s on the sofa.
-          <br />
-          <span className="text-ink-soft/60">Let&apos;s play.</span>
-        </h2>
-        <PressButton href="/games" size="lg" className="mt-10">
-          Pick a game
-        </PressButton>
+      {/* Closing call to action: a hand of cards rising from the bottom */}
+      <section className="-mb-24 overflow-hidden bg-marigold md:-mb-32">
+        <div className="mx-auto max-w-6xl px-5 pt-20 text-center sm:px-6 lg:px-8 lg:pt-32">
+          <h2 className="mx-auto max-w-3xl font-display text-[2.6rem] font-bold leading-[0.98] tracking-[-0.035em] text-ink sm:text-6xl lg:text-[5rem]">
+            Everyone&apos;s on the sofa.
+            <br />
+            Let&apos;s play.
+          </h2>
+          <PressButton href="/games" size="lg" color="#ffffff" on="#1c1917" className="mt-10">
+            Pick a game
+          </PressButton>
+        </div>
+        <CardPeek games={peek} />
       </section>
     </main>
   );

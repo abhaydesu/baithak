@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
-import { COOKIE, keyMatches } from "@/lib/analytics/auth";
+import { COOKIE, sessionValid } from "@/lib/analytics/auth";
 import { getSummary, type Row } from "@/lib/analytics/queries";
 import { login, logout } from "./actions";
 
@@ -21,7 +21,7 @@ export default async function AnalyticsPage({
   searchParams: Promise<{ days?: string; error?: string }>;
 }) {
   const { days: daysParam, error } = await searchParams;
-  const authed = keyMatches((await cookies()).get(COOKIE)?.value);
+  const authed = sessionValid((await cookies()).get(COOKIE)?.value);
 
   if (!authed) {
     return (

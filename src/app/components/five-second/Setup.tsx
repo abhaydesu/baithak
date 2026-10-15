@@ -18,7 +18,7 @@ const TARGETS = [5, 10, 15];
 function Label({ children, hint }: { children: React.ReactNode; hint?: string }) {
   return (
     <div className="mb-2.5 flex items-baseline justify-between gap-2">
-      <h3 className="shrink-0 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+      <h3 className="shrink-0 text-sm font-semibold text-ink-soft">
         {children}
       </h3>
       {hint && <span className="text-xs text-ink/50">{hint}</span>}
@@ -224,7 +224,7 @@ export default function Setup() {
             sfx.unlock();
             s.startGame();
           }}
-          className="btn tone-orange min-h-14 w-full text-lg disabled:opacity-50"
+          className="btn tone-game min-h-14 w-full text-lg disabled:opacity-50"
         >
           Start game
         </button>

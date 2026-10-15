@@ -42,7 +42,7 @@ function Logo() {
     <div style={{ display: "flex", alignItems: "flex-end", gap: 12 }}>
       {/* next/og renders plain <img>; next/image doesn't apply here. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={MARK_DATA_URL} width={56} height={64} alt="" />
+      <img src={MARK_DATA_URL} width={56} height={63} alt="" />
       <div style={{ fontSize: 52, fontWeight: 700, letterSpacing: -1, lineHeight: 1 }}>
         baithak
       </div>

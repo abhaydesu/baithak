@@ -27,7 +27,7 @@ function useSound() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">{children}</p>
+    <p className="text-sm font-semibold text-ink-soft">{children}</p>
   );
 }
 
@@ -157,7 +157,7 @@ export function Acting() {
         {running ? (
           <>
             {meta && (
-              <span className="chip absolute left-3 top-3 text-[0.7rem]">{meta.label}</span>
+              <span className="chip absolute left-3 top-3 text-xs">{meta.label}</span>
             )}
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.p
@@ -223,7 +223,7 @@ export function Acting() {
             play("tap");
             s.endTurn();
           }}
-          className="self-center text-sm font-bold text-ink/55 underline underline-offset-4"
+          className="self-center text-sm font-bold text-ink/55 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
         >
           Finish this turn early
         </button>

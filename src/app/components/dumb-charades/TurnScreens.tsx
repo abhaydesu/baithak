@@ -27,7 +27,7 @@ function useSound() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">{children}</p>
+    <p className="text-sm font-semibold text-ink-soft">{children}</p>
   );
 }
 
@@ -53,7 +53,7 @@ const SIGNALS: Array<[string, string]> = [
 export function SignalsSheet() {
   return (
     <details className="inset-well group p-4 text-left">
-      <summary className="cursor-pointer list-none font-bold [&::-webkit-details-marker]:hidden">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center font-bold [&::-webkit-details-marker]:hidden">
         <span className="inline-block transition-transform group-open:rotate-90">▸</span> Signals
         cheat sheet
       </summary>
@@ -283,7 +283,7 @@ export function Pass() {
         <button
           type="button"
           onClick={s.backToHand}
-          className="self-center text-sm font-bold text-ink/60 underline underline-offset-4"
+          className="self-center text-sm font-bold text-ink/60 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
         >
           {picker.name}: change the movie
         </button>
@@ -493,7 +493,7 @@ export function Result() {
         <button
           type="button"
           onClick={() => s.setOutcome(guessed ? "gaveup" : "guessed")}
-          className="self-center text-sm font-bold text-ink/55 underline underline-offset-4"
+          className="self-center text-sm font-bold text-ink/55 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
         >
           {guessed ? "Oops, they didn't get it" : `Actually, ${team.name} got it`}
         </button>

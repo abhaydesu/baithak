@@ -11,7 +11,7 @@ export default function GameOver() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-col items-center text-center">
         <Character kind="paan" tone="yellow" className="h-32 w-28 animate-bob" />
-        <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+        <p className="mt-4 text-sm font-semibold text-ink-soft">
           {s.winnerId ? "The strongest link" : "Game over"}
         </p>
         <h2 className="mt-1 font-display text-[clamp(2.2rem,10vw,3.5rem)] font-extrabold leading-none tracking-tight">
@@ -21,7 +21,7 @@ export default function GameOver() {
 
       {order.length > 0 && (
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+          <p className="mb-2 text-sm font-semibold text-ink-soft">
             Voted out, latest first
           </p>
           <ol className="flex flex-col gap-2">

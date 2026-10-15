@@ -37,7 +37,7 @@ export default async function PlayPage({ params }: PlayPageProps) {
 
   const { Game } = playable;
   return (
-    <GamePlayShell title={game.title} detailsHref={playable.detailsHref}>
+    <GamePlayShell slug={slug} title={game.title} detailsHref={playable.detailsHref}>
       <Game />
     </GamePlayShell>
   );

@@ -29,7 +29,7 @@ import {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+    <p className="text-sm font-semibold text-ink-soft">
       {children}
     </p>
   );
@@ -115,7 +115,7 @@ export function Intro() {
 
       {options.length > 2 && (
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+          <p className="mb-2 text-sm font-semibold text-ink-soft">
             Host picks the category
           </p>
           <div
@@ -147,7 +147,7 @@ export function Intro() {
       >
         <span className="absolute left-3 top-3 flex flex-wrap gap-1.5">
           {categories.map((label) => (
-            <span key={label} className="chip tone-white text-[0.7rem]">
+            <span key={label} className="chip tone-white text-xs">
               {label}
             </span>
           ))}
@@ -160,7 +160,7 @@ export function Intro() {
         >
           {question.prompt}
         </motion.p>
-        <span className="absolute bottom-3 right-3 text-[0.7rem] font-semibold text-ink/45">
+        <span className="absolute bottom-3 right-3 text-xs font-semibold text-ink/45">
           {question.source === "survey"
             ? `Real survey · ${question.answers.length} answers`
             : `Baithak original · ${question.answers.length} answers`}
@@ -196,7 +196,7 @@ export function Intro() {
           type="button"
           disabled={s.loading}
           onClick={() => void s.skipQuestion()}
-          className="self-center text-sm font-bold text-ink/60 underline underline-offset-4 disabled:opacity-50"
+          className="self-center text-sm font-bold text-ink/60 inline-flex min-h-11 items-center justify-center underline underline-offset-4 disabled:opacity-50"
         >
           {s.loading ? "Finding another…" : "Skip this question"}
         </button>
@@ -287,7 +287,7 @@ export function Play() {
       <Board tappable={host} />
       {host ? (
         <details className="group">
-          <summary className="cursor-pointer list-none text-sm font-bold text-ink/60 [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center text-sm font-bold text-ink/60 [&::-webkit-details-marker]:hidden">
             <span className="inline-block transition-transform group-open:rotate-90">
               ▸
             </span>{" "}
@@ -432,7 +432,7 @@ export function RoundEnd() {
           <button
             type="button"
             onClick={s.undo}
-            className="self-center text-sm font-bold text-ink/55 underline underline-offset-4"
+            className="self-center text-sm font-bold text-ink/55 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
           >
             Oops, undo that
           </button>

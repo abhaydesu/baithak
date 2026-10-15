@@ -82,7 +82,7 @@ export default function NavDock() {
               href={href}
               aria-current={current(href) ? "page" : undefined}
               onClick={(e) => select(e, href)}
-              className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-[0.72rem] font-semibold text-ink-soft transition-colors aria-[current=page]:bg-ink aria-[current=page]:text-white"
+              className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-xs font-semibold text-ink-soft transition-colors aria-[current=page]:bg-ink aria-[current=page]:text-white"
             >
               <Icon />
               {label}
@@ -90,7 +90,7 @@ export default function NavDock() {
           ))}
           <SurpriseButton
             compact
-            className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-[0.72rem] font-semibold text-ink-soft"
+            className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-xs font-semibold text-ink-soft"
           />
         </div>
       </nav>

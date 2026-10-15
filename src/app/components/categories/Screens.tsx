@@ -23,7 +23,7 @@ function useSound() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+    <p className="text-sm font-semibold text-ink-soft">
       {children}
     </p>
   );
@@ -133,7 +133,7 @@ export function Live() {
                 {s.letter}
               </span>
             )}
-            <span className="chip absolute left-3 top-3 text-[0.7rem]">
+            <span className="chip absolute left-3 top-3 text-xs">
               {s.letter ? "Starting with " + s.letter : "Name as many as you can"}
             </span>
             <AnimatePresence mode="popLayout" initial={false}>
@@ -206,7 +206,7 @@ export function Live() {
             play("tap");
             s.endTurn();
           }}
-          className="self-center text-sm font-bold text-ink/55 underline underline-offset-4"
+          className="self-center text-sm font-bold text-ink/55 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
         >
           Finish this turn early
         </button>

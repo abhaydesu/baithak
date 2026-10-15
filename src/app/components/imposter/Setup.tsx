@@ -45,7 +45,7 @@ function Label({
 }) {
   return (
     <div className="mb-2.5 flex items-baseline justify-between gap-2">
-      <h3 className="shrink-0 text-xs font-bold uppercase tracking-[0.15em] text-ink/55">
+      <h3 className="shrink-0 text-sm font-semibold text-ink-soft">
         {children}
       </h3>
       {hint && <span className="text-xs text-ink/45">{hint}</span>}
@@ -227,7 +227,7 @@ export default function Setup() {
                 className="keycap tone-white h-auto min-h-14 flex-col gap-0 px-1 py-2 text-sm"
               >
                 {o.label}
-                <span className="text-[0.7rem] font-medium leading-tight opacity-70">
+                <span className="text-xs font-medium leading-tight opacity-70">
                   {o.hint}
                 </span>
               </button>
@@ -323,7 +323,7 @@ export default function Setup() {
             sfx.unlock();
             s.startGame();
           }}
-          className="btn tone-green min-h-14 w-full text-lg disabled:opacity-50"
+          className="btn tone-game min-h-14 w-full text-lg disabled:opacity-50"
         >
           Deal the cards
         </button>

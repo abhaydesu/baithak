@@ -18,7 +18,7 @@ export default function GameOver() {
           tone={tie ? "yellow" : winner.tone}
           className="h-36 w-32 animate-bob"
         />
-        <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-ink/55">
+        <p className="mt-4 text-sm font-semibold text-ink-soft">
           {tie ? "It's a tie!" : "And the winner is"}
         </p>
         <h2 className="mt-1 font-display text-[clamp(2.2rem,10vw,3.5rem)] font-extrabold leading-none tracking-tight">

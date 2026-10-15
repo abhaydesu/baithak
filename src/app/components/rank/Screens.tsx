@@ -9,7 +9,7 @@ import Character from "../Character";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">{children}</p>
+    <p className="text-sm font-semibold text-ink-soft">{children}</p>
   );
 }
 
@@ -126,7 +126,7 @@ export function Vote() {
       <button
         type="button"
         onClick={rejecting ? () => setRejecting(false) : s.backToRank}
-        className="self-center text-sm font-bold text-ink/55 underline underline-offset-4"
+        className="self-center text-sm font-bold text-ink/55 inline-flex min-h-11 items-center justify-center underline underline-offset-4"
       >
         Back
       </button>

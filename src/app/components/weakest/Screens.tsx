@@ -27,7 +27,7 @@ function useSound() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink/55">{children}</p>
+    <p className="text-sm font-semibold text-ink-soft">{children}</p>
   );
 }
 
