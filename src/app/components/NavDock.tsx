@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { GridIcon, HomeIcon, ToolboxIcon } from "./Icons";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import SurpriseButton from "./SurpriseButton";
 
 const items = [
@@ -61,14 +62,16 @@ export default function NavDock() {
                 {label}
               </Link>
             ))}
-            <SurpriseButton className="pill ml-3 h-10 min-h-0 text-[0.95rem]" />
+            <ThemeToggle className="ml-1" />
+            <SurpriseButton className="pill ml-2 h-10 min-h-0 text-[0.95rem]" />
           </nav>
         </div>
       </header>
 
       {/* Mobile: slim logo header + bottom bar */}
-      <header className="flex h-16 items-center px-4 md:hidden">
+      <header className="flex h-16 items-center justify-between px-4 md:hidden">
         <Logo />
+        <ThemeToggle />
       </header>
 
       <nav
@@ -82,7 +85,7 @@ export default function NavDock() {
               href={href}
               aria-current={current(href) ? "page" : undefined}
               onClick={(e) => select(e, href)}
-              className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-xs font-semibold text-ink-soft transition-colors aria-[current=page]:bg-ink aria-[current=page]:text-white"
+              className="flex h-14 flex-col items-center justify-center gap-0.5 rounded-2xl text-xs font-semibold text-ink-soft transition-colors aria-[current=page]:bg-ink aria-[current=page]:text-on-ink"
             >
               <Icon />
               {label}

@@ -6,13 +6,24 @@
 
 @theme {
   /* Warm off-white page; white is kept for surfaces that sit on it */
-  --color-paper: #faf8f4;
-  --color-surface: #ffffff;
+  --color-paper: light-dark(#faf8f4, #1b1612);
+  --color-surface: light-dark(#ffffff, #272019);
   /* Alternate section bands */
-  --color-paper-deep: #f2eee6;
-  --color-ink: #1c1917;
-  --color-ink-soft: #66615a;
-  --color-line: #e8e3d9;
+  --color-paper-deep: light-dark(#f2eee6, #221c17);
+  --color-ink: light-dark(#1c1917, #f3eee6);
+  --color-ink-soft: light-dark(#66615a, #b3a99b);
+  --color-line: light-dark(#e8e3d9, #3a3128);
+  /* Text on an ink-filled surface (pressed pills, badges) */
+  --color-on-ink: light-dark(#ffffff, #1b1612);
+  /* Outline of the 3D objects (buttons, stickers, cards). Stays dark. */
+  --color-outline: light-dark(#1c1917, #0d0a08);
+  /* Status text, brightened in the dark so it reads on dark faces */
+  --color-danger: light-dark(#c63a28, #ff7d69);
+  --color-alert: light-dark(#e2412d, #ff6b57);
+  --color-success: light-dark(#178443, #4fd18a);
+  --color-info: light-dark(#1a64c7, #82b1ff);
+  /* Switch track, off */
+  --color-track: light-dark(#ffffff, #3a3128);
   /* Brand palette: the pixel horizon's colours (see src/lib/gameArt.ts) */
   --color-marigold: #f5b82e;
   --color-saffron: #f2862e;
@@ -21,10 +32,10 @@
   --color-indigo: #4b3a9e;
   --color-night: #15121f;
 
-  /* Next.js injects --font-gued / --font-poppins on <html> at runtime.
+  /* Next.js injects --font-bricolage / --font-poppins on <html> at runtime.
      Tailwind emits @theme vars as :root custom properties, so var() here
      resolves correctly once the page loads. */
-  --font-display: var(--font-gued), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
   --font-sans: var(--font-poppins), system-ui, sans-serif;
 
   --ease-bounce: cubic-bezier(0.3, 0.7, 0.4, 1.5);
@@ -38,66 +49,125 @@
 /* Warm to match the paper, so a white brick sits on the page, not on grey */
 :root,
 .tone-white {
-  --tone-light: #ffffff;
-  --tone: #fdfbf7;
-  --tone-dark: #e3dccf;
-  --tone-solid: #1c1917;
-  --tone-edge: #000000;
+  --tone-light: light-dark(#ffffff, #30271f);
+  --tone: light-dark(#fdfbf7, #2a2119);
+  --tone-dark: light-dark(#e3dccf, #4a3e32);
+  --tone-solid: light-dark(#1c1917, #f3eee6);
+  --tone-edge: light-dark(#000000, #a0968a);
+  --tone-on: light-dark(#ffffff, #1b1612);
 }
 /* Danger / the bomb: a warm red that sits with the saffron */
 .tone-red {
-  --tone-light: #ffe6de;
-  --tone: #ffbca8;
-  --tone-dark: #e0603f;
+  --tone-light: light-dark(#ffe6de, #462219);
+  --tone: light-dark(#ffbca8, #3a2018);
+  --tone-dark: light-dark(#e0603f, #81291c);
   --tone-solid: #f0452e;
   --tone-edge: #b52f1a;
 }
 /* Saffron */
 .tone-orange {
-  --tone-light: #ffebd6;
-  --tone: #ffcb9c;
-  --tone-dark: #de7a24;
+  --tone-light: light-dark(#ffebd6, #462d19);
+  --tone: light-dark(#ffcb9c, #3a2718);
+  --tone-dark: light-dark(#de7a24, #824a1c);
   --tone-solid: #f2862e;
   --tone-edge: #b85f12;
 }
 /* Marigold */
 .tone-yellow {
-  --tone-light: #fff3cf;
-  --tone: #fbd977;
-  --tone-dark: #d19a14;
+  --tone-light: light-dark(#fff3cf, #473619);
+  --tone: light-dark(#fbd977, #3a2c18);
+  --tone-dark: light-dark(#d19a14, #84621c);
   --tone-solid: #f5b82e;
   --tone-edge: #b8860b;
 }
 /* Success: a calm green that sits beside the brand colours */
 .tone-green {
-  --tone-light: #e0f5e7;
-  --tone: #b1e4c3;
-  --tone-dark: #43a96a;
+  --tone-light: light-dark(#e0f5e7, #253323);
+  --tone: light-dark(#b1e4c3, #242b1e);
+  --tone-dark: light-dark(#43a96a, #205a38);
   --tone-solid: #2fa866;
   --tone-edge: #1b7a47;
 }
 .tone-blue {
-  --tone-light: #e2eaff;
-  --tone: #b9cbfb;
-  --tone-dark: #6b8fe6;
+  --tone-light: light-dark(#e2eaff, #282a39);
+  --tone: light-dark(#b9cbfb, #26252c);
+  --tone-dark: light-dark(#6b8fe6, #2a4079);
   --tone-solid: #4272e8;
   --tone-edge: #2a4fb0;
 }
 /* Violet */
 .tone-purple {
-  --tone-light: #ede7ff;
-  --tone: #cdc0ff;
-  --tone-dark: #8266e8;
+  --tone-light: light-dark(#ede7ff, #32263d);
+  --tone: light-dark(#cdc0ff, #2d222f);
+  --tone-dark: light-dark(#8266e8, #473484);
   --tone-solid: #7c5cff;
   --tone-edge: #5436d6;
 }
 /* Rani */
 .tone-pink {
-  --tone-light: #ffe3ed;
-  --tone: #ffb4cd;
-  --tone-dark: #d65b88;
+  --tone-light: light-dark(#ffe3ed, #432227);
+  --tone: light-dark(#ffb4cd, #382021);
+  --tone-dark: light-dark(#d65b88, #7a2944);
   --tone-solid: #e2457e;
   --tone-edge: #ad2658;
+}
+
+
+/* Dark mode. Every colour token above is a light-dark() pair, so switching
+   the colour scheme is all it takes. It follows the system, or the toggle
+   (html[data-theme]). .light-scope pins a subtree to light, for things that
+   are light objects in any room: phone screens, paper cards. */
+:root {
+  color-scheme: light;
+  /* Highlights and wells on bricks, chips and keycaps */
+  --hl: light-dark(rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.06));
+  --well: light-dark(rgb(255 255 255 / 0.7), rgb(0 0 0 / 0.22));
+  --keycap-side: light-dark(#e3dccf, #100c09);
+  /* The logo mark (src/lib/og/mark.tsx) */
+  --logo-pill: light-dark(#2a2019, #f9f7f3);
+  --logo-slot: light-dark(#f9f7f3, #2a2019);
+  --logo-blue: light-dark(#4f5bd9, #6e7bff);
+  --logo-green: light-dark(#1f8a6e, #2fb58f);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+/* Tokens resolve where they are declared (light-dark() is compiled to
+   variables), so a light subtree re-declares their light values. */
+.light-scope {
+  color-scheme: light;
+  --color-paper: #faf8f4;
+  --color-surface: #ffffff;
+  --color-paper-deep: #f2eee6;
+  --color-ink: #1c1917;
+  --color-ink-soft: #66615a;
+  --color-line: #e8e3d9;
+  --color-on-ink: #ffffff;
+  --color-outline: #1c1917;
+  --color-track: #ffffff;
+  --color-danger: #c63a28;
+  --color-alert: #e2412d;
+  --color-success: #178443;
+  --color-info: #1a64c7;
+  --tone-light: #ffffff;
+  --tone: #fdfbf7;
+  --tone-dark: #e3dccf;
+  --tone-solid: #1c1917;
+  --tone-edge: #000000;
+  --tone-on: #ffffff;
+  --hl: rgb(255 255 255 / 0.7);
+  --well: rgb(255 255 255 / 0.7);
+  --keycap-side: #e3dccf;
+  --logo-pill: #2a2019;
+  --logo-slot: #f9f7f3;
+  --logo-blue: #4f5bd9;
+  --logo-green: #1f8a6e;
+  color: var(--color-ink);
 }
 
 /* One pixel of the brand's pixel art. Everything pixelated is a multiple. */
@@ -157,7 +227,7 @@ body {
   border: 2px solid var(--tone-dark);
   background: linear-gradient(180deg, var(--tone-light) 0%, var(--tone) 100%);
   box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.7),
+    inset 0 2px 0 var(--hl),
     0 var(--lift) 0 var(--tone-dark),
     0 calc(var(--lift) + 8px) 20px -12px
       color-mix(in oklab, var(--tone-dark) 60%, transparent);
@@ -189,7 +259,7 @@ body {
   height: 2px;
   background: var(--tone-dark);
   opacity: 0.35;
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.6);
+  box-shadow: 0 1px 0 var(--hl);
 }
 
 /* ------------------------------------------------------------------ */
@@ -212,7 +282,7 @@ body {
   border-bottom: 0;
   border-radius: 8px 8px 0 0;
   background: linear-gradient(180deg, var(--tone-light), var(--tone));
-  box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.7);
+  box-shadow: inset 0 2px 0 var(--hl);
 }
 
 /* ------------------------------------------------------------------ */
@@ -221,7 +291,7 @@ body {
 
 .btn {
   --press: 5px;
-  --outline: var(--color-ink);
+  --outline: var(--color-outline);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -234,7 +304,7 @@ body {
   border-radius: 999px;
   border: 2px solid var(--outline);
   background: var(--tone-solid);
-  color: white;
+  color: var(--tone-on, #ffffff);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
@@ -257,20 +327,23 @@ body {
   --tone-edge: color-mix(in oklab, var(--game, #f5b82e) 68%, black);
 }
 .tone-game.btn {
-  color: var(--game-on, var(--color-ink));
+  color: var(--game-on, #1c1917);
 }
 
 /* Light faces take dark type */
 .tone-yellow.btn,
 .tone-orange.btn,
-.tone-yellow .btn:not([class*="tone-"]),
+.tone-yellow .btn:not([class*="tone-"]) {
+  color: #1c1917;
+}
 .tone-white.btn {
   color: var(--color-ink);
 }
 
 .tone-white.btn {
-  background: #ffffff;
+  background: var(--color-surface);
   --tone-edge: var(--tone-dark);
+  --outline: var(--tone-dark);
 }
 
 @media (hover: hover) {
@@ -322,8 +395,8 @@ body {
   font-weight: 600;
   line-height: 1.1;
   box-shadow:
-    inset 0 1.5px 0 #ffffff,
-    0 var(--press) 0 #e3dccf,
+    inset 0 1.5px 0 var(--hl),
+    0 var(--press) 0 var(--keycap-side),
     0 calc(var(--press) + 5px) 10px -6px rgb(0 0 0 / 0.16);
   transition:
     transform 0.16s var(--ease-bounce),
@@ -367,18 +440,18 @@ body {
   border-color: var(--tone-dark);
   background: var(--tone);
   box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.6),
+    inset 0 2px 0 var(--hl),
     0 var(--press) 0 var(--tone-dark);
 }
 
 .tone-white.keycap[aria-pressed="true"],
 .tone-white.keycap[aria-current="page"] {
-  color: white;
+  color: var(--color-on-ink);
   border-color: var(--color-ink);
   background: var(--color-ink);
   box-shadow:
     inset 0 1.5px 0 rgb(255 255 255 / 0.18),
-    0 var(--press) 0 #000;
+    0 var(--press) 0 light-dark(#000000, #8f8578);
 }
 
 /* ------------------------------------------------------------------ */
@@ -391,18 +464,18 @@ body {
   gap: 0.35rem;
   border-radius: 999px;
   border: 1.5px solid color-mix(in oklab, var(--tone-dark) 70%, transparent);
-  background: rgb(255 255 255 / 0.65);
+  background: var(--well);
   padding: 0.2rem 0.65rem;
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-ink);
-  box-shadow: inset 0 1px 0 #fff;
+  box-shadow: inset 0 1px 0 var(--hl);
 }
 
 .inset-well {
   border-radius: 1.1rem;
   border: 2px solid color-mix(in oklab, var(--tone-dark) 55%, transparent);
-  background: rgb(255 255 255 / 0.7);
+  background: var(--well);
   box-shadow: inset 0 3px 0 rgb(0 0 0 / 0.05);
 }
 
@@ -411,7 +484,7 @@ body {
   min-height: 3rem;
   border-radius: 0.9rem;
   border: 2px solid var(--color-line);
-  background: white;
+  background: var(--color-surface);
   padding: 0.6rem 0.9rem;
   font-size: 1rem; /* ≥16px avoids iOS zoom on focus */
   box-shadow: inset 0 3px 0 rgb(0 0 0 / 0.04);
@@ -482,10 +555,10 @@ body {
   transition: none;
 }
 .lego-baseplate {
-  --c: #d9d6cf;
-  --c-dark: #bdb9b0;
+  --c: light-dark(#d9d6cf, #4a4038);
+  --c-dark: light-dark(#bdb9b0, #3a3129);
   background: var(--c);
-  box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.5);
+  box-shadow: inset 0 2px 0 var(--hl);
 }
 .lego-swatch {
   position: relative;
@@ -495,7 +568,7 @@ body {
   background: var(--c);
   box-shadow:
     inset 0 -3px 0 rgb(0 0 0 / 0.14),
-    0 0 0 1px rgb(0 0 0 / 0.12);
+    0 0 0 1px light-dark(rgb(0 0 0 / 0.12), rgb(255 255 255 / 0.22));
   transition: transform 0.15s var(--ease-bounce);
   cursor: pointer;
 }
@@ -509,7 +582,7 @@ body {
   transform: translateY(-2px);
   box-shadow:
     inset 0 -3px 0 rgb(0 0 0 / 0.14),
-    0 0 0 2px white,
+    0 0 0 2px var(--color-paper),
     0 0 0 4px var(--color-ink);
 }
 .lego-tray-item {
@@ -519,7 +592,7 @@ body {
   padding: 0.85rem 0.5rem 0.4rem;
   border-radius: 0.8rem;
   border: 1px solid var(--color-line);
-  background: white;
+  background: var(--color-surface);
   touch-action: none;
   cursor: grab;
   transition: transform 0.15s var(--ease-bounce);
@@ -693,9 +766,9 @@ body {
 
 .press {
   --c: #f5b82e;
-  --on: var(--color-ink);
+  --on: #1c1917;
   --edge: color-mix(in oklab, var(--c) 68%, black);
-  --outline: var(--color-ink);
+  --outline: var(--color-outline);
   --press: 6px;
   position: relative;
   display: inline-flex;
@@ -804,7 +877,7 @@ body {
 .pill[aria-pressed="true"] {
   border-color: var(--color-ink);
   background: var(--color-ink);
-  color: #fff;
+  color: var(--color-on-ink);
 }
 .pill:disabled {
   opacity: 0.45;
@@ -879,16 +952,16 @@ body {
   align-items: center;
   gap: 0.4rem;
   padding: 0.4rem 0.9rem;
-  border: 2px solid var(--color-ink);
+  border: 2px solid var(--color-outline);
   border-radius: 999px;
-  background: var(--sticker, #fff);
-  color: var(--on, var(--color-ink));
+  background: var(--sticker, light-dark(#ffffff, #f3eee6));
+  color: var(--on, #1c1917);
   font-family: var(--font-display);
   font-size: 0.92rem;
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
-  box-shadow: 0 3px 0 0 var(--color-ink);
+  box-shadow: 0 3px 0 0 var(--color-outline);
 }
 
 /* Cards lift and the object on them tilts when picked up */

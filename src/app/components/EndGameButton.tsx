@@ -15,7 +15,7 @@ export default function EndGameButton({ onEnd }: { onEnd: () => void }) {
         type="button"
         onClick={() => setConfirming((c) => !c)}
         aria-expanded={confirming}
-        className="keycap tone-white h-9 px-3 text-xs text-[#c63a28]"
+        className="keycap tone-white h-9 px-3 text-xs text-danger"
       >
         End game
       </button>

@@ -164,7 +164,7 @@ export default function Setup() {
               onChange={() => s.toggleCategory(ADULT_CATEGORY)}
               className="peer sr-only"
             />
-            <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-white shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#c63a28] peer-checked:bg-[#ff5a45] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#c63a28] peer-focus-visible:outline-3" />
+            <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-track shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#c63a28] peer-checked:bg-[#ff5a45] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#c63a28] peer-focus-visible:outline-3" />
             <span>
               <span className="block font-bold">
                 {adult.label}{" "}
@@ -215,7 +215,7 @@ export default function Setup() {
           onChange={(e) => s.updateSettings({ doubleFinal: e.target.checked })}
           className="peer sr-only"
         />
-        <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-white shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#178443] peer-checked:bg-[#25b35f] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#178443] peer-focus-visible:outline-3" />
+        <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-track shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#178443] peer-checked:bg-[#25b35f] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#178443] peer-focus-visible:outline-3" />
         <span>
           <span className="block font-bold">
             Double points in the final round
@@ -229,7 +229,7 @@ export default function Setup() {
       <div className="brick-divider" />
 
       {s.notice && (
-        <p className="inset-well px-3 py-2 text-sm font-semibold text-[#c63a28]">
+        <p className="inset-well px-3 py-2 text-sm font-semibold text-danger">
           {s.notice}
         </p>
       )}

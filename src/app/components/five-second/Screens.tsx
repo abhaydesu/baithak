@@ -142,7 +142,7 @@ export function Live() {
         <div
           role="timer"
           className={`font-display text-[clamp(6rem,36vw,10rem)] font-extrabold leading-none tabular-nums ${
-            seconds <= 2 ? "text-[#e2412d]" : ""
+            seconds <= 2 ? "text-alert" : ""
           }`}
         >
           {seconds}

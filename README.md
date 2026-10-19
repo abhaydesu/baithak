@@ -37,7 +37,7 @@ This project uses **Next.js 14+ (App Router)** and is structured to keep game lo
 - **`src/lib/`**: Core utilities, including word banks, game logic helpers, sound effect wrappers (`sfx.ts`), and database connection files.
 - **`src/models/`**: Mongoose schemas for any backend database interactions.
 - **`src/data/`**: Static data files, such as the survey questions and answers for the Top 9 game.
-- **`public/`**: Static assets including custom fonts (like Gued), UI sounds, and favicons.
+- **`public/`**: Static assets including UI sounds, and favicons.
 
 ---
 

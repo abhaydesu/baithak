@@ -264,7 +264,7 @@ function PlayersInput({
       }}
       placeholder="Hot seat order (optional): Asha, Ravi…"
       aria-label="Player names, comma separated, to rotate the hot seat"
-      className="field mt-2 min-h-10 border-[color-mix(in_oklab,var(--tone-dark)_50%,transparent)] bg-white/80 py-1.5 text-sm"
+      className="field mt-2 min-h-10 border-[color-mix(in_oklab,var(--tone-dark)_50%,transparent)] bg-surface/80 py-1.5 text-sm"
     />
   );
 }
@@ -277,7 +277,7 @@ function CustomWords() {
 
   return (
     <details className="inset-well group p-4" open={customWords.length > 0}>
-      <summary className="flex min-h-11 cursor-pointer list-none items-center font-bold [&::-webkit-details-marker]:hidden">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 font-bold [&::-webkit-details-marker]:hidden">
         <span className="inline-block transition-transform group-open:rotate-90">▸</span>{" "}
         Add your own words
         {customWords.length > 0 && ` (${customWords.length})`}

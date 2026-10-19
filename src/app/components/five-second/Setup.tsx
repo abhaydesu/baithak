@@ -44,7 +44,7 @@ function PlayersInput({
       }}
       placeholder="Players (optional): Asha, Ravi…"
       aria-label="Player names, comma separated, to rotate who answers"
-      className="field mt-2 min-h-10 border-[color-mix(in_oklab,var(--tone-dark)_50%,transparent)] bg-white/80 py-1.5 text-sm"
+      className="field mt-2 min-h-10 border-[color-mix(in_oklab,var(--tone-dark)_50%,transparent)] bg-surface/80 py-1.5 text-sm"
     />
   );
 }
@@ -178,7 +178,7 @@ export default function Setup() {
             onChange={() => s.togglePack(AFTER_DARK_ID)}
             className="peer sr-only"
           />
-          <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-white shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#c63a28] peer-checked:bg-[#ff5a45] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#c63a28] peer-focus-visible:outline-3" />
+          <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-track shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#c63a28] peer-checked:bg-[#ff5a45] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#c63a28] peer-focus-visible:outline-3" />
           <span>
             <span className="block font-bold">
               {afterDarkPack.label}{" "}
@@ -213,7 +213,7 @@ export default function Setup() {
           )}
         </p>
         {!canStart && (
-          <p className="text-sm font-semibold text-[#c63a28]">
+          <p className="text-sm font-semibold text-danger">
             Pick at least one category pack.
           </p>
         )}

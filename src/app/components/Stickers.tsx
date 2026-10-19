@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 /** A little peeled-off label: white, ink outline, hard shadow. */
 export function Sticker({
   children,
-  color = "#ffffff",
-  on = "var(--color-ink)",
+  color,
+  on,
   className = "",
 }: {
   children: ReactNode;

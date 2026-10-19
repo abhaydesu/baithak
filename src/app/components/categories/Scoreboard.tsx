@@ -70,7 +70,7 @@ export default function Scoreboard() {
               <span className="min-w-6 text-center font-display text-xl font-extrabold tabular-nums">
                 {playerScore(state, p.id)}
                 {active && pending > 0 && (
-                  <span className="ml-0.5 text-xs text-[#178443]">+{pending}</span>
+                  <span className="ml-0.5 text-xs text-success">+{pending}</span>
                 )}
               </span>
               {editing && (

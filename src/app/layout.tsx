@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
-import { Kalam, Poppins } from "next/font/google";
+import { Bricolage_Grotesque, Kalam, Poppins } from "next/font/google";
 
 import { SITE } from "@/lib/site";
 import Analytics from "./components/Analytics";
@@ -8,14 +7,11 @@ import Footer from "./components/Footer";
 import NavDock from "./components/NavDock";
 import "./globals.css";
 
-const gued = localFont({
-  src: [
-    { path: "../../public/gued/Gued.otf",         weight: "400", style: "normal" },
-    { path: "../../public/gued/Gued - Bold.otf",  weight: "700", style: "normal" },
-  ],
-  variable: "--font-gued",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  axes: ["opsz", "wdth"],
   display: "swap",
-  fallback: ["system-ui", "sans-serif"],
 });
 
 const kalam = Kalam({
@@ -71,7 +67,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf8f4",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf8f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#1d1814" },
+  ],
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -84,7 +83,15 @@ export default function RootLayout({
 }>) {
   return (
     // Font variables go on <html> so the theme tokens on :root can see them.
-    <html lang={SITE.language} className={`${gued.variable} ${poppins.variable} ${kalam.variable}`}>
+    <html lang={SITE.language} suppressHydrationWarning className={`${bricolage.variable} ${poppins.variable} ${kalam.variable}`}>
+      <head>
+        {/* Apply a saved theme before first paint, so dark mode never flashes light. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("baithak-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
+          }}
+        />
+      </head>
       <body>
         <Analytics />
         <NavDock />

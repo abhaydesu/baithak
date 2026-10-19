@@ -67,7 +67,7 @@ export default function GameOver() {
 
       {s.history.length > 0 && (
         <details className="inset-well group p-4">
-          <summary className="flex min-h-11 cursor-pointer list-none items-center font-bold [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 font-bold [&::-webkit-details-marker]:hidden">
             <span className="inline-block transition-transform group-open:rotate-90">
               ▸
             </span>{" "}

@@ -107,7 +107,7 @@ function CardFace({ card, categoryId }: { card: Card; categoryId: string }) {
         <p className="text-sm font-semibold text-ink-soft">
           You are the
         </p>
-        <p className="mt-1 font-display text-[clamp(2.6rem,13vw,4.5rem)] font-extrabold leading-none tracking-tight text-[#c63a28]">
+        <p className="mt-1 font-display text-[clamp(2.6rem,13vw,4.5rem)] font-extrabold leading-none tracking-tight text-danger">
           Imposter
         </p>
         {card.hint ? (
@@ -213,7 +213,7 @@ function ClueClock() {
     <div className="inset-well px-4 pb-4 pt-3 text-center">
       <div
         role="timer"
-        className={`inline-flex items-baseline justify-center font-display text-6xl font-extrabold tabular-nums tracking-[0.06em] ${seconds <= 10 && running ? "text-[#e2412d]" : ""}`}
+        className={`inline-flex items-baseline justify-center font-display text-6xl font-extrabold tabular-nums tracking-[0.06em] ${seconds <= 10 && running ? "text-alert" : ""}`}
       >
         <span>{mm}</span>
         <span className="mx-1.5">:</span>

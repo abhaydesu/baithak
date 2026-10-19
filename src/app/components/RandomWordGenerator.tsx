@@ -184,7 +184,7 @@ export default function RandomWordGenerator({
         </fieldset>
 
         <details className="group">
-          <summary className="flex min-h-11 cursor-pointer list-none items-center font-semibold text-ink [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 font-semibold text-ink [&::-webkit-details-marker]:hidden">
             <span className="inline-block transition-transform group-open:rotate-90">
               ▸
             </span>{" "}

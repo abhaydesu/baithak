@@ -48,7 +48,7 @@ export default function Setup() {
         <ol className="grid gap-2 sm:grid-cols-2">
           {players.map((player, i) => (
             <li key={player.id} className="flex items-center gap-2">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border-2 border-line bg-white font-display font-extrabold">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border-2 border-line bg-surface font-display font-extrabold">
                 {i + 1}
               </span>
               <input
@@ -145,7 +145,7 @@ export default function Setup() {
             onChange={() => s.togglePack(AFTER_DARK_ID)}
             className="peer sr-only"
           />
-          <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-white shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#c63a28] peer-checked:bg-[#ff5a45] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#c63a28] peer-focus-visible:outline-3" />
+          <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-track shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#c63a28] peer-checked:bg-[#ff5a45] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#c63a28] peer-focus-visible:outline-3" />
           <span>
             <span className="block font-bold">
               {afterDarkPack.label}{" "}
@@ -178,7 +178,7 @@ export default function Setup() {
           )}
         </p>
         {!canStart && (
-          <p className="text-sm font-semibold text-[#c63a28]">
+          <p className="text-sm font-semibold text-danger">
             {players.length < MIN_PLAYERS
               ? `You need at least ${MIN_PLAYERS} players.`
               : "Pick at least one topic pack."}

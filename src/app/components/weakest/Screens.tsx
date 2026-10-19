@@ -109,7 +109,7 @@ export function RoundScreen() {
       <div className="flex items-center gap-3">
         <div
           role="timer"
-          className={`font-display text-4xl font-extrabold tabular-nums leading-none ${urgent ? "text-[#e2412d]" : ""}`}
+          className={`font-display text-4xl font-extrabold tabular-nums leading-none ${urgent ? "text-alert" : ""}`}
         >
           {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")}
         </div>
@@ -146,7 +146,7 @@ export function RoundScreen() {
               className={`grid h-9 flex-1 place-items-center rounded-lg border-2 font-display text-sm font-extrabold ${
                 i < s.chain
                   ? "border-[#178443] bg-[#25b35f] text-white"
-                  : "border-line bg-white text-ink/40"
+                  : "border-line bg-surface text-ink/40"
               }`}
             >
               {v}

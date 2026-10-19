@@ -233,7 +233,7 @@ export default function Setup() {
             onChange={(e) => s.updateSettings({ steals: e.target.checked })}
             className="peer sr-only"
           />
-          <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-white shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#178443] peer-checked:bg-[#25b35f] peer-focus-visible:outline-3 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#178443]" />
+          <span className="relative h-7 w-12 shrink-0 rounded-full border-2 border-line bg-track shadow-[inset_0_2px_0_rgb(0_0_0/0.06)] transition-colors peer-checked:border-[#178443] peer-checked:bg-[#25b35f] peer-focus-visible:outline-3 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border-2 after:border-line after:bg-white after:transition-transform peer-checked:after:translate-x-5 peer-checked:after:border-[#178443]" />
           <span>
             <span className="block font-bold">Steals</span>
             <span className="block text-sm text-ink/60">
@@ -306,7 +306,7 @@ function PlayersInput({
       }}
       placeholder="Players (optional): Asha, Ravi…"
       aria-label="Player names, comma separated, to rotate drawers"
-      className="field mt-2 min-h-10 border-[color-mix(in_oklab,var(--tone-dark)_50%,transparent)] bg-white/80 py-1.5 text-sm"
+      className="field mt-2 min-h-10 border-[color-mix(in_oklab,var(--tone-dark)_50%,transparent)] bg-surface/80 py-1.5 text-sm"
     />
   );
 }
@@ -383,7 +383,7 @@ function ThemeFetcher() {
         Pulls related words from the Datamuse word API. Needs internet.
       </p>
       {status === "error" && !theme && (
-        <p className="mt-2 text-sm font-semibold text-[#c63a28]">{error}</p>
+        <p className="mt-2 text-sm font-semibold text-danger">{error}</p>
       )}
     </section>
   );

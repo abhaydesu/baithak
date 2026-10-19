@@ -44,7 +44,7 @@ export default function PhoneDemo({ games }: { games: PhoneGame[] }) {
   const [listScroll, setListScroll] = useState(0);
 
   return (
-    <div className="rounded-[2.4rem] bg-ink p-2 shadow-[0_30px_50px_-24px_rgb(0_0_0/0.55)]">
+    <div className="light-scope rounded-[2.4rem] bg-ink p-2 shadow-[0_30px_50px_-24px_rgb(0_0_0/0.55)]">
       <div className="relative flex aspect-[9/18] flex-col overflow-hidden rounded-[1.95rem] bg-paper">
         <div className="mx-auto mt-2 h-5 w-16 shrink-0 rounded-full bg-ink" />
         {open ? (

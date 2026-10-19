@@ -18,7 +18,7 @@ export function PlayingCard({ game, className = "" }: { game: CatalogGame; class
   return (
     <Link
       href={game.href}
-      className={`group relative block aspect-[5/7] w-full rounded-[1.5rem] border-[3px] border-ink bg-[#fffaf0] p-2 shadow-[0_7px_0_0_var(--color-ink)] ${className}`}
+      className={`group relative block aspect-[5/7] w-full rounded-[1.5rem] light-scope border-[3px] border-ink bg-[#fffaf0] p-2 shadow-[0_7px_0_0_var(--color-ink)] ${className}`}
     >
       <div
         className="game-art grain relative h-full overflow-hidden rounded-[1.05rem] border-2 border-ink"

@@ -430,7 +430,7 @@ export function Drawing() {
         <div
           role="timer"
           className={`inline-flex items-baseline justify-center font-display text-[clamp(5rem,30vw,9rem)] font-extrabold leading-none tabular-nums tracking-[0.06em] transition-colors ${
-            urgent ? "text-[#e2412d]" : ""
+            urgent ? "text-alert" : ""
           }`}
         >
           <span>{mm}</span>

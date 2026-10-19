@@ -50,7 +50,7 @@ export default function Setup() {
         <ol className="grid gap-2 sm:grid-cols-2">
           {players.map((player, i) => (
             <li key={player.id} className="flex items-center gap-2">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border-2 border-line bg-white font-display font-extrabold">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border-2 border-line bg-surface font-display font-extrabold">
                 {i + 1}
               </span>
               <input
@@ -156,7 +156,7 @@ export default function Setup() {
 
       <div className="flex flex-col gap-4">
         {!canStart && (
-          <p className="text-sm font-semibold text-[#c63a28]">
+          <p className="text-sm font-semibold text-danger">
             {players.length < MIN_PLAYERS
               ? `You need at least ${MIN_PLAYERS} players.`
               : "Pick at least one question pack."}

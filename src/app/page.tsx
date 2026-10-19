@@ -184,7 +184,7 @@ export default function Home() {
       </section>
 
       {/* Closing call to action: a hand of cards rising from the bottom */}
-      <section className="-mb-24 overflow-hidden bg-marigold md:-mb-32">
+      <section className="light-scope -mb-24 overflow-hidden bg-marigold md:-mb-32">
         <div className="mx-auto max-w-6xl px-5 pt-20 text-center sm:px-6 lg:px-8 lg:pt-32">
           <h2 className="mx-auto max-w-3xl font-display text-[2.6rem] font-bold leading-[0.98] tracking-[-0.035em] text-ink sm:text-6xl lg:text-[5rem]">
             Everyone&apos;s on the sofa.

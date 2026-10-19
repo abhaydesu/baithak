@@ -134,7 +134,7 @@ export function Acting() {
       <div className={`flex items-center gap-3 ${urgent && running ? "animate-wobble" : ""}`}>
         <div
           role="timer"
-          className={`inline-flex items-baseline font-display text-4xl font-extrabold tabular-nums leading-none tracking-[0.06em] ${urgent ? "text-[#e2412d]" : ""}`}
+          className={`inline-flex items-baseline font-display text-4xl font-extrabold tabular-nums leading-none tracking-[0.06em] ${urgent ? "text-alert" : ""}`}
         >
           <span>{mm}</span>
           <span className="mx-1">:</span>
@@ -276,7 +276,7 @@ export function Result() {
                     className={`brick brick-flat brick-press flex w-full items-center gap-3 px-3 py-2.5 text-left ${got ? "tone-green" : "tone-white"}`}
                   >
                     <span
-                      className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg border-2 text-sm font-extrabold ${got ? "border-[#178443] bg-[#25b35f] text-white" : "border-line bg-white text-ink/40"}`}
+                      className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg border-2 text-sm font-extrabold ${got ? "border-[#178443] bg-[#25b35f] text-white" : "border-line bg-surface text-ink/40"}`}
                     >
                       {got ? "✓" : "✗"}
                     </span>

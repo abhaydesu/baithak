@@ -52,7 +52,7 @@ function BoardHeader() {
           <strong className="font-display text-base tabular-nums">
             {s.pot}
           </strong>
-          {double && <span className="text-[#c63a28]">×2</span>}
+          {double && <span className="text-danger">×2</span>}
         </span>
         <div className="flex gap-2">
           {s.undoStack.length > 0 && s.phase !== "roundEnd" && (
@@ -287,7 +287,7 @@ export function Play() {
       <Board tappable={host} />
       {host ? (
         <details className="group">
-          <summary className="flex min-h-11 cursor-pointer list-none items-center text-sm font-bold text-ink/60 [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 text-sm font-bold text-ink/60 [&::-webkit-details-marker]:hidden">
             <span className="inline-block transition-transform group-open:rotate-90">
               ▸
             </span>{" "}

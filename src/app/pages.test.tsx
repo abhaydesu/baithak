@@ -7,10 +7,10 @@ vi.mock("next/og", () => ({
     constructor(public element: unknown, public options?: unknown) {}
   },
 }));
-vi.mock("next/font/local", () => ({ default: () => ({ variable: "f", className: "f" }) }));
 vi.mock("next/font/google", () => ({
   Kalam: () => ({ variable: "k", className: "k" }),
   Poppins: () => ({ variable: "p", className: "p" }),
+  Bricolage_Grotesque: () => ({ variable: "b", className: "b" }),
 }));
 vi.mock("next/navigation", () => ({
   usePathname: () => "/games",

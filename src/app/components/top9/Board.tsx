@@ -76,7 +76,7 @@ export function Board({ tappable }: BoardProps) {
                 isRevealed ? "tone-yellow" : "tone-blue"
               } ${canTap ? "brick-press" : ""}`}
             >
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border-2 border-[var(--tone-dark)] bg-white font-display text-sm font-extrabold">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border-2 border-[var(--tone-dark)] bg-surface font-display text-sm font-extrabold">
                 {i + 1}
               </span>
               {isRevealed ? (
@@ -98,7 +98,7 @@ export function Board({ tappable }: BoardProps) {
                   </span>
                 </>
               ) : (
-                <span className="h-2 flex-1 rounded-full bg-white/50" />
+                <span className="h-2 flex-1 rounded-full bg-surface/50" />
               )}
             </button>
           </motion.li>
@@ -122,7 +122,7 @@ export function Strikes({ count }: { count: number }) {
           className={`grid h-9 w-9 place-items-center rounded-xl border-2 font-display text-xl font-extrabold transition-colors ${
             i < count
               ? "border-[#c63a28] bg-[#ff5a45] text-white shadow-[0_3px_0_#c63a28]"
-              : "border-line bg-white/70 text-ink/15"
+              : "border-line bg-surface/70 text-ink/15"
           }`}
         >
           ✗
@@ -233,7 +233,7 @@ export function GuessBox({
       </form>
       {missed && (
         <div className="mt-2 flex flex-wrap items-center gap-2">
-          <p className="text-sm font-semibold text-[#c63a28]">
+          <p className="text-sm font-semibold text-danger">
             “{missed.guess}”{" "}
             {missed.already
               ? "is already on the board."

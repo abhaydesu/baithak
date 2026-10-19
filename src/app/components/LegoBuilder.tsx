@@ -296,7 +296,7 @@ export default function LegoBuilder({ className = "" }: { className?: string }) 
   return (
     <section
       aria-label="LEGO brick builder"
-      className={`lego-builder rounded-[1.75rem] border border-line bg-[#fbfaf8] p-3 sm:p-4 ${className}`}
+      className={`lego-builder rounded-[1.75rem] border border-line bg-paper p-3 sm:p-4 ${className}`}
     >
       {/* Colours */}
       <div className="flex items-center justify-between gap-3 px-1 pb-3">
@@ -322,7 +322,7 @@ export default function LegoBuilder({ className = "" }: { className?: string }) 
       {/* Plate */}
       <div
         ref={plateRef}
-        className="relative w-full select-none overflow-visible rounded-2xl bg-white"
+        className="relative w-full select-none overflow-visible rounded-2xl bg-surface"
         style={{ height: ROWS * H + BASE + STUD + 8 }}
       >
         {bricks.map((b) => {
@@ -516,7 +516,7 @@ function ToolButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="rounded-full border border-line bg-white px-3.5 py-1.5 text-sm font-semibold text-ink transition-colors hover:bg-paper-deep disabled:opacity-40"
+      className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-semibold text-ink transition-colors hover:bg-paper-deep disabled:opacity-40"
     >
       {children}
     </button>

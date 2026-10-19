@@ -18,7 +18,7 @@ export default function Scoreboard() {
         <span className="chip tone-white mr-auto">
           Round {Math.min(s.round + 1, s.settings.rounds)} of{" "}
           {s.settings.rounds}
-          {double && <strong className="text-[#c63a28]"> · ×2</strong>}
+          {double && <strong className="text-danger"> · ×2</strong>}
         </span>
         <button
           type="button"

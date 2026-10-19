@@ -111,7 +111,7 @@ export function Live() {
       <div className={`flex items-center gap-3 ${urgent && running ? "animate-wobble" : ""}`}>
         <div
           role="timer"
-          className={`inline-flex items-baseline font-display text-4xl font-extrabold tabular-nums leading-none tracking-[0.06em] ${urgent ? "text-[#e2412d]" : ""}`}
+          className={`inline-flex items-baseline font-display text-4xl font-extrabold tabular-nums leading-none tracking-[0.06em] ${urgent ? "text-alert" : ""}`}
         >
           <span>{mm}</span>
           <span className="mx-1">:</span>

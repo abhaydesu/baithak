@@ -53,7 +53,7 @@ const SIGNALS: Array<[string, string]> = [
 export function SignalsSheet() {
   return (
     <details className="inset-well group p-4 text-left">
-      <summary className="flex min-h-11 cursor-pointer list-none items-center font-bold [&::-webkit-details-marker]:hidden">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 font-bold [&::-webkit-details-marker]:hidden">
         <span className="inline-block transition-transform group-open:rotate-90">▸</span> Signals
         cheat sheet
       </summary>

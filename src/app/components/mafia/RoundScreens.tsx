@@ -249,7 +249,7 @@ function NightActInner() {
               {playerName(s, checkedId)}
             </p>
             <p
-              className={`mt-2 font-display text-2xl font-extrabold ${checkedIsMafia ? "text-[#c63a28]" : "text-[#178443]"}`}
+              className={`mt-2 font-display text-2xl font-extrabold ${checkedIsMafia ? "text-danger" : "text-success"}`}
             >
               {checkedIsMafia ? "Mafia" : "Innocent"}
             </p>
@@ -640,7 +640,7 @@ function NarratorStepScreen() {
           {picked && (
             <div className="inset-well px-4 py-3 text-center">
               <p
-                className={`font-display text-xl font-extrabold ${pickedIsMafia ? "text-[#c63a28]" : "text-[#178443]"}`}
+                className={`font-display text-xl font-extrabold ${pickedIsMafia ? "text-danger" : "text-success"}`}
               >
                 {pickedIsMafia
                   ? `${playerName(s, picked)} is Mafia — nod yes`
@@ -740,7 +740,7 @@ export function Dawn() {
           )}
         </p>
         {round.outcome === "mafia" && (
-          <p className="mt-3 rounded-xl bg-white/75 px-3 py-1.5 text-sm font-bold text-[#c63a28]">
+          <p className="mt-3 rounded-xl bg-surface/75 px-3 py-1.5 text-sm font-bold text-danger">
             The Mafia now match the village in numbers!
           </p>
         )}
@@ -791,7 +791,7 @@ function DayClock() {
     <div className="inset-well px-4 pb-4 pt-3 text-center">
       <div
         role="timer"
-        className={`inline-flex items-baseline justify-center font-display text-6xl font-extrabold tabular-nums tracking-[0.06em] ${seconds <= 10 && running ? "text-[#e2412d]" : ""}`}
+        className={`inline-flex items-baseline justify-center font-display text-6xl font-extrabold tabular-nums tracking-[0.06em] ${seconds <= 10 && running ? "text-alert" : ""}`}
       >
         <span>{mm}</span>
         <span className="mx-1.5">:</span>

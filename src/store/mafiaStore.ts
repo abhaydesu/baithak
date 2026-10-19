@@ -233,19 +233,19 @@ export const ROLE_META: Record<
 > = {
   mafia: {
     label: "Mafia",
-    color: "text-[#c63a28]",
+    color: "text-danger",
     summary:
       "Eliminate one villager each night and bluff your way through the day. You win when Mafia equal or outnumber the village.",
   },
   doctor: {
     label: "Doctor",
-    color: "text-[#178443]",
+    color: "text-success",
     summary:
       "Each night, choose one player to protect (including yourself). If the Mafia target them tonight, they survive.",
   },
   detective: {
     label: "Detective",
-    color: "text-[#1a64c7]",
+    color: "text-info",
     summary:
       "Each night, investigate one player to learn whether they are Mafia or innocent. Help the village without giving yourself away.",
   },

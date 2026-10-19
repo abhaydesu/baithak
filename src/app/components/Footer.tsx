@@ -14,10 +14,12 @@ export default function Footer() {
         <div className="mx-auto max-w-6xl px-5 pt-16 sm:px-6 lg:px-8 lg:pt-24">
           <div className="grid gap-12 lg:grid-cols-[1.2fr_0.6fr_1.4fr] lg:gap-16">
             <div>
-              <Link href="/" className="flex w-fit items-end gap-1.5" aria-label="Baithak home">
+              <Link href="/" className="flex w-fit items-center" aria-label="Baithak home">
+                <span className="flex items-baseline gap-[0.35rem]">
                 <LogoMark className="h-[2.15rem]" />
-                <span className="pb-[0.08em] font-display text-[1.7rem] font-bold leading-none tracking-[-0.02em] text-ink">
+                <span className="relative -top-[0.44rem] font-display text-[2.1rem] font-extrabold leading-none tracking-[-0.04em] text-ink [font-stretch:94%]">
                   baithak
+                </span>
                 </span>
               </Link>
               <p className="mt-5 max-w-xs leading-relaxed text-ink-soft">
