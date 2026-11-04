@@ -681,12 +681,458 @@ body {
   inset: -2px 0 calc(-1 * (var(--press, 4px) + 2px)) 0;
 }
 
-/* The logo squishes like a mascot when hovered */
-.logo-mark {
-  transform-origin: 50% 100%;
+/* ------------------------------------------------------------------ */
+/* Wordmark (src/app/components/Logo.tsx)                              */
+/*   full:    "baithak" in the display face                            */
+/*   compact: "aithak" slides behind the b, then the b's bowl breaks    */
+/*            into the five dots and its stem rounds into the pill      */
+/*   hover:   letters wave (full) / dots hop, pill leans (compact)      */
+/*   press:   the whole thing squishes                                  */
+/* Each state's rules carry the timing for arriving in that state, so   */
+/* the two directions are choreographed separately.                     */
+/* ------------------------------------------------------------------ */
+/* The display face has an optical-size axis, which reshapes the b with the
+   font size. Pin it, so the measurements below (taken at opsz 32, weight 800,
+   94% width; in em) hold at every size the logo is set at. */
+.logo-inner {
+  font-variation-settings: "opsz" 32;
+  transform-origin: 30% 100%;
+  transition: transform 0.25s var(--ease-bounce);
 }
-.group:hover .logo-mark {
-  animation: mascot-boing 0.6s cubic-bezier(0.3, 0.7, 0.4, 1.5);
+.logo:active .logo-inner {
+  transform: scale(0.94, 0.9);
+  transition-duration: 0.08s;
+}
+.logo .logo-letter {
+  transition: transform 0.3s var(--ease-bounce);
+}
+
+/* The b, cut into its stem and its bowl at the point where they meet */
+/* stem: 0.0525–0.21em across; bowl: centre (0.3075em, 0.565em down the
+   line box), 0.255em × 0.275em; ascender 0.7075em; baseline 0.8275em down */
+.logo-b-stem {
+  clip-path: inset(-0.2em calc(100% - 0.24em) -0.2em -0.2em);
+  transition: opacity 0.15s 0.2s;
+}
+/* The bowl carries a thin paper-coloured halo, so letters passing behind it
+   part from it cleanly instead of fusing to its edge. It's cut just clear of
+   the stem, so the halo never draws over the stem half. */
+.logo-b-bowl {
+  -webkit-text-stroke: 0.05em var(--color-paper);
+  paint-order: stroke fill;
+  clip-path: inset(-0.2em -0.3em -0.2em 0.235em);
+  transform-origin: 0.3075em 0.565em;
+  transition: opacity 0.12s 0.25s, transform 0.2s 0.2s;
+}
+/* The mark, laid over the letter: pill on the stem, bottom on the baseline */
+.logo-mark {
+  position: absolute;
+  left: 0.043em;
+  top: 0.12em;
+  height: 0.7075em;
+  width: calc(0.7075em * 278 / 297);
+  overflow: visible;
+  pointer-events: none;
+  transform-origin: 20% 100%;
+}
+.logo-mark * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.logo-pill {
+  opacity: 0;
+  transform-origin: 50% 100%;
+  transition: opacity 0.15s 0.2s, transform 0.35s var(--ease-bounce);
+}
+.logo-slot {
+  animation: logo-blink 6s infinite 2.5s;
+}
+/* Beads on the bowl, ink-coloured, until they roll out to their seats */
+.logo-seat {
+  opacity: 0;
+  transform: translate(var(--sx), var(--sy));
+  transition:
+    transform 0.3s cubic-bezier(0.5, 0, 0.75, 0),
+    opacity 0.1s 0.28s;
+}
+.logo-dot {
+  fill: var(--color-ink);
+  transition: fill 0.2s;
+}
+
+/* The word slides behind the b. The clip reaches back over the b to the
+   right edge of its stem (0.345em in from the b's 0.5555em advance), and a
+   mask the shape of the bowl hides the letters as they pass under it, so
+   they vanish along the bowl's curve and behind the stem rather than at a
+   straight line. */
+.logo-word-clip {
+  display: block;
+  overflow: hidden;
+  /* Room for the letter wave and the k's ascender, without moving the line */
+  padding: 0.2em 0 0.12em;
+  margin: -0.2em -0.1em -0.12em -0.345em;
+  --bowl: radial-gradient(0.256em 0.28em at 0.0975em 0.765em, transparent 97%, #000 100%);
+  -webkit-mask-image: var(--bowl);
+  mask-image: var(--bowl);
+}
+.logo-word-track {
+  display: flex;
+  /* left: back to just after the b; right: the k's overhang */
+  padding: 0 0.1em 0 0.35em;
+  transition:
+    transform 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.3s,
+    opacity 0.1s 0.3s;
+}
+
+/* ---- compact: word away (0–0.5s), then b → mark (0.3–0.9s) ---- */
+.logo[data-compact="true"] .logo-word-track {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition:
+    transform 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.15s 0.4s;
+}
+.logo[data-compact="true"] .logo-b-bowl {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.2s 0.3s, transform 0.25s 0.3s;
+}
+.logo[data-compact="true"] .logo-seat {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.08s 0.3s,
+    transform 0.55s var(--ease-bounce) calc(0.38s + var(--i) * 45ms);
+}
+.logo[data-compact="true"] .logo-dot {
+  fill: var(--c);
+  transition: fill 0.35s calc(0.45s + var(--i) * 45ms);
+}
+.logo[data-compact="true"] .logo-b-stem {
+  opacity: 0;
+  transition: opacity 0.2s 0.5s;
+}
+.logo[data-compact="true"] .logo-pill {
+  opacity: 1;
+  transition: opacity 0.2s 0.5s, transform 0.35s var(--ease-bounce);
+}
+/* and a little squish as it settles */
+.logo[data-compact="true"] .logo-mark {
+  animation: logo-gulp 0.45s var(--ease-bounce) 0.85s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logo[data-compact="false"]:hover .logo-letter {
+    animation: logo-wave 0.5s var(--ease-bounce);
+    animation-delay: calc(var(--i) * 40ms);
+  }
+  .logo[data-compact="true"]:hover .logo-pill {
+    transform: rotate(-6deg);
+  }
+  .logo[data-compact="true"]:hover .logo-dot {
+    animation: logo-hop 0.5s var(--ease-bounce);
+    animation-delay: calc(var(--i) * 55ms);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Navigation (src/app/components/NavDock.tsx)                         */
+/* ------------------------------------------------------------------ */
+/* Solid paper: the header passes over bright art and the dark night band,
+   so a see-through bar would let them bleed into the logo. */
+.nav-top {
+  background: var(--color-paper);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.nav-top[data-scrolled="true"] {
+  border-color: var(--color-line);
+  box-shadow: 0 8px 24px -18px rgb(28 25 23 / 0.35);
+}
+.nav-tabs {
+  box-shadow: inset 0 1px 0 var(--hl), 0 6px 18px -14px rgb(28 25 23 / 0.4);
+}
+/* A seat-coloured dot that pops in on hover and stays on the current tab */
+.nav-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: -0.65rem;
+  border-radius: 999px;
+  background: var(--dot);
+  transform: scale(0);
+  transition: transform 0.3s var(--ease-bounce), margin 0.3s var(--ease-bounce);
+}
+.nav-tab[aria-current="page"] .nav-dot {
+  margin-right: 0;
+  transform: scale(1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-tab:hover .nav-dot {
+    margin-right: 0;
+    transform: scale(1);
+  }
+}
+.nav-tab:active {
+  transform: scale(0.95);
+}
+.nav-tab {
+  transition: color 0.2s, transform 0.15s;
+}
+
+/* Mobile dock: the icon hops when its tab becomes current */
+.dock-tab {
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s, transform 0.15s;
+}
+.dock-tab:active {
+  transform: scale(0.92);
+}
+.dock-tab[aria-current="page"] .dock-icon {
+  animation: dock-hop 0.45s var(--ease-bounce);
+}
+.dock-dot {
+  position: absolute;
+  top: -0.15rem;
+  right: -0.3rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--dot);
+  box-shadow: 0 0 0 2px var(--color-ink);
+  transform: scale(0);
+  transition: transform 0.3s var(--ease-bounce) 0.1s;
+}
+.dock-tab[aria-current="page"] .dock-dot {
+  transform: scale(1);
+}
+@keyframes dock-hop {
+  0%, 100% { transform: none; }
+  40% { transform: translateY(-5px) scale(1.12); }
+  70% { transform: translateY(1px) scale(0.96, 1.04); }
+}
+
+/* Surprise me: the shuffle arrows jiggle like dice about to be thrown */
+@media (hover: hover) and (pointer: fine) {
+  .surprise:hover svg {
+    animation: dice-shake 0.5s ease-in-out;
+  }
+}
+.surprise:active svg {
+  animation: dice-shake 0.35s ease-in-out;
+}
+@keyframes dice-shake {
+  0%, 100% { transform: none; }
+  20% { transform: rotate(-14deg) scale(1.1); }
+  45% { transform: rotate(10deg) scale(1.1); }
+  70% { transform: rotate(-5deg); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Theme toggle (src/app/components/ThemeToggle.tsx)                    */
+/* A day/night switch built like .press: ink outline, a hard side that  */
+/* presses down. The track is a pixel landscape; the knob rolls between */
+/* a sun and a moon. The night state repeats the page's own dark-mode   */
+/* conditions (see "Dark mode" above), so it's right on first paint.    */
+/* ------------------------------------------------------------------ */
+.tt-switch {
+  --press: 3px;
+  position: relative;
+  flex-shrink: 0;
+  width: 4.5rem;
+  height: 2.25rem;
+  /* room for the side, so pressing never shifts the layout */
+  margin-bottom: 3px;
+  padding: 0;
+  border: 2px solid var(--color-outline);
+  border-radius: 999px;
+  isolation: isolate;
+  box-shadow:
+    0 var(--press) 0 0 var(--color-outline),
+    0 calc(var(--press) + 4px) 10px -6px rgb(0 0 0 / 0.25);
+  transition:
+    transform 0.14s var(--ease-bounce),
+    box-shadow 0.14s var(--ease-bounce);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* A 44px tap target, from a transparent ring around the button */
+.tt-switch::before {
+  content: "";
+  position: absolute;
+  inset: -6px -2px;
+}
+.tt-switch:active {
+  --press: 0px;
+  transform: translateY(3px);
+  transition-duration: 0.06s;
+}
+/* The track clips the scene to the pill */
+.tt-track {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.tt-scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.tt-scene * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* inner shading, so the track reads as a recess the knob runs in */
+.tt-track::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 2px 0 rgb(0 0 0 / 0.12), inset 0 -1px 0 rgb(255 255 255 / 0.25);
+  pointer-events: none;
+}
+
+/* ---- day (default) ---- */
+.tt-sky-day { fill: #ffe7ad; }
+.tt-sky-night {
+  fill: var(--color-night);
+  opacity: 0;
+  transition: opacity 0.45s ease 0.05s;
+}
+.tt-clouds {
+  fill: #fffdf6;
+  transition: transform 0.5s var(--ease-bounce) 0.15s, opacity 0.3s 0.15s;
+}
+.tt-hill-top {
+  fill: var(--color-marigold);
+  transition: fill 0.45s;
+}
+.tt-hill-low {
+  fill: var(--color-saffron);
+  transition: fill 0.45s;
+}
+.tt-star {
+  fill: #fff3d1;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.tt-zed {
+  fill: #fff3d1;
+  opacity: 0;
+}
+.tt-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  z-index: 1;
+  border-radius: 999px;
+  /* the knob's outline and a hard little shadow under it */
+  box-shadow: 0 0 0 2px var(--color-outline), 0 2px 0 2px var(--color-outline);
+  transition: transform 0.6s var(--ease-bounce);
+}
+.tt-face {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.tt-face * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.tt-disc {
+  fill: #f5b82e;
+  transition: fill 0.35s 0.1s;
+}
+.tt-sun { transition: opacity 0.2s 0.2s; }
+.tt-moon {
+  opacity: 0;
+  transition: opacity 0.2s 0.2s;
+}
+.tt-eyes { animation: mascot-blink 5.2s infinite 1.5s; }
+
+/* ---- night ---- */
+:root[data-theme="dark"] .tt-sky-night { opacity: 1; }
+:root[data-theme="dark"] .tt-clouds { opacity: 0; transform: translateX(6px); transition-delay: 0s; }
+:root[data-theme="dark"] .tt-hill-top { fill: var(--color-violet); }
+:root[data-theme="dark"] .tt-hill-low { fill: var(--color-indigo); }
+:root[data-theme="dark"] .tt-star {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.2s, transform 0.4s var(--ease-bounce);
+  transition-delay: calc(0.3s + var(--i) * 60ms);
+  animation: tt-twinkle 2.8s ease-in-out infinite;
+  animation-delay: calc(1s + var(--i) * 0.55s);
+}
+:root[data-theme="dark"] .tt-zed { animation: tt-zed 3.2s ease-in-out infinite 0.9s; }
+:root[data-theme="dark"] .tt-knob { transform: translateX(36px) rotate(360deg); }
+:root[data-theme="dark"] .tt-disc { fill: #f3eee6; }
+:root[data-theme="dark"] .tt-sun { opacity: 0; }
+:root[data-theme="dark"] .tt-moon { opacity: 1; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tt-sky-night { opacity: 1; }
+  :root:not([data-theme="light"]) .tt-clouds { opacity: 0; transform: translateX(6px); transition-delay: 0s; }
+  :root:not([data-theme="light"]) .tt-hill-top { fill: var(--color-violet); }
+  :root:not([data-theme="light"]) .tt-hill-low { fill: var(--color-indigo); }
+  :root:not([data-theme="light"]) .tt-star {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.2s, transform 0.4s var(--ease-bounce);
+    transition-delay: calc(0.3s + var(--i) * 60ms);
+    animation: tt-twinkle 2.8s ease-in-out infinite;
+    animation-delay: calc(1s + var(--i) * 0.55s);
+  }
+  :root:not([data-theme="light"]) .tt-zed { animation: tt-zed 3.2s ease-in-out infinite 0.9s; }
+  :root:not([data-theme="light"]) .tt-knob { transform: translateX(36px) rotate(360deg); }
+  :root:not([data-theme="light"]) .tt-disc { fill: #f3eee6; }
+  :root:not([data-theme="light"]) .tt-sun { opacity: 0; }
+  :root:not([data-theme="light"]) .tt-moon { opacity: 1; }
+}
+
+/* Hover: the side rises, and the knob leans toward where it would go */
+@media (hover: hover) and (pointer: fine) {
+  .tt-switch:hover {
+    --press: 5px;
+    transform: translateY(-2px);
+  }
+  .tt-switch:hover .tt-knob { transform: translateX(4px) rotate(20deg); }
+  :root[data-theme="dark"] .tt-switch:hover .tt-knob { transform: translateX(32px) rotate(340deg); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tt-switch:hover .tt-knob { transform: translateX(32px) rotate(340deg); }
+}
+
+@keyframes tt-twinkle {
+  0%, 82%, 100% { opacity: 1; }
+  90% { opacity: 0.2; }
+}
+@keyframes tt-zed {
+  0% { opacity: 0; transform: translate(0, 2px); }
+  25%, 60% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-2px, -3px); }
+}
+
+
+
+@keyframes logo-gulp {
+  0%, 100% { transform: none; }
+  35% { transform: scale(1.12, 0.9); }
+  65% { transform: scale(0.96, 1.05); }
+}
+@keyframes logo-hop {
+  0%, 100% { transform: none; }
+  40% { transform: translateY(-34%) scale(1.15); }
+  70% { transform: translateY(6%) scale(0.92, 1.05); }
+}
+@keyframes logo-wave {
+  0%, 100% { transform: none; }
+  40% { transform: translateY(-0.09em); }
+}
+@keyframes logo-blink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.15); }
 }
 
 /* ------------------------------------------------------------------ */

@@ -88,7 +88,7 @@ export default function RootLayout({
         {/* Apply a saved theme before first paint, so dark mode never flashes light. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("baithak-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
+            __html: `try{var t=localStorage.getItem("baithak-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.remove()});var m=document.createElement("meta");m.name="theme-color";m.content=t==="dark"?"#1d1814":"#faf8f4";document.head.appendChild(m)})}}catch(e){}`,
           }}
         />
       </head>

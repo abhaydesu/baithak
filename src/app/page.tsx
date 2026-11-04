@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Faq from "./components/Faq";
-import { CardPeek, CardSpread } from "./components/Cards";
+import { CardDeck, CardPeek, CardSpread } from "./components/Cards";
 import HeroShowcase from "./components/HeroShowcase";
 import JsonLd from "./components/JsonLd";
 import LegoBuilder from "./components/LegoBuilder";
@@ -153,7 +153,9 @@ export default function Home() {
           </Link>
         </div>
         <div className="mt-10 lg:mt-16">
-          <CardSpread games={featured} />
+          {/* A deck you swipe through on phones; the full spread from tablets up */}
+          <CardDeck games={featured} className="md:hidden" />
+          <CardSpread games={featured} className="hidden md:grid" />
         </div>
       </section>
 
